@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/hands">
+        <file>handRight.jpg</file>
+        <file>handLeft.jpg</file>
+    </qresource>
+</RCC>
