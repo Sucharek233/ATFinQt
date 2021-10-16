@@ -2,6 +2,7 @@
 #define KEYMAPPINGSCOLOR_H
 
 #include <QDialog>
+#include <QDebug>
 
 namespace Ui {
 class keyMappingsColor;
@@ -75,6 +76,67 @@ public:
     QString getRAlt() { return RAlt; }
     QString getMenu() { return menu; }
     QString getRCtrl() { return RCtrl; }
+
+    QString getTildeS() { return tildeS; }
+    QString getN1S() { return n1S; }
+    QString getN2S() { return n2S; }
+    QString getN3S() { return n3S; }
+    QString getN4S() { return n4S; }
+    QString getN5S() { return n5S; }
+    QString getN6S() { return n6S; }
+    QString getN7S() { return n7S; }
+    QString getN8S() { return n8S; }
+    QString getN9S() { return n9S; }
+    QString getN0S() { return n0S; }
+    QString getMinusS() { return minusS; }
+    QString getEqualsS() { return equalsS; }
+    QString getBackspaceS() { return backspaceS; }
+    QString getTABS() { return TABS; }
+    QString getQS() { return qS; }
+    QString getWS() { return wS; }
+    QString getES() { return eS; }
+    QString getRS() { return rS; }
+    QString getTS() { return tS; }
+    QString getYS() { return yS; }
+    QString getUS() { return uS; }
+    QString getIS() { return iS; }
+    QString getOS() { return oS; }
+    QString getPS() { return pS; }
+    QString getLeftSquareBracketS() { return leftSquareBracketS; }
+    QString getRightSquareBracketS() { return rightSquareBracketS; }
+    QString getBackslashS() { return backslashS; }
+    QString getCAPSS() { return CAPSS; }
+    QString getAS() { return aS; }
+    QString getSS() { return sS; }
+    QString getDS() { return dS; }
+    QString getFS() { return fS; }
+    QString getGS() { return gS; }
+    QString getHS() { return hS; }
+    QString getJS() { return jS; }
+    QString getKS() { return kS; }
+    QString getLS() { return lS; }
+    QString getSemicolonS() { return semicolonS; }
+    QString getApostropheS() { return apostropheS; }
+    QString getEnterS() { return enterS; }
+    QString getLShiftS() { return LShiftS; }
+    QString getZS() { return zS; }
+    QString getXS() { return xS; }
+    QString getCS() { return cS; }
+    QString getVS() { return vS; }
+    QString getBS() { return bS; }
+    QString getNS() { return nS; }
+    QString getMS() { return mS; }
+    QString getCommaS() { return commaS; }
+    QString getPeriodS() { return periodS; }
+    QString getSlashS() { return slashS; }
+    QString getRShiftS() { return RShiftS; }
+    QString getLCtrlS() { return LCtrlS; }
+    QString getSuperS() { return superS; }
+    QString getLAltS() { return LAltS; }
+    QString getSpaceS() { return spaceS; }
+    QString getRAltS() { return RAltS; }
+    QString getMenuS() { return menuS; }
+    QString getRCtrlS() { return RCtrlS; }
 
 private slots:
     void on_lineEdit_Tilde_textChanged(const QString &arg1);
@@ -197,6 +259,8 @@ private slots:
 
     void on_lineEdit_RCtrl_textChanged(const QString &arg1);
 
+    void on_pushButton_OnShift_toggled(bool checked);
+
     void on_buttonBox_accepted();
 
     void on_buttonBox_rejected();
@@ -264,6 +328,67 @@ private:
     QString RAlt = "alt";
     QString menu = "me";
     QString RCtrl = "ctrl";
+
+    QString tildeS = "~";
+    QString n1S = "!";
+    QString n2S = "@";
+    QString n3S = "#";
+    QString n4S = "$";
+    QString n5S = "%";
+    QString n6S = "^";
+    QString n7S = "&&";
+    QString n8S = "*";
+    QString n9S = "(";
+    QString n0S = ")";
+    QString minusS = "_";
+    QString equalsS = "+";
+    QString backspaceS = "←";
+    QString TABS = "tab";
+    QString qS = "Q";
+    QString wS = "W";
+    QString eS = "E";
+    QString rS = "R";
+    QString tS = "T";
+    QString yS = "Y";
+    QString uS = "U";
+    QString iS = "I";
+    QString oS = "O";
+    QString pS = "P";
+    QString leftSquareBracketS = "{";
+    QString rightSquareBracketS = "}";
+    QString backslashS = "|";
+    QString CAPSS = "caps";
+    QString aS = "A";
+    QString sS = "S";
+    QString dS = "D";
+    QString fS = "F";
+    QString gS = "G";
+    QString hS = "H";
+    QString jS = "J";
+    QString kS = "K";
+    QString lS = "L";
+    QString semicolonS = ":";
+    QString apostropheS = "\"";
+    QString enterS = "⏎";
+    QString LShiftS = "⇧";
+    QString zS = "Z";
+    QString xS = "X";
+    QString cS = "C";
+    QString vS = "V";
+    QString bS = "B";
+    QString nS = "N";
+    QString mS = "M";
+    QString commaS = "<";
+    QString periodS = ">";
+    QString slashS = "?";
+    QString RShiftS = "⇧";
+    QString LCtrlS = "ctrl";
+    QString superS = "se";
+    QString LAltS = "alt";
+    QString spaceS = " ";
+    QString RAltS = "alt";
+    QString menuS = "me";
+    QString RCtrlS = "ctrl";
 };
 
 #endif // KEYMAPPINGSCOLOR_H

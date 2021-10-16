@@ -5,13 +5,17 @@ bool isArticleCapitalised;
 QString article;
 int checker;
 QString articleDeleted;
+
 int misses;
 int stopTwice;
-int teemp;
+int spaceMiss;
 int missStop;
 int once;
 int characters;
 int stopErr;
+int stopErr2;
+int saveM;
+
 QString text;
 QString errStopS;
 
@@ -113,7 +117,8 @@ MainWindow::~MainWindow()
 void MainWindow::on_lineEdit_TextInput_textChanged(const QString &arg1)
 {
     QString word = arg1;
-    QString lastCharacter = arg1.back();
+    QString lastCharacter;
+    if (stopErr2 == 0) {lastCharacter = arg1.back();}
 //    QString firstCharacter = arg1.front();
     QString articleIn = article;
     articleIn = article.front();
@@ -134,6 +139,7 @@ void MainWindow::on_lineEdit_TextInput_textChanged(const QString &arg1)
         once = 0;
         characters = 0;
         stopErr = 0;
+        saveM = 0;
         errStopS = "";
         if (lastCharacter == " ")
         {
@@ -149,7 +155,7 @@ void MainWindow::on_lineEdit_TextInput_textChanged(const QString &arg1)
             if (front == " ")
             {
                 articleDeleted = articleDeleted.simplified();
-                teemp = teemp + 1;
+                spaceMiss = spaceMiss + 1;
             } else {
                 articleDeleted.remove(0, 1);
             }
@@ -159,10 +165,10 @@ void MainWindow::on_lineEdit_TextInput_textChanged(const QString &arg1)
     } else {
         if (missStop == 0) {
             misses = misses + 1;
-            if (lastCharacter == " ") {teemp = teemp + 2;}
+            if (lastCharacter == " ") {spaceMiss = spaceMiss + 2;}
             missStop = 1;
-            text = arg1;
             ui->lineEdit_TextInput->setStyleSheet("background-color: red; font-size: 20px;");
+            text = arg1;
         }
     }
 
@@ -179,7 +185,7 @@ void MainWindow::on_lineEdit_TextInput_textChanged(const QString &arg1)
             ui->menuCourses->setEnabled(true);
             ui->action_MakeCustomCourse->setEnabled(true);
 
-            int mis = misses - teemp;
+            int mis = misses - spaceMiss;
             QString miss = QString::number(mis);
 
             QMessageBox finished;
@@ -197,136 +203,134 @@ void MainWindow::on_lineEdit_TextInput_textChanged(const QString &arg1)
             ui->textEdit_Article->setText(article);
             ui->textEdit_Article->setAlignment(Qt::AlignCenter);
             misses = 0;
-            teemp = 0;
+            spaceMiss = 0;
         }
         if (actualFront.isUpper() == true) {isArticleCapitalised = true;}
         if (actualFront.isLower() == true) {isArticleCapitalised = false;}
         if (actualFront == " ") {isArticleCapitalised = false;}
 
         if (isArticleCapitalised == true) {
-            ui->pushButton_LShift->setChecked(true); ui->graphicsView_LeftHand->scene()->addItem(lHOne);
-            ui->pushButton_RShift->setChecked(true); ui->graphicsView_RightHand->scene()->addItem(rHFive);
-            ui->pushButton_Tilde->setText(mapColor.getTilde().toUpper());
-            ui->pushButton_1->setText(mapColor.getN1().toUpper());
-            ui->pushButton_2->setText(mapColor.getN2().toUpper());
-            ui->pushButton_3->setText(mapColor.getN3().toUpper());
-            ui->pushButton_4->setText(mapColor.getN4().toUpper());
-            ui->pushButton_5->setText(mapColor.getN5().toUpper());
-            ui->pushButton_6->setText(mapColor.getN6().toUpper());
-            ui->pushButton_7->setText(mapColor.getN7().toUpper());
-            ui->pushButton_8->setText(mapColor.getN8().toUpper());
-            ui->pushButton_9->setText(mapColor.getN9().toUpper());
-            ui->pushButton_0->setText(mapColor.getN0().toUpper());
-            ui->pushButton_Minus->setText(mapColor.getMinus().toUpper());
-            ui->pushButton_Equals->setText(mapColor.getEquals().toUpper());
-            ui->pushButton_Backspace->setText(mapColor.getBackspace().toUpper());
-            ui->pushButton_TAB->setText(mapColor.getTAB().toUpper());
-            ui->pushButton_Q->setText(mapColor.getQ().toUpper());
-            ui->pushButton_W->setText(mapColor.getW().toUpper());
-            ui->pushButton_E->setText(mapColor.getE().toUpper());
-            ui->pushButton_R->setText(mapColor.getR().toUpper());
-            ui->pushButton_T->setText(mapColor.getT().toUpper());
-            ui->pushButton_Y->setText(mapColor.getY().toUpper());
-            ui->pushButton_U->setText(mapColor.getU().toUpper());
-            ui->pushButton_I->setText(mapColor.getI().toUpper());
-            ui->pushButton_O->setText(mapColor.getO().toUpper());
-            ui->pushButton_P->setText(mapColor.getP().toUpper());
-            ui->pushButton_LeftSquareBracket->setText(mapColor.getRightSquareBracket().toUpper());
-            ui->pushButton_RightSquareBracket->setText(mapColor.getLeftSquareBracket().toUpper());
-            ui->pushButton_Backslash->setText(mapColor.getBackslash().toUpper());
-            ui->pushButton_CAPS->setText(mapColor.getCAPS().toUpper());
-            ui->pushButton_A->setText(mapColor.getA().toUpper());
-            ui->pushButton_S->setText(mapColor.getS().toUpper());
-            ui->pushButton_D->setText(mapColor.getD().toUpper());
-            ui->pushButton_F->setText(mapColor.getF().toUpper());
-            ui->pushButton_G->setText(mapColor.getG().toUpper());
-            ui->pushButton_H->setText(mapColor.getH().toUpper());
-            ui->pushButton_J->setText(mapColor.getJ().toUpper());
-            ui->pushButton_K->setText(mapColor.getK().toUpper());
-            ui->pushButton_L->setText(mapColor.getL().toUpper());
-            ui->pushButton_Semicolon->setText(mapColor.getSemicolon().toUpper());
-            ui->pushButton_Apostrophe->setText(mapColor.getApostrophe().toUpper());
-            ui->pushButton_Enter->setText(mapColor.getEnter().toUpper());
-            ui->pushButton_LShift->setText(mapColor.getLShift().toUpper());
-            ui->pushButton_Z->setText(mapColor.getZ().toUpper());
-            ui->pushButton_X->setText(mapColor.getX().toUpper());
-            ui->pushButton_C->setText(mapColor.getC().toUpper());
-            ui->pushButton_V->setText(mapColor.getV().toUpper());
-            ui->pushButton_B->setText(mapColor.getB().toUpper());
-            ui->pushButton_N->setText(mapColor.getN().toUpper());
-            ui->pushButton_M->setText(mapColor.getM().toUpper());
-            ui->pushButton_Comma->setText(mapColor.getComma().toUpper());
-            ui->pushButton_Period->setText(mapColor.getPeriod().toUpper());
-            ui->pushButton_Slash->setText(mapColor.getSlash().toUpper());
-            ui->pushButton_RShift->setText(mapColor.getRShift().toUpper());
-            ui->pushButton_LCtrl->setText(mapColor.getLCtrl().toUpper());
-            ui->pushButton_Super->setText(mapColor.getSuper().toUpper());
-            ui->pushButton_LAlt->setText(mapColor.getLAlt().toUpper());
-            ui->pushButton_RAlt->setText(mapColor.getRAlt().toUpper());
-            ui->pushButton_Menu->setText(mapColor.getMenu().toUpper());
-            ui->pushButton_RCtrl->setText(mapColor.getRCtrl().toUpper());
+            ui->pushButton_Tilde->setText(mapColor.getTildeS());
+            ui->pushButton_1->setText(mapColor.getN1S());
+            ui->pushButton_2->setText(mapColor.getN2S());
+            ui->pushButton_3->setText(mapColor.getN3S());
+            ui->pushButton_4->setText(mapColor.getN4S());
+            ui->pushButton_5->setText(mapColor.getN5S());
+            ui->pushButton_6->setText(mapColor.getN6S());
+            ui->pushButton_7->setText(mapColor.getN7S());
+            ui->pushButton_8->setText(mapColor.getN8S());
+            ui->pushButton_9->setText(mapColor.getN9S());
+            ui->pushButton_0->setText(mapColor.getN0S());
+            ui->pushButton_Minus->setText(mapColor.getMinusS());
+            ui->pushButton_Equals->setText(mapColor.getEqualsS());
+            ui->pushButton_Backspace->setText(mapColor.getBackspaceS());
+            ui->pushButton_TAB->setText(mapColor.getTABS());
+            ui->pushButton_Q->setText(mapColor.getQS());
+            ui->pushButton_W->setText(mapColor.getWS());
+            ui->pushButton_E->setText(mapColor.getES());
+            ui->pushButton_R->setText(mapColor.getRS());
+            ui->pushButton_T->setText(mapColor.getTS());
+            ui->pushButton_Y->setText(mapColor.getYS());
+            ui->pushButton_U->setText(mapColor.getUS());
+            ui->pushButton_I->setText(mapColor.getIS());
+            ui->pushButton_O->setText(mapColor.getOS());
+            ui->pushButton_P->setText(mapColor.getPS());
+            ui->pushButton_LeftSquareBracket->setText(mapColor.getLeftSquareBracketS());
+            ui->pushButton_RightSquareBracket->setText(mapColor.getRightSquareBracketS());
+            ui->pushButton_Backslash->setText(mapColor.getBackslashS());
+            ui->pushButton_CAPS->setText(mapColor.getCAPSS());
+            ui->pushButton_A->setText(mapColor.getAS());
+            ui->pushButton_S->setText(mapColor.getSS());
+            ui->pushButton_D->setText(mapColor.getDS());
+            ui->pushButton_F->setText(mapColor.getFS());
+            ui->pushButton_G->setText(mapColor.getGS());
+            ui->pushButton_H->setText(mapColor.getHS());
+            ui->pushButton_J->setText(mapColor.getJS());
+            ui->pushButton_K->setText(mapColor.getKS());
+            ui->pushButton_L->setText(mapColor.getLS());
+            ui->pushButton_Semicolon->setText(mapColor.getSemicolonS());
+            ui->pushButton_Apostrophe->setText(mapColor.getApostropheS());
+            ui->pushButton_Enter->setText(mapColor.getEnterS());
+            ui->pushButton_LShift->setText(mapColor.getLShiftS());
+            ui->pushButton_Z->setText(mapColor.getZS());
+            ui->pushButton_X->setText(mapColor.getXS());
+            ui->pushButton_C->setText(mapColor.getCS());
+            ui->pushButton_V->setText(mapColor.getVS());
+            ui->pushButton_B->setText(mapColor.getBS());
+            ui->pushButton_N->setText(mapColor.getNS());
+            ui->pushButton_M->setText(mapColor.getMS());
+            ui->pushButton_Comma->setText(mapColor.getCommaS());
+            ui->pushButton_Period->setText(mapColor.getPeriodS());
+            ui->pushButton_Slash->setText(mapColor.getSlashS());
+            ui->pushButton_RShift->setText(mapColor.getRShiftS());
+            ui->pushButton_LCtrl->setText(mapColor.getLCtrlS());
+            ui->pushButton_Super->setText(mapColor.getSuperS());
+            ui->pushButton_LAlt->setText(mapColor.getLAltS());
+            ui->pushButton_RAlt->setText(mapColor.getRAltS());
+            ui->pushButton_Menu->setText(mapColor.getMenuS());
+            ui->pushButton_RCtrl->setText(mapColor.getRCtrlS());
 
             articleHands = actualFront;
             articleHands = actualFront.toUpper();
         } else {
-            ui->pushButton_1->setText(mapColor.getN1().toLower());
-            ui->pushButton_2->setText(mapColor.getN2().toLower());
-            ui->pushButton_3->setText(mapColor.getN3().toLower());
-            ui->pushButton_4->setText(mapColor.getN4().toLower());
-            ui->pushButton_5->setText(mapColor.getN5().toLower());
-            ui->pushButton_6->setText(mapColor.getN6().toLower());
-            ui->pushButton_7->setText(mapColor.getN7().toLower());
-            ui->pushButton_8->setText(mapColor.getN8().toLower());
-            ui->pushButton_9->setText(mapColor.getN9().toLower());
-            ui->pushButton_0->setText(mapColor.getN0().toLower());
-            ui->pushButton_Minus->setText(mapColor.getMinus().toLower());
-            ui->pushButton_Equals->setText(mapColor.getEquals().toLower());
-            ui->pushButton_Backspace->setText(mapColor.getBackspace().toLower());
-            ui->pushButton_TAB->setText(mapColor.getTAB().toLower());
-            ui->pushButton_Q->setText(mapColor.getQ().toLower());
-            ui->pushButton_W->setText(mapColor.getW().toLower());
-            ui->pushButton_E->setText(mapColor.getE().toLower());
-            ui->pushButton_R->setText(mapColor.getR().toLower());
-            ui->pushButton_T->setText(mapColor.getT().toLower());
-            ui->pushButton_Y->setText(mapColor.getY().toLower());
-            ui->pushButton_U->setText(mapColor.getU().toLower());
-            ui->pushButton_I->setText(mapColor.getI().toLower());
-            ui->pushButton_O->setText(mapColor.getO().toLower());
-            ui->pushButton_P->setText(mapColor.getP().toLower());
-            ui->pushButton_LeftSquareBracket->setText(mapColor.getRightSquareBracket().toLower());
-            ui->pushButton_RightSquareBracket->setText(mapColor.getLeftSquareBracket().toLower());
-            ui->pushButton_Backslash->setText(mapColor.getBackslash().toLower());
-            ui->pushButton_CAPS->setText(mapColor.getCAPS().toLower());
-            ui->pushButton_A->setText(mapColor.getA().toLower());
-            ui->pushButton_S->setText(mapColor.getS().toLower());
-            ui->pushButton_D->setText(mapColor.getD().toLower());
-            ui->pushButton_F->setText(mapColor.getF().toLower());
-            ui->pushButton_G->setText(mapColor.getG().toLower());
-            ui->pushButton_H->setText(mapColor.getH().toLower());
-            ui->pushButton_J->setText(mapColor.getJ().toLower());
-            ui->pushButton_K->setText(mapColor.getK().toLower());
-            ui->pushButton_L->setText(mapColor.getL().toLower());
-            ui->pushButton_Semicolon->setText(mapColor.getSemicolon().toLower());
-            ui->pushButton_Apostrophe->setText(mapColor.getApostrophe().toLower());
-            ui->pushButton_Enter->setText(mapColor.getEnter().toLower());
-            ui->pushButton_LShift->setText(mapColor.getLShift().toLower());
-            ui->pushButton_Z->setText(mapColor.getZ().toLower());
-            ui->pushButton_X->setText(mapColor.getX().toLower());
-            ui->pushButton_C->setText(mapColor.getC().toLower());
-            ui->pushButton_V->setText(mapColor.getV().toLower());
-            ui->pushButton_B->setText(mapColor.getB().toLower());
-            ui->pushButton_N->setText(mapColor.getN().toLower());
-            ui->pushButton_M->setText(mapColor.getM().toLower());
-            ui->pushButton_Comma->setText(mapColor.getComma().toLower());
-            ui->pushButton_Period->setText(mapColor.getPeriod().toLower());
-            ui->pushButton_Slash->setText(mapColor.getSlash().toLower());
-            ui->pushButton_RShift->setText(mapColor.getRShift().toLower());
-            ui->pushButton_LCtrl->setText(mapColor.getLCtrl().toLower());
-            ui->pushButton_Super->setText(mapColor.getSuper().toLower());
-            ui->pushButton_LAlt->setText(mapColor.getLAlt().toLower());
-            ui->pushButton_RAlt->setText(mapColor.getRAlt().toLower());
-            ui->pushButton_Menu->setText(mapColor.getMenu().toLower());
-            ui->pushButton_RCtrl->setText(mapColor.getRCtrl().toLower());
+            ui->pushButton_1->setText(mapColor.getN1());
+            ui->pushButton_2->setText(mapColor.getN2());
+            ui->pushButton_3->setText(mapColor.getN3());
+            ui->pushButton_4->setText(mapColor.getN4());
+            ui->pushButton_5->setText(mapColor.getN5());
+            ui->pushButton_6->setText(mapColor.getN6());
+            ui->pushButton_7->setText(mapColor.getN7());
+            ui->pushButton_8->setText(mapColor.getN8());
+            ui->pushButton_9->setText(mapColor.getN9());
+            ui->pushButton_0->setText(mapColor.getN0());
+            ui->pushButton_Minus->setText(mapColor.getMinus());
+            ui->pushButton_Equals->setText(mapColor.getEquals());
+            ui->pushButton_Backspace->setText(mapColor.getBackspace());
+            ui->pushButton_TAB->setText(mapColor.getTAB());
+            ui->pushButton_Q->setText(mapColor.getQ());
+            ui->pushButton_W->setText(mapColor.getW());
+            ui->pushButton_E->setText(mapColor.getE());
+            ui->pushButton_R->setText(mapColor.getR());
+            ui->pushButton_T->setText(mapColor.getT());
+            ui->pushButton_Y->setText(mapColor.getY());
+            ui->pushButton_U->setText(mapColor.getU());
+            ui->pushButton_I->setText(mapColor.getI());
+            ui->pushButton_O->setText(mapColor.getO());
+            ui->pushButton_P->setText(mapColor.getP());
+            ui->pushButton_LeftSquareBracket->setText(mapColor.getLeftSquareBracket());
+            ui->pushButton_RightSquareBracket->setText(mapColor.getRightSquareBracket());
+            ui->pushButton_Backslash->setText(mapColor.getBackslash());
+            ui->pushButton_CAPS->setText(mapColor.getCAPS());
+            ui->pushButton_A->setText(mapColor.getA());
+            ui->pushButton_S->setText(mapColor.getS());
+            ui->pushButton_D->setText(mapColor.getD());
+            ui->pushButton_F->setText(mapColor.getF());
+            ui->pushButton_G->setText(mapColor.getG());
+            ui->pushButton_H->setText(mapColor.getH());
+            ui->pushButton_J->setText(mapColor.getJ());
+            ui->pushButton_K->setText(mapColor.getK());
+            ui->pushButton_L->setText(mapColor.getL());
+            ui->pushButton_Semicolon->setText(mapColor.getSemicolon());
+            ui->pushButton_Apostrophe->setText(mapColor.getApostrophe());
+            ui->pushButton_Enter->setText(mapColor.getEnter());
+            ui->pushButton_LShift->setText(mapColor.getLShift());
+            ui->pushButton_Z->setText(mapColor.getZ());
+            ui->pushButton_X->setText(mapColor.getX());
+            ui->pushButton_C->setText(mapColor.getC());
+            ui->pushButton_V->setText(mapColor.getV());
+            ui->pushButton_B->setText(mapColor.getB());
+            ui->pushButton_N->setText(mapColor.getN());
+            ui->pushButton_M->setText(mapColor.getM());
+            ui->pushButton_Comma->setText(mapColor.getComma());
+            ui->pushButton_Period->setText(mapColor.getPeriod());
+            ui->pushButton_Slash->setText(mapColor.getSlash());
+            ui->pushButton_RShift->setText(mapColor.getRShift());
+            ui->pushButton_LCtrl->setText(mapColor.getLCtrl());
+            ui->pushButton_Super->setText(mapColor.getSuper());
+            ui->pushButton_LAlt->setText(mapColor.getLAlt());
+            ui->pushButton_RAlt->setText(mapColor.getRAlt());
+            ui->pushButton_Menu->setText(mapColor.getMenu());
+            ui->pushButton_RCtrl->setText(mapColor.getRCtrl());
 
             articleHands = actualFront;
             articleHands = actualFront.toLower();
@@ -465,25 +469,52 @@ void MainWindow::on_lineEdit_TextInput_textChanged(const QString &arg1)
         characterSearch = ui->pushButton_Menu->text(); if (characterSearch == articleHands) {ui->pushButton_Menu->setChecked(true); ui->graphicsView_RightHand->scene()->addItem(rHOne);}
         characterSearch = ui->pushButton_RCtrl->text(); if (characterSearch == articleHands) {ui->pushButton_RCtrl->setChecked(true); ui->graphicsView_RightHand->scene()->addItem(rHFive);}
         if (actualFront == " ") {ui->pushButton_Space->setChecked(true); ui->graphicsView_LeftHand->scene()->addItem(lHFive); ui->graphicsView_RightHand->scene()->addItem(rHOne);}
+        if (isArticleCapitalised == true) {
+            ui->pushButton_LShift->setChecked(true); ui->graphicsView_LeftHand->scene()->addItem(lHOne);
+            ui->pushButton_RShift->setChecked(true); ui->graphicsView_RightHand->scene()->addItem(rHFive);
+        }
     } else {
-        if (once == 0) {characters = text.count(); once = 1;}
         int currC = arg1.count();
         qDebug() << characters;
         qDebug() << currC;
-        QString arg = text;
+        QString argHigh = text;
+        QString argLow = text;
+        if (once == 0) {
+            characters = text.count(); once = 1;
+            argLow.remove(1, 2);
+            argHigh.remove(1, 1);
+        }
         if (stopErr == 0) {
             if (currC > characters)
             {
-                arg.remove(1, 1); ui->lineEdit_TextInput->setText(arg);
+                if (saveM == 0) {
+                stopErr2 = 1;
+                saveM = 1;
+                ui->lineEdit_TextInput->setText(argHigh);
+                }
             }
             if (currC < characters - 1)
             {
-                arg.remove(1, 1); ui->lineEdit_TextInput->setText(arg);
                 stopErr = 1;
-                errStopS = arg;
+                stopErr2 = 0;
+                ui->lineEdit_TextInput->setText(argLow);
             }
-        } else {
-            ui->lineEdit_TextInput->setText(errStopS);
+            if (currC == 0)
+            {
+                stopErr = 1;
+                stopErr2 = 0;
+            }
+            if (currC == 1)
+            {
+                if (currC < characters)
+                {
+                    ui->lineEdit_TextInput->setText(argLow);
+                    stopErr = 1;
+                    stopErr2 = 0;
+                }
+            }
+        } else if (stopErr == 1) {
+            ui->lineEdit_TextInput->setText(argLow);
         }
     }
     if (stopTwice == 1)
@@ -533,65 +564,65 @@ void MainWindow::on_action_MakeCustomCourse_triggered()
             ui->pushButton_LShift->setChecked(true); ui->graphicsView_LeftHand->scene()->addItem(lHOne);
             ui->pushButton_RShift->setChecked(true); ui->graphicsView_RightHand->scene()->addItem(rHFive);
             articleHands = articleIn.toUpper();
-            ui->pushButton_Tilde->setText(mapColor.getTilde().toUpper());
-            ui->pushButton_1->setText(mapColor.getN1().toUpper());
-            ui->pushButton_2->setText(mapColor.getN2().toUpper());
-            ui->pushButton_3->setText(mapColor.getN3().toUpper());
-            ui->pushButton_4->setText(mapColor.getN4().toUpper());
-            ui->pushButton_5->setText(mapColor.getN5().toUpper());
-            ui->pushButton_6->setText(mapColor.getN6().toUpper());
-            ui->pushButton_7->setText(mapColor.getN7().toUpper());
-            ui->pushButton_8->setText(mapColor.getN8().toUpper());
-            ui->pushButton_9->setText(mapColor.getN9().toUpper());
-            ui->pushButton_0->setText(mapColor.getN0().toUpper());
-            ui->pushButton_Minus->setText(mapColor.getMinus().toUpper());
-            ui->pushButton_Equals->setText(mapColor.getEquals().toUpper());
-            ui->pushButton_Backspace->setText(mapColor.getBackspace().toUpper());
-            ui->pushButton_TAB->setText(mapColor.getTAB().toUpper());
-            ui->pushButton_Q->setText(mapColor.getQ().toUpper());
-            ui->pushButton_W->setText(mapColor.getW().toUpper());
-            ui->pushButton_E->setText(mapColor.getE().toUpper());
-            ui->pushButton_R->setText(mapColor.getR().toUpper());
-            ui->pushButton_T->setText(mapColor.getT().toUpper());
-            ui->pushButton_Y->setText(mapColor.getY().toUpper());
-            ui->pushButton_U->setText(mapColor.getU().toUpper());
-            ui->pushButton_I->setText(mapColor.getI().toUpper());
-            ui->pushButton_O->setText(mapColor.getO().toUpper());
-            ui->pushButton_P->setText(mapColor.getP().toUpper());
-            ui->pushButton_LeftSquareBracket->setText(mapColor.getRightSquareBracket().toUpper());
-            ui->pushButton_RightSquareBracket->setText(mapColor.getLeftSquareBracket().toUpper());
-            ui->pushButton_Backslash->setText(mapColor.getBackslash().toUpper());
-            ui->pushButton_CAPS->setText(mapColor.getCAPS().toUpper());
-            ui->pushButton_A->setText(mapColor.getA().toUpper());
-            ui->pushButton_S->setText(mapColor.getS().toUpper());
-            ui->pushButton_D->setText(mapColor.getD().toUpper());
-            ui->pushButton_F->setText(mapColor.getF().toUpper());
-            ui->pushButton_G->setText(mapColor.getG().toUpper());
-            ui->pushButton_H->setText(mapColor.getH().toUpper());
-            ui->pushButton_J->setText(mapColor.getJ().toUpper());
-            ui->pushButton_K->setText(mapColor.getK().toUpper());
-            ui->pushButton_L->setText(mapColor.getL().toUpper());
-            ui->pushButton_Semicolon->setText(mapColor.getSemicolon().toUpper());
-            ui->pushButton_Apostrophe->setText(mapColor.getApostrophe().toUpper());
-            ui->pushButton_Enter->setText(mapColor.getEnter().toUpper());
-            ui->pushButton_LShift->setText(mapColor.getLShift().toUpper());
-            ui->pushButton_Z->setText(mapColor.getZ().toUpper());
-            ui->pushButton_X->setText(mapColor.getX().toUpper());
-            ui->pushButton_C->setText(mapColor.getC().toUpper());
-            ui->pushButton_V->setText(mapColor.getV().toUpper());
-            ui->pushButton_B->setText(mapColor.getB().toUpper());
-            ui->pushButton_N->setText(mapColor.getN().toUpper());
-            ui->pushButton_M->setText(mapColor.getM().toUpper());
-            ui->pushButton_Comma->setText(mapColor.getComma().toUpper());
-            ui->pushButton_Period->setText(mapColor.getPeriod().toUpper());
-            ui->pushButton_Slash->setText(mapColor.getSlash().toUpper());
-            ui->pushButton_RShift->setText(mapColor.getRShift().toUpper());
-            ui->pushButton_LCtrl->setText(mapColor.getLCtrl().toUpper());
-            ui->pushButton_Super->setText(mapColor.getSuper().toUpper());
-            ui->pushButton_LAlt->setText(mapColor.getLAlt().toUpper());
-            ui->pushButton_RAlt->setText(mapColor.getRAlt().toUpper());
-            ui->pushButton_Menu->setText(mapColor.getMenu().toUpper());
-            ui->pushButton_RCtrl->setText(mapColor.getRCtrl().toUpper());
+            ui->pushButton_Tilde->setText(mapColor.getTildeS());
+            ui->pushButton_1->setText(mapColor.getN1S());
+            ui->pushButton_2->setText(mapColor.getN2S());
+            ui->pushButton_3->setText(mapColor.getN3S());
+            ui->pushButton_4->setText(mapColor.getN4S());
+            ui->pushButton_5->setText(mapColor.getN5S());
+            ui->pushButton_6->setText(mapColor.getN6S());
+            ui->pushButton_7->setText(mapColor.getN7S());
+            ui->pushButton_8->setText(mapColor.getN8S());
+            ui->pushButton_9->setText(mapColor.getN9S());
+            ui->pushButton_0->setText(mapColor.getN0S());
+            ui->pushButton_Minus->setText(mapColor.getMinusS());
+            ui->pushButton_Equals->setText(mapColor.getEqualsS());
+            ui->pushButton_Backspace->setText(mapColor.getBackspaceS());
+            ui->pushButton_TAB->setText(mapColor.getTABS());
+            ui->pushButton_Q->setText(mapColor.getQS());
+            ui->pushButton_W->setText(mapColor.getWS());
+            ui->pushButton_E->setText(mapColor.getES());
+            ui->pushButton_R->setText(mapColor.getRS());
+            ui->pushButton_T->setText(mapColor.getTS());
+            ui->pushButton_Y->setText(mapColor.getYS());
+            ui->pushButton_U->setText(mapColor.getUS());
+            ui->pushButton_I->setText(mapColor.getIS());
+            ui->pushButton_O->setText(mapColor.getOS());
+            ui->pushButton_P->setText(mapColor.getPS());
+            ui->pushButton_LeftSquareBracket->setText(mapColor.getLeftSquareBracketS());
+            ui->pushButton_RightSquareBracket->setText(mapColor.getRightSquareBracketS());
+            ui->pushButton_Backslash->setText(mapColor.getBackslashS());
+            ui->pushButton_CAPS->setText(mapColor.getCAPSS());
+            ui->pushButton_A->setText(mapColor.getAS());
+            ui->pushButton_S->setText(mapColor.getSS());
+            ui->pushButton_D->setText(mapColor.getDS());
+            ui->pushButton_F->setText(mapColor.getFS());
+            ui->pushButton_G->setText(mapColor.getGS());
+            ui->pushButton_H->setText(mapColor.getHS());
+            ui->pushButton_J->setText(mapColor.getJS());
+            ui->pushButton_K->setText(mapColor.getKS());
+            ui->pushButton_L->setText(mapColor.getLS());
+            ui->pushButton_Semicolon->setText(mapColor.getSemicolonS());
+            ui->pushButton_Apostrophe->setText(mapColor.getApostropheS());
+            ui->pushButton_Enter->setText(mapColor.getEnterS());
+            ui->pushButton_LShift->setText(mapColor.getLShiftS());
+            ui->pushButton_Z->setText(mapColor.getZS());
+            ui->pushButton_X->setText(mapColor.getXS());
+            ui->pushButton_C->setText(mapColor.getCS());
+            ui->pushButton_V->setText(mapColor.getVS());
+            ui->pushButton_B->setText(mapColor.getBS());
+            ui->pushButton_N->setText(mapColor.getNS());
+            ui->pushButton_M->setText(mapColor.getMS());
+            ui->pushButton_Comma->setText(mapColor.getCommaS());
+            ui->pushButton_Period->setText(mapColor.getPeriodS());
+            ui->pushButton_Slash->setText(mapColor.getSlashS());
+            ui->pushButton_RShift->setText(mapColor.getRShiftS());
+            ui->pushButton_LCtrl->setText(mapColor.getLCtrlS());
+            ui->pushButton_Super->setText(mapColor.getSuperS());
+            ui->pushButton_LAlt->setText(mapColor.getLAltS());
+            ui->pushButton_RAlt->setText(mapColor.getRAltS());
+            ui->pushButton_Menu->setText(mapColor.getMenuS());
+            ui->pushButton_RCtrl->setText(mapColor.getRCtrlS());
         }
 
         QString characterSearch;
@@ -772,65 +803,65 @@ void MainWindow::on_action_CourseSelector_triggered()
             ui->pushButton_LShift->setChecked(true); ui->graphicsView_LeftHand->scene()->addItem(lHOne);
             ui->pushButton_RShift->setChecked(true); ui->graphicsView_RightHand->scene()->addItem(rHFive);
             articleHands = articleIn.toUpper();
-            ui->pushButton_Tilde->setText(mapColor.getTilde().toUpper());
-            ui->pushButton_1->setText(mapColor.getN1().toUpper());
-            ui->pushButton_2->setText(mapColor.getN2().toUpper());
-            ui->pushButton_3->setText(mapColor.getN3().toUpper());
-            ui->pushButton_4->setText(mapColor.getN4().toUpper());
-            ui->pushButton_5->setText(mapColor.getN5().toUpper());
-            ui->pushButton_6->setText(mapColor.getN6().toUpper());
-            ui->pushButton_7->setText(mapColor.getN7().toUpper());
-            ui->pushButton_8->setText(mapColor.getN8().toUpper());
-            ui->pushButton_9->setText(mapColor.getN9().toUpper());
-            ui->pushButton_0->setText(mapColor.getN0().toUpper());
-            ui->pushButton_Minus->setText(mapColor.getMinus().toUpper());
-            ui->pushButton_Equals->setText(mapColor.getEquals().toUpper());
-            ui->pushButton_Backspace->setText(mapColor.getBackspace().toUpper());
-            ui->pushButton_TAB->setText(mapColor.getTAB().toUpper());
-            ui->pushButton_Q->setText(mapColor.getQ().toUpper());
-            ui->pushButton_W->setText(mapColor.getW().toUpper());
-            ui->pushButton_E->setText(mapColor.getE().toUpper());
-            ui->pushButton_R->setText(mapColor.getR().toUpper());
-            ui->pushButton_T->setText(mapColor.getT().toUpper());
-            ui->pushButton_Y->setText(mapColor.getY().toUpper());
-            ui->pushButton_U->setText(mapColor.getU().toUpper());
-            ui->pushButton_I->setText(mapColor.getI().toUpper());
-            ui->pushButton_O->setText(mapColor.getO().toUpper());
-            ui->pushButton_P->setText(mapColor.getP().toUpper());
-            ui->pushButton_LeftSquareBracket->setText(mapColor.getRightSquareBracket().toUpper());
-            ui->pushButton_RightSquareBracket->setText(mapColor.getLeftSquareBracket().toUpper());
-            ui->pushButton_Backslash->setText(mapColor.getBackslash().toUpper());
-            ui->pushButton_CAPS->setText(mapColor.getCAPS().toUpper());
-            ui->pushButton_A->setText(mapColor.getA().toUpper());
-            ui->pushButton_S->setText(mapColor.getS().toUpper());
-            ui->pushButton_D->setText(mapColor.getD().toUpper());
-            ui->pushButton_F->setText(mapColor.getF().toUpper());
-            ui->pushButton_G->setText(mapColor.getG().toUpper());
-            ui->pushButton_H->setText(mapColor.getH().toUpper());
-            ui->pushButton_J->setText(mapColor.getJ().toUpper());
-            ui->pushButton_K->setText(mapColor.getK().toUpper());
-            ui->pushButton_L->setText(mapColor.getL().toUpper());
-            ui->pushButton_Semicolon->setText(mapColor.getSemicolon().toUpper());
-            ui->pushButton_Apostrophe->setText(mapColor.getApostrophe().toUpper());
-            ui->pushButton_Enter->setText(mapColor.getEnter().toUpper());
-            ui->pushButton_LShift->setText(mapColor.getLShift().toUpper());
-            ui->pushButton_Z->setText(mapColor.getZ().toUpper());
-            ui->pushButton_X->setText(mapColor.getX().toUpper());
-            ui->pushButton_C->setText(mapColor.getC().toUpper());
-            ui->pushButton_V->setText(mapColor.getV().toUpper());
-            ui->pushButton_B->setText(mapColor.getB().toUpper());
-            ui->pushButton_N->setText(mapColor.getN().toUpper());
-            ui->pushButton_M->setText(mapColor.getM().toUpper());
-            ui->pushButton_Comma->setText(mapColor.getComma().toUpper());
-            ui->pushButton_Period->setText(mapColor.getPeriod().toUpper());
-            ui->pushButton_Slash->setText(mapColor.getSlash().toUpper());
-            ui->pushButton_RShift->setText(mapColor.getRShift().toUpper());
-            ui->pushButton_LCtrl->setText(mapColor.getLCtrl().toUpper());
-            ui->pushButton_Super->setText(mapColor.getSuper().toUpper());
-            ui->pushButton_LAlt->setText(mapColor.getLAlt().toUpper());
-            ui->pushButton_RAlt->setText(mapColor.getRAlt().toUpper());
-            ui->pushButton_Menu->setText(mapColor.getMenu().toUpper());
-            ui->pushButton_RCtrl->setText(mapColor.getRCtrl().toUpper());
+            ui->pushButton_Tilde->setText(mapColor.getTildeS());
+            ui->pushButton_1->setText(mapColor.getN1S());
+            ui->pushButton_2->setText(mapColor.getN2S());
+            ui->pushButton_3->setText(mapColor.getN3S());
+            ui->pushButton_4->setText(mapColor.getN4S());
+            ui->pushButton_5->setText(mapColor.getN5S());
+            ui->pushButton_6->setText(mapColor.getN6S());
+            ui->pushButton_7->setText(mapColor.getN7S());
+            ui->pushButton_8->setText(mapColor.getN8S());
+            ui->pushButton_9->setText(mapColor.getN9S());
+            ui->pushButton_0->setText(mapColor.getN0S());
+            ui->pushButton_Minus->setText(mapColor.getMinusS());
+            ui->pushButton_Equals->setText(mapColor.getEqualsS());
+            ui->pushButton_Backspace->setText(mapColor.getBackspaceS());
+            ui->pushButton_TAB->setText(mapColor.getTABS());
+            ui->pushButton_Q->setText(mapColor.getQS());
+            ui->pushButton_W->setText(mapColor.getWS());
+            ui->pushButton_E->setText(mapColor.getES());
+            ui->pushButton_R->setText(mapColor.getRS());
+            ui->pushButton_T->setText(mapColor.getTS());
+            ui->pushButton_Y->setText(mapColor.getYS());
+            ui->pushButton_U->setText(mapColor.getUS());
+            ui->pushButton_I->setText(mapColor.getIS());
+            ui->pushButton_O->setText(mapColor.getOS());
+            ui->pushButton_P->setText(mapColor.getPS());
+            ui->pushButton_LeftSquareBracket->setText(mapColor.getLeftSquareBracketS());
+            ui->pushButton_RightSquareBracket->setText(mapColor.getRightSquareBracketS());
+            ui->pushButton_Backslash->setText(mapColor.getBackslashS());
+            ui->pushButton_CAPS->setText(mapColor.getCAPSS());
+            ui->pushButton_A->setText(mapColor.getAS());
+            ui->pushButton_S->setText(mapColor.getSS());
+            ui->pushButton_D->setText(mapColor.getDS());
+            ui->pushButton_F->setText(mapColor.getFS());
+            ui->pushButton_G->setText(mapColor.getGS());
+            ui->pushButton_H->setText(mapColor.getHS());
+            ui->pushButton_J->setText(mapColor.getJS());
+            ui->pushButton_K->setText(mapColor.getKS());
+            ui->pushButton_L->setText(mapColor.getLS());
+            ui->pushButton_Semicolon->setText(mapColor.getSemicolonS());
+            ui->pushButton_Apostrophe->setText(mapColor.getApostropheS());
+            ui->pushButton_Enter->setText(mapColor.getEnterS());
+            ui->pushButton_LShift->setText(mapColor.getLShiftS());
+            ui->pushButton_Z->setText(mapColor.getZS());
+            ui->pushButton_X->setText(mapColor.getXS());
+            ui->pushButton_C->setText(mapColor.getCS());
+            ui->pushButton_V->setText(mapColor.getVS());
+            ui->pushButton_B->setText(mapColor.getBS());
+            ui->pushButton_N->setText(mapColor.getNS());
+            ui->pushButton_M->setText(mapColor.getMS());
+            ui->pushButton_Comma->setText(mapColor.getCommaS());
+            ui->pushButton_Period->setText(mapColor.getPeriodS());
+            ui->pushButton_Slash->setText(mapColor.getSlashS());
+            ui->pushButton_RShift->setText(mapColor.getRShiftS());
+            ui->pushButton_LCtrl->setText(mapColor.getLCtrlS());
+            ui->pushButton_Super->setText(mapColor.getSuperS());
+            ui->pushButton_LAlt->setText(mapColor.getLAltS());
+            ui->pushButton_RAlt->setText(mapColor.getRAltS());
+            ui->pushButton_Menu->setText(mapColor.getMenuS());
+            ui->pushButton_RCtrl->setText(mapColor.getRCtrlS());
         } else {articleHands = articleIn;}
         QString characterSearch;
         characterSearch = ui->pushButton_Tilde->text(); if (characterSearch == articleHands) {ui->pushButton_Tilde->setChecked(true); ui->graphicsView_LeftHand->scene()->addItem(lHOne); if (isArticleCapitalised == true) {ui->graphicsView_LeftHand->scene()->addItem(lHTwo);}}
