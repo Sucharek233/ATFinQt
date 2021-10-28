@@ -357,7 +357,7 @@ color:black;</string>
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(0, 255, 0);
+        <string notr="true">background-color: rgb(0, 220, 0);
 color:black;</string>
        </property>
        <property name="text">
@@ -395,7 +395,7 @@ color:black;</string>
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(255, 0, 0);
+        <string notr="true">background-color: rgb(220, 0, 0);
 color:black;</string>
        </property>
        <property name="text">
@@ -433,7 +433,7 @@ color:black;</string>
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(255, 170, 0);
+        <string notr="true">background-color: rgb(255, 110, 0);
 color:black;</string>
        </property>
        <property name="text">
@@ -786,7 +786,7 @@ color:black;</string>
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(255, 170, 0);
+        <string notr="true">background-color: rgb(255, 110, 0);
 color:black;</string>
        </property>
        <property name="text">
@@ -824,7 +824,7 @@ color:black;</string>
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(255, 170, 0);
+        <string notr="true">background-color: rgb(255, 110, 0);
 color:black;</string>
        </property>
        <property name="text">
@@ -862,7 +862,7 @@ color:black;</string>
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(255, 170, 0);
+        <string notr="true">background-color: rgb(255, 110, 0);
 color:black;</string>
        </property>
        <property name="text">
@@ -900,7 +900,7 @@ color:black;</string>
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(255, 0, 0);
+        <string notr="true">background-color: rgb(220, 0, 0);
 color:black;</string>
        </property>
        <property name="text">
@@ -938,7 +938,7 @@ color:black;</string>
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(0, 255, 0);
+        <string notr="true">background-color: rgb(0, 220, 0);
 color:black;</string>
        </property>
        <property name="text">
@@ -976,7 +976,7 @@ color:black;</string>
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(0, 0, 255);
+        <string notr="true">background-color: rgb(0, 0, 150);
 color:black;</string>
        </property>
        <property name="text">
@@ -1014,7 +1014,7 @@ color:black;</string>
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(0, 0, 255);
+        <string notr="true">background-color: rgb(0, 0, 150);
 color:black;</string>
        </property>
        <property name="text">
@@ -1052,7 +1052,7 @@ color:black;</string>
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(0, 255, 255);
+        <string notr="true">background-color: rgb(0, 220, 220);
 color:black;</string>
        </property>
        <property name="text">
@@ -1090,7 +1090,7 @@ color:black;</string>
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(0, 255, 255);
+        <string notr="true">background-color: rgb(0, 220, 220);
 color:black;</string>
        </property>
        <property name="text">
@@ -1128,7 +1128,7 @@ color:black;</string>
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(0, 255, 0);
+        <string notr="true">background-color: rgb(0, 220, 0);
 color:black;</string>
        </property>
        <property name="text">
@@ -1166,7 +1166,7 @@ color:black;</string>
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(255, 0, 0);
+        <string notr="true">background-color: rgb(220, 0, 0);
 color:black;</string>
        </property>
        <property name="text">
@@ -1204,7 +1204,7 @@ color:black;</string>
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(255, 170, 0);
+        <string notr="true">background-color: rgb(255, 110, 0);
 color:black;</string>
        </property>
        <property name="text">
@@ -1242,7 +1242,7 @@ color:black;</string>
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(255, 170, 0);
+        <string notr="true">background-color: rgb(255, 110, 0);
 color:black;</string>
        </property>
        <property name="text">
@@ -1740,7 +1740,7 @@ color:black;</string>
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(255, 170, 0);
+        <string notr="true">background-color: rgb(255, 110, 0);
 color:black;</string>
        </property>
        <property name="text">
@@ -1778,7 +1778,7 @@ color:black;</string>
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(255, 170, 0);
+        <string notr="true">background-color: rgb(255, 110, 0);
 color:black;</string>
        </property>
        <property name="text">
@@ -1816,7 +1816,7 @@ color:black;</string>
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(255, 170, 0);
+        <string notr="true">background-color: rgb(255, 110, 0);
 color:black;</string>
        </property>
        <property name="text">
@@ -2238,7 +2238,7 @@ color:black;</string>
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(255, 170, 0);
+        <string notr="true">background-color: rgb(255, 110, 0);
 color:black;</string>
        </property>
        <property name="text">
@@ -2279,7 +2279,7 @@ color:black;</string>
         <bool>false</bool>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(255, 170, 0);
+        <string notr="true">background-color: rgb(255, 110, 0);
 color:black;</string>
        </property>
        <property name="text">

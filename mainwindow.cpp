@@ -12,12 +12,9 @@ int spaceMiss;
 int missStop;
 int once;
 int characters;
-int stopErr;
-int stopErr2;
-int saveM;
 
 QString text;
-QString errStopS;
+QString textM;
 
 auto lHOne = new QGraphicsEllipseItem(9, 40, 25, 25);
 auto lHTwo = new QGraphicsEllipseItem(35, 11, 25, 25);
@@ -118,7 +115,7 @@ void MainWindow::on_lineEdit_TextInput_textChanged(const QString &arg1)
 {
     QString word = arg1;
     QString lastCharacter;
-    if (stopErr2 == 0) {lastCharacter = arg1.back();}
+    lastCharacter = arg1.back();
 //    QString firstCharacter = arg1.front();
     QString articleIn = article;
     articleIn = article.front();
@@ -127,52 +124,122 @@ void MainWindow::on_lineEdit_TextInput_textChanged(const QString &arg1)
     QString actualFront;
     stopTwice = 0;
 
-    if (lastCharacter == " ")
-    {
-        ui->lineEdit_TextInput->setText("");
-        word = "";
-    }
+    if (missStop == 0) {
+        ui->graphicsView_RightHand->scene()->removeItem(rHOne);
+        ui->graphicsView_RightHand->scene()->removeItem(rHTwo);
+        ui->graphicsView_RightHand->scene()->removeItem(rHThree);
+        ui->graphicsView_RightHand->scene()->removeItem(rHFour);
+        ui->graphicsView_RightHand->scene()->removeItem(rHFive);
+        ui->graphicsView_LeftHand->scene()->removeItem(lHOne);
+        ui->graphicsView_LeftHand->scene()->removeItem(lHTwo);
+        ui->graphicsView_LeftHand->scene()->removeItem(lHThree);
+        ui->graphicsView_LeftHand->scene()->removeItem(lHFour);
+        ui->graphicsView_LeftHand->scene()->removeItem(lHFive);
 
-    if (lastCharacter == articleIn)
-    {
-        missStop = 0;
-        once = 0;
-        characters = 0;
-        stopErr = 0;
-        saveM = 0;
-        errStopS = "";
+        ui->pushButton_Tilde->setChecked(false);
+        ui->pushButton_1->setChecked(false);
+        ui->pushButton_2->setChecked(false);
+        ui->pushButton_3->setChecked(false);
+        ui->pushButton_4->setChecked(false);
+        ui->pushButton_5->setChecked(false);
+        ui->pushButton_6->setChecked(false);
+        ui->pushButton_7->setChecked(false);
+        ui->pushButton_8->setChecked(false);
+        ui->pushButton_9->setChecked(false);
+        ui->pushButton_0->setChecked(false);
+        ui->pushButton_Minus->setChecked(false);
+        ui->pushButton_Equals->setChecked(false);
+        ui->pushButton_Backspace->setChecked(false);
+        ui->pushButton_TAB->setChecked(false);
+        ui->pushButton_Q->setChecked(false);
+        ui->pushButton_W->setChecked(false);
+        ui->pushButton_E->setChecked(false);
+        ui->pushButton_R->setChecked(false);
+        ui->pushButton_T->setChecked(false);
+        ui->pushButton_Y->setChecked(false);
+        ui->pushButton_U->setChecked(false);
+        ui->pushButton_I->setChecked(false);
+        ui->pushButton_O->setChecked(false);
+        ui->pushButton_P->setChecked(false);
+        ui->pushButton_LeftSquareBracket->setChecked(false);
+        ui->pushButton_RightSquareBracket->setChecked(false);
+        ui->pushButton_Backslash->setChecked(false);
+        ui->pushButton_CAPS->setChecked(false);
+        ui->pushButton_A->setChecked(false);
+        ui->pushButton_S->setChecked(false);
+        ui->pushButton_D->setChecked(false);
+        ui->pushButton_F->setChecked(false);
+        ui->pushButton_G->setChecked(false);
+        ui->pushButton_H->setChecked(false);
+        ui->pushButton_J->setChecked(false);
+        ui->pushButton_K->setChecked(false);
+        ui->pushButton_L->setChecked(false);
+        ui->pushButton_Semicolon->setChecked(false);
+        ui->pushButton_Apostrophe->setChecked(false);
+        ui->pushButton_Enter->setChecked(false);
+        ui->pushButton_LShift->setChecked(false);
+        ui->pushButton_Z->setChecked(false);
+        ui->pushButton_X->setChecked(false);
+        ui->pushButton_C->setChecked(false);
+        ui->pushButton_V->setChecked(false);
+        ui->pushButton_B->setChecked(false);
+        ui->pushButton_N->setChecked(false);
+        ui->pushButton_M->setChecked(false);
+        ui->pushButton_Comma->setChecked(false);
+        ui->pushButton_Period->setChecked(false);
+        ui->pushButton_Slash->setChecked(false);
+        ui->pushButton_RShift->setChecked(false);
+        ui->pushButton_LCtrl->setChecked(false);
+        ui->pushButton_Super->setChecked(false);
+        ui->pushButton_LAlt->setChecked(false);
+        ui->pushButton_Space->setChecked(false);
+        ui->pushButton_RAlt->setChecked(false);
+        ui->pushButton_Menu->setChecked(false);
+        ui->pushButton_LCtrl->setChecked(false);
+
         if (lastCharacter == " ")
         {
-            article = article.simplified();
-        } else {
-            article.remove(0, 1);
+            ui->lineEdit_TextInput->setText("");
+            word = "";
         }
-        ui->textEdit_Article->setText(article);
 
-        if (actualFront == articleIn) {checker = 1;} else {checker = 0;}
-        if (checker == 0) {
-            front = articleDeleted.front();
-            if (front == " ")
+        if (lastCharacter == articleIn)
+        {
+            missStop = 0;
+            once = 0;
+            characters = 0;
+            if (lastCharacter == " ")
             {
-                articleDeleted = articleDeleted.simplified();
-                spaceMiss = spaceMiss + 1;
+                article = article.simplified();
             } else {
-                articleDeleted.remove(0, 1);
+                article.remove(0, 1);
             }
-            actualFront = articleDeleted.front();
-        }
-        ui->lineEdit_TextInput->setStyleSheet("background-color: white; font-size: 20px;");
-    } else {
-        if (missStop == 0) {
+            ui->textEdit_Article->setText(article);
+
+            if (actualFront == articleIn) {checker = 1;} else {checker = 0;}
+            if (checker == 0) {
+                front = articleDeleted.front();
+                if (front == " ")
+                {
+                    articleDeleted = articleDeleted.simplified();
+                    spaceMiss = spaceMiss + 1;
+                } else {
+                    articleDeleted.remove(0, 1);
+                }
+                actualFront = articleDeleted.front();
+            }
+            ui->lineEdit_TextInput->setStyleSheet("background-color: white; font-size: 20px;");
+        } else {
             misses = misses + 1;
             if (lastCharacter == " ") {spaceMiss = spaceMiss + 2;}
             missStop = 1;
             ui->lineEdit_TextInput->setStyleSheet("background-color: red; font-size: 20px;");
+            ui->pushButton_Backspace->setChecked(true);
+            ui->graphicsView_RightHand->scene()->addItem(rHFive);
             text = arg1;
+            textM = arg1;
+            textM.chop(1);
         }
-    }
-
-    if (missStop == 0) {
         if (article == "")
         {
             ui->lineEdit_TextInput->setText("");
@@ -209,6 +276,28 @@ void MainWindow::on_lineEdit_TextInput_textChanged(const QString &arg1)
         if (actualFront.isLower() == true) {isArticleCapitalised = false;}
         if (actualFront == " ") {isArticleCapitalised = false;}
 
+        if (actualFront == mapColor.getTildeS()) {isArticleCapitalised = true;}
+        if (actualFront == mapColor.getN1S()) {isArticleCapitalised = true;}
+        if (actualFront == mapColor.getN2S()) {isArticleCapitalised = true;}
+        if (actualFront == mapColor.getN3S()) {isArticleCapitalised = true;}
+        if (actualFront == mapColor.getN4S()) {isArticleCapitalised = true;}
+        if (actualFront == mapColor.getN5S()) {isArticleCapitalised = true;}
+        if (actualFront == mapColor.getN6S()) {isArticleCapitalised = true;}
+        if (actualFront == mapColor.getN7S()) {isArticleCapitalised = true;}
+        if (actualFront == mapColor.getN8S()) {isArticleCapitalised = true;}
+        if (actualFront == mapColor.getN9S()) {isArticleCapitalised = true;}
+        if (actualFront == mapColor.getN0S()) {isArticleCapitalised = true;}
+        if (actualFront == mapColor.getMinusS()) {isArticleCapitalised = true;}
+        if (actualFront == mapColor.getEqualsS()) {isArticleCapitalised = true;}
+        if (actualFront == mapColor.getLeftSquareBracketS()) {isArticleCapitalised = true;}
+        if (actualFront == mapColor.getRightSquareBracketS()) {isArticleCapitalised = true;}
+        if (actualFront == mapColor.getBackslashS()) {isArticleCapitalised = true;}
+        if (actualFront == mapColor.getSemicolonS()) {isArticleCapitalised = true;}
+        if (actualFront == mapColor.getApostropheS()) {isArticleCapitalised = true;}
+        if (actualFront == mapColor.getCommaS()) {isArticleCapitalised = true;}
+        if (actualFront == mapColor.getPeriodS()) {isArticleCapitalised = true;}
+        if (actualFront == mapColor.getSlashS()) {isArticleCapitalised = true;}
+
         if (isArticleCapitalised == true) {
             ui->pushButton_Tilde->setText(mapColor.getTildeS());
             ui->pushButton_1->setText(mapColor.getN1S());
@@ -217,7 +306,9 @@ void MainWindow::on_lineEdit_TextInput_textChanged(const QString &arg1)
             ui->pushButton_4->setText(mapColor.getN4S());
             ui->pushButton_5->setText(mapColor.getN5S());
             ui->pushButton_6->setText(mapColor.getN6S());
-            ui->pushButton_7->setText(mapColor.getN7S());
+            QString fixes;
+            if (mapColor.getN7S() == "&") {fixes = "&&";} else {fixes = mapColor.getN7S();}
+            ui->pushButton_7->setText(fixes);
             ui->pushButton_8->setText(mapColor.getN8S());
             ui->pushButton_9->setText(mapColor.getN9S());
             ui->pushButton_0->setText(mapColor.getN0S());
@@ -335,79 +426,10 @@ void MainWindow::on_lineEdit_TextInput_textChanged(const QString &arg1)
             articleHands = actualFront;
             articleHands = actualFront.toLower();
         }
-        ui->graphicsView_RightHand->scene()->removeItem(rHOne);
-        ui->graphicsView_RightHand->scene()->removeItem(rHTwo);
-        ui->graphicsView_RightHand->scene()->removeItem(rHThree);
-        ui->graphicsView_RightHand->scene()->removeItem(rHFour);
-        ui->graphicsView_RightHand->scene()->removeItem(rHFive);
-        ui->graphicsView_LeftHand->scene()->removeItem(lHOne);
-        ui->graphicsView_LeftHand->scene()->removeItem(lHTwo);
-        ui->graphicsView_LeftHand->scene()->removeItem(lHThree);
-        ui->graphicsView_LeftHand->scene()->removeItem(lHFour);
-        ui->graphicsView_LeftHand->scene()->removeItem(lHFive);
-
-        ui->pushButton_Tilde->setChecked(false);
-        ui->pushButton_1->setChecked(false);
-        ui->pushButton_2->setChecked(false);
-        ui->pushButton_3->setChecked(false);
-        ui->pushButton_4->setChecked(false);
-        ui->pushButton_5->setChecked(false);
-        ui->pushButton_6->setChecked(false);
-        ui->pushButton_7->setChecked(false);
-        ui->pushButton_8->setChecked(false);
-        ui->pushButton_9->setChecked(false);
-        ui->pushButton_0->setChecked(false);
-        ui->pushButton_Minus->setChecked(false);
-        ui->pushButton_Equals->setChecked(false);
-        ui->pushButton_Backspace->setChecked(false);
-        ui->pushButton_TAB->setChecked(false);
-        ui->pushButton_Q->setChecked(false);
-        ui->pushButton_W->setChecked(false);
-        ui->pushButton_E->setChecked(false);
-        ui->pushButton_R->setChecked(false);
-        ui->pushButton_T->setChecked(false);
-        ui->pushButton_Y->setChecked(false);
-        ui->pushButton_U->setChecked(false);
-        ui->pushButton_I->setChecked(false);
-        ui->pushButton_O->setChecked(false);
-        ui->pushButton_P->setChecked(false);
-        ui->pushButton_LeftSquareBracket->setChecked(false);
-        ui->pushButton_RightSquareBracket->setChecked(false);
-        ui->pushButton_Backslash->setChecked(false);
-        ui->pushButton_CAPS->setChecked(false);
-        ui->pushButton_A->setChecked(false);
-        ui->pushButton_S->setChecked(false);
-        ui->pushButton_D->setChecked(false);
-        ui->pushButton_F->setChecked(false);
-        ui->pushButton_G->setChecked(false);
-        ui->pushButton_H->setChecked(false);
-        ui->pushButton_J->setChecked(false);
-        ui->pushButton_K->setChecked(false);
-        ui->pushButton_L->setChecked(false);
-        ui->pushButton_Semicolon->setChecked(false);
-        ui->pushButton_Apostrophe->setChecked(false);
-        ui->pushButton_Enter->setChecked(false);
-        ui->pushButton_LShift->setChecked(false);
-        ui->pushButton_Z->setChecked(false);
-        ui->pushButton_X->setChecked(false);
-        ui->pushButton_C->setChecked(false);
-        ui->pushButton_V->setChecked(false);
-        ui->pushButton_B->setChecked(false);
-        ui->pushButton_N->setChecked(false);
-        ui->pushButton_M->setChecked(false);
-        ui->pushButton_Comma->setChecked(false);
-        ui->pushButton_Period->setChecked(false);
-        ui->pushButton_Slash->setChecked(false);
-        ui->pushButton_RShift->setChecked(false);
-        ui->pushButton_LCtrl->setChecked(false);
-        ui->pushButton_Super->setChecked(false);
-        ui->pushButton_LAlt->setChecked(false);
-        ui->pushButton_Space->setChecked(false);
-        ui->pushButton_RAlt->setChecked(false);
-        ui->pushButton_Menu->setChecked(false);
-        ui->pushButton_LCtrl->setChecked(false);
 
         QString characterSearch;
+        QString fixes = ui->pushButton_7->text();
+        if (fixes == "&&") {fixes = "&";}
 
         characterSearch = ui->pushButton_Tilde->text(); if (characterSearch == articleHands) {ui->pushButton_Tilde->setChecked(true); ui->graphicsView_LeftHand->scene()->addItem(lHOne); if (isArticleCapitalised == true) {ui->graphicsView_LeftHand->scene()->addItem(lHTwo);}}
         characterSearch = ui->pushButton_1->text(); if (characterSearch == articleHands) {ui->pushButton_1->setChecked(true); ui->graphicsView_LeftHand->scene()->addItem(lHOne); if (isArticleCapitalised == true) {ui->graphicsView_LeftHand->scene()->addItem(lHTwo);}}
@@ -416,7 +438,7 @@ void MainWindow::on_lineEdit_TextInput_textChanged(const QString &arg1)
         characterSearch = ui->pushButton_4->text(); if (characterSearch == articleHands) {ui->pushButton_4->setChecked(true); ui->graphicsView_LeftHand->scene()->addItem(lHThree);}
         characterSearch = ui->pushButton_5->text(); if (characterSearch == articleHands) {ui->pushButton_5->setChecked(true); ui->graphicsView_LeftHand->scene()->addItem(lHFour);}
         characterSearch = ui->pushButton_6->text(); if (characterSearch == articleHands) {ui->pushButton_6->setChecked(true); ui->graphicsView_LeftHand->scene()->addItem(lHFour);}
-        characterSearch = ui->pushButton_7->text(); if (characterSearch == articleHands) {ui->pushButton_7->setChecked(true); ui->graphicsView_RightHand->scene()->addItem(rHTwo);}
+        characterSearch = ui->pushButton_7->text(); if (fixes == articleHands)           {ui->pushButton_7->setChecked(true); ui->graphicsView_RightHand->scene()->addItem(rHTwo);}
         characterSearch = ui->pushButton_8->text(); if (characterSearch == articleHands) {ui->pushButton_8->setChecked(true); ui->graphicsView_RightHand->scene()->addItem(rHTwo);}
         characterSearch = ui->pushButton_9->text(); if (characterSearch == articleHands) {ui->pushButton_9->setChecked(true); ui->graphicsView_RightHand->scene()->addItem(rHThree);}
         characterSearch = ui->pushButton_0->text(); if (characterSearch == articleHands) {ui->pushButton_0->setChecked(true); ui->graphicsView_RightHand->scene()->addItem(rHFour);}
@@ -473,62 +495,35 @@ void MainWindow::on_lineEdit_TextInput_textChanged(const QString &arg1)
             ui->pushButton_LShift->setChecked(true); ui->graphicsView_LeftHand->scene()->addItem(lHOne);
             ui->pushButton_RShift->setChecked(true); ui->graphicsView_RightHand->scene()->addItem(rHFive);
         }
+        if (stopTwice == 1)
+        {
+            ui->graphicsView_RightHand->scene()->addItem(rHOne);
+            ui->graphicsView_RightHand->scene()->addItem(rHTwo);
+            ui->graphicsView_RightHand->scene()->addItem(rHThree);
+            ui->graphicsView_RightHand->scene()->addItem(rHFour);
+            ui->graphicsView_RightHand->scene()->addItem(rHFive);
+            ui->graphicsView_LeftHand->scene()->addItem(lHOne);
+            ui->graphicsView_LeftHand->scene()->addItem(lHTwo);
+            ui->graphicsView_LeftHand->scene()->addItem(lHThree);
+            ui->graphicsView_LeftHand->scene()->addItem(lHFour);
+            ui->graphicsView_LeftHand->scene()->addItem(lHFive);
+        }
     } else {
         int currC = arg1.count();
-        qDebug() << characters;
-        qDebug() << currC;
-        QString argHigh = text;
-        QString argLow = text;
         if (once == 0) {
             characters = text.count(); once = 1;
-            argLow.remove(1, 2);
-            argHigh.remove(1, 1);
         }
-        if (stopErr == 0) {
-            if (currC > characters)
-            {
-                if (saveM == 0) {
-                stopErr2 = 1;
-                saveM = 1;
-                ui->lineEdit_TextInput->setText(argHigh);
-                }
-            }
-            if (currC < characters - 1)
-            {
-                stopErr = 1;
-                stopErr2 = 0;
-                ui->lineEdit_TextInput->setText(argLow);
-            }
-            if (currC == 0)
-            {
-                stopErr = 1;
-                stopErr2 = 0;
-            }
-            if (currC == 1)
-            {
-                if (currC < characters)
-                {
-                    ui->lineEdit_TextInput->setText(argLow);
-                    stopErr = 1;
-                    stopErr2 = 0;
-                }
-            }
-        } else if (stopErr == 1) {
-            ui->lineEdit_TextInput->setText(argLow);
+        if (currC > characters)
+        {
+            ui->lineEdit_TextInput->setText(text);
         }
-    }
-    if (stopTwice == 1)
-    {
-        ui->graphicsView_RightHand->scene()->addItem(rHOne);
-        ui->graphicsView_RightHand->scene()->addItem(rHTwo);
-        ui->graphicsView_RightHand->scene()->addItem(rHThree);
-        ui->graphicsView_RightHand->scene()->addItem(rHFour);
-        ui->graphicsView_RightHand->scene()->addItem(rHFive);
-        ui->graphicsView_LeftHand->scene()->addItem(lHOne);
-        ui->graphicsView_LeftHand->scene()->addItem(lHTwo);
-        ui->graphicsView_LeftHand->scene()->addItem(lHThree);
-        ui->graphicsView_LeftHand->scene()->addItem(lHFour);
-        ui->graphicsView_LeftHand->scene()->addItem(lHFive);
+        if (currC < characters)
+        {
+            ui->lineEdit_TextInput->setText(textM);
+            ui->pushButton_Backspace->setChecked(false);
+            ui->graphicsView_RightHand->scene()->removeItem(rHFive);
+            missStop = 0;
+        }
     }
 }
 
@@ -560,6 +555,28 @@ void MainWindow::on_action_MakeCustomCourse_triggered()
         if (articleIn.isLower() == true) {isArticleCapitalised = false;}
         if (articleIn == " ") {isArticleCapitalised = false;}
 
+        if (articleIn == mapColor.getTildeS()) {isArticleCapitalised = true;}
+        if (articleIn == mapColor.getN1S()) {isArticleCapitalised = true;}
+        if (articleIn == mapColor.getN2S()) {isArticleCapitalised = true;}
+        if (articleIn == mapColor.getN3S()) {isArticleCapitalised = true;}
+        if (articleIn == mapColor.getN4S()) {isArticleCapitalised = true;}
+        if (articleIn == mapColor.getN5S()) {isArticleCapitalised = true;}
+        if (articleIn == mapColor.getN6S()) {isArticleCapitalised = true;}
+        if (articleIn == mapColor.getN7S()) {isArticleCapitalised = true;}
+        if (articleIn == mapColor.getN8S()) {isArticleCapitalised = true;}
+        if (articleIn == mapColor.getN9S()) {isArticleCapitalised = true;}
+        if (articleIn == mapColor.getN0S()) {isArticleCapitalised = true;}
+        if (articleIn == mapColor.getMinusS()) {isArticleCapitalised = true;}
+        if (articleIn == mapColor.getEqualsS()) {isArticleCapitalised = true;}
+        if (articleIn == mapColor.getLeftSquareBracketS()) {isArticleCapitalised = true;}
+        if (articleIn == mapColor.getRightSquareBracketS()) {isArticleCapitalised = true;}
+        if (articleIn == mapColor.getBackslashS()) {isArticleCapitalised = true;}
+        if (articleIn == mapColor.getSemicolonS()) {isArticleCapitalised = true;}
+        if (articleIn == mapColor.getApostropheS()) {isArticleCapitalised = true;}
+        if (articleIn == mapColor.getCommaS()) {isArticleCapitalised = true;}
+        if (articleIn == mapColor.getPeriodS()) {isArticleCapitalised = true;}
+        if (articleIn == mapColor.getSlashS()) {isArticleCapitalised = true;}
+
         if (isArticleCapitalised == true) {
             ui->pushButton_LShift->setChecked(true); ui->graphicsView_LeftHand->scene()->addItem(lHOne);
             ui->pushButton_RShift->setChecked(true); ui->graphicsView_RightHand->scene()->addItem(rHFive);
@@ -571,7 +588,9 @@ void MainWindow::on_action_MakeCustomCourse_triggered()
             ui->pushButton_4->setText(mapColor.getN4S());
             ui->pushButton_5->setText(mapColor.getN5S());
             ui->pushButton_6->setText(mapColor.getN6S());
-            ui->pushButton_7->setText(mapColor.getN7S());
+            QString fixes;
+            if (mapColor.getN7S() == "&") {fixes = "&&";} else {fixes = mapColor.getN7S();}
+            ui->pushButton_7->setText(fixes);
             ui->pushButton_8->setText(mapColor.getN8S());
             ui->pushButton_9->setText(mapColor.getN9S());
             ui->pushButton_0->setText(mapColor.getN0S());
@@ -626,6 +645,9 @@ void MainWindow::on_action_MakeCustomCourse_triggered()
         }
 
         QString characterSearch;
+        QString fixes = ui->pushButton_7->text();
+        if (fixes == "&&") {fixes = "&";}
+
         characterSearch = ui->pushButton_Tilde->text(); if (characterSearch == articleHands) {ui->pushButton_Tilde->setChecked(true); ui->graphicsView_LeftHand->scene()->addItem(lHOne); if (isArticleCapitalised == true) {ui->graphicsView_LeftHand->scene()->addItem(lHTwo);}}
         characterSearch = ui->pushButton_1->text(); if (characterSearch == articleHands) {ui->pushButton_1->setChecked(true); ui->graphicsView_LeftHand->scene()->addItem(lHOne); if (isArticleCapitalised == true) {ui->graphicsView_LeftHand->scene()->addItem(lHTwo);}}
         characterSearch = ui->pushButton_2->text(); if (characterSearch == articleHands) {ui->pushButton_2->setChecked(true); ui->graphicsView_LeftHand->scene()->addItem(lHOne); if (isArticleCapitalised == true) {ui->graphicsView_LeftHand->scene()->addItem(lHTwo);}}
@@ -633,7 +655,7 @@ void MainWindow::on_action_MakeCustomCourse_triggered()
         characterSearch = ui->pushButton_4->text(); if (characterSearch == articleHands) {ui->pushButton_4->setChecked(true); ui->graphicsView_LeftHand->scene()->addItem(lHThree);}
         characterSearch = ui->pushButton_5->text(); if (characterSearch == articleHands) {ui->pushButton_5->setChecked(true); ui->graphicsView_LeftHand->scene()->addItem(lHFour);}
         characterSearch = ui->pushButton_6->text(); if (characterSearch == articleHands) {ui->pushButton_6->setChecked(true); ui->graphicsView_LeftHand->scene()->addItem(lHFour);}
-        characterSearch = ui->pushButton_7->text(); if (characterSearch == articleHands) {ui->pushButton_7->setChecked(true); ui->graphicsView_RightHand->scene()->addItem(rHTwo);}
+        characterSearch = ui->pushButton_7->text(); if (fixes == articleHands)           {ui->pushButton_7->setChecked(true); ui->graphicsView_RightHand->scene()->addItem(rHTwo);}
         characterSearch = ui->pushButton_8->text(); if (characterSearch == articleHands) {ui->pushButton_8->setChecked(true); ui->graphicsView_RightHand->scene()->addItem(rHTwo);}
         characterSearch = ui->pushButton_9->text(); if (characterSearch == articleHands) {ui->pushButton_9->setChecked(true); ui->graphicsView_RightHand->scene()->addItem(rHThree);}
         characterSearch = ui->pushButton_0->text(); if (characterSearch == articleHands) {ui->pushButton_0->setChecked(true); ui->graphicsView_RightHand->scene()->addItem(rHFour);}
@@ -799,6 +821,28 @@ void MainWindow::on_action_CourseSelector_triggered()
         isArticleCapitalised = articleIn.isUpper();
         if (articleIn == " ") {isArticleCapitalised = false;}
 
+        if (articleIn == mapColor.getTildeS()) {isArticleCapitalised = true;}
+        if (articleIn == mapColor.getN1S()) {isArticleCapitalised = true;}
+        if (articleIn == mapColor.getN2S()) {isArticleCapitalised = true;}
+        if (articleIn == mapColor.getN3S()) {isArticleCapitalised = true;}
+        if (articleIn == mapColor.getN4S()) {isArticleCapitalised = true;}
+        if (articleIn == mapColor.getN5S()) {isArticleCapitalised = true;}
+        if (articleIn == mapColor.getN6S()) {isArticleCapitalised = true;}
+        if (articleIn == mapColor.getN7S()) {isArticleCapitalised = true;}
+        if (articleIn == mapColor.getN8S()) {isArticleCapitalised = true;}
+        if (articleIn == mapColor.getN9S()) {isArticleCapitalised = true;}
+        if (articleIn == mapColor.getN0S()) {isArticleCapitalised = true;}
+        if (articleIn == mapColor.getMinusS()) {isArticleCapitalised = true;}
+        if (articleIn == mapColor.getEqualsS()) {isArticleCapitalised = true;}
+        if (articleIn == mapColor.getLeftSquareBracketS()) {isArticleCapitalised = true;}
+        if (articleIn == mapColor.getRightSquareBracketS()) {isArticleCapitalised = true;}
+        if (articleIn == mapColor.getBackslashS()) {isArticleCapitalised = true;}
+        if (articleIn == mapColor.getSemicolonS()) {isArticleCapitalised = true;}
+        if (articleIn == mapColor.getApostropheS()) {isArticleCapitalised = true;}
+        if (articleIn == mapColor.getCommaS()) {isArticleCapitalised = true;}
+        if (articleIn == mapColor.getPeriodS()) {isArticleCapitalised = true;}
+        if (articleIn == mapColor.getSlashS()) {isArticleCapitalised = true;}
+
         if (isArticleCapitalised == true) {
             ui->pushButton_LShift->setChecked(true); ui->graphicsView_LeftHand->scene()->addItem(lHOne);
             ui->pushButton_RShift->setChecked(true); ui->graphicsView_RightHand->scene()->addItem(rHFive);
@@ -810,7 +854,9 @@ void MainWindow::on_action_CourseSelector_triggered()
             ui->pushButton_4->setText(mapColor.getN4S());
             ui->pushButton_5->setText(mapColor.getN5S());
             ui->pushButton_6->setText(mapColor.getN6S());
-            ui->pushButton_7->setText(mapColor.getN7S());
+            QString fixes;
+            if (mapColor.getN7S() == "&") {fixes = "&&";} else {fixes = mapColor.getN7S();}
+            ui->pushButton_7->setText(fixes);
             ui->pushButton_8->setText(mapColor.getN8S());
             ui->pushButton_9->setText(mapColor.getN9S());
             ui->pushButton_0->setText(mapColor.getN0S());
@@ -863,7 +909,11 @@ void MainWindow::on_action_CourseSelector_triggered()
             ui->pushButton_Menu->setText(mapColor.getMenuS());
             ui->pushButton_RCtrl->setText(mapColor.getRCtrlS());
         } else {articleHands = articleIn;}
+
         QString characterSearch;
+        QString fixes = ui->pushButton_7->text();
+        if (fixes == "&&") {fixes = "&";}
+
         characterSearch = ui->pushButton_Tilde->text(); if (characterSearch == articleHands) {ui->pushButton_Tilde->setChecked(true); ui->graphicsView_LeftHand->scene()->addItem(lHOne); if (isArticleCapitalised == true) {ui->graphicsView_LeftHand->scene()->addItem(lHTwo);}}
         characterSearch = ui->pushButton_1->text(); if (characterSearch == articleHands) {ui->pushButton_1->setChecked(true); ui->graphicsView_LeftHand->scene()->addItem(lHOne); if (isArticleCapitalised == true) {ui->graphicsView_LeftHand->scene()->addItem(lHTwo);}}
         characterSearch = ui->pushButton_2->text(); if (characterSearch == articleHands) {ui->pushButton_2->setChecked(true); ui->graphicsView_LeftHand->scene()->addItem(lHOne); if (isArticleCapitalised == true) {ui->graphicsView_LeftHand->scene()->addItem(lHTwo);}}
@@ -871,7 +921,7 @@ void MainWindow::on_action_CourseSelector_triggered()
         characterSearch = ui->pushButton_4->text(); if (characterSearch == articleHands) {ui->pushButton_4->setChecked(true); ui->graphicsView_LeftHand->scene()->addItem(lHThree);}
         characterSearch = ui->pushButton_5->text(); if (characterSearch == articleHands) {ui->pushButton_5->setChecked(true); ui->graphicsView_LeftHand->scene()->addItem(lHFour);}
         characterSearch = ui->pushButton_6->text(); if (characterSearch == articleHands) {ui->pushButton_6->setChecked(true); ui->graphicsView_LeftHand->scene()->addItem(lHFour);}
-        characterSearch = ui->pushButton_7->text(); if (characterSearch == articleHands) {ui->pushButton_7->setChecked(true); ui->graphicsView_RightHand->scene()->addItem(rHTwo);}
+        characterSearch = ui->pushButton_7->text(); if (fixes == articleHands)           {ui->pushButton_7->setChecked(true); ui->graphicsView_RightHand->scene()->addItem(rHTwo);}
         characterSearch = ui->pushButton_8->text(); if (characterSearch == articleHands) {ui->pushButton_8->setChecked(true); ui->graphicsView_RightHand->scene()->addItem(rHTwo);}
         characterSearch = ui->pushButton_9->text(); if (characterSearch == articleHands) {ui->pushButton_9->setChecked(true); ui->graphicsView_RightHand->scene()->addItem(rHThree);}
         characterSearch = ui->pushButton_0->text(); if (characterSearch == articleHands) {ui->pushButton_0->setChecked(true); ui->graphicsView_RightHand->scene()->addItem(rHFour);}

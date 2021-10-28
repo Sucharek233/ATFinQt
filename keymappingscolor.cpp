@@ -82,7 +82,6 @@ void keyMappingsColor::on_lineEdit_7_textChanged(const QString &arg1)
 {
     if (toggled == true) {
         n7S = arg1;
-        if (n7S == "&") {n7S = "&&";}
     } else {
         n7 = arg1;
     }

@@ -84,7 +84,7 @@ public:
     QString getN4S() { return n4S; }
     QString getN5S() { return n5S; }
     QString getN6S() { return n6S; }
-    QString getN7S() { return n7S; }
+    QString getN7S() { if (n7S == "&&") {n7S = "&";} return n7S; }
     QString getN8S() { return n8S; }
     QString getN9S() { return n9S; }
     QString getN0S() { return n0S; }
