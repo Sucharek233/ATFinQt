@@ -23,6 +23,11 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+    void uncheck();
+    void findChar();
+    void lightMain();
+    void darkMain();
+
 private slots:
     void on_lineEdit_TextInput_textChanged(const QString &arg1);
 
@@ -33,6 +38,10 @@ private slots:
     void on_pushButton_StartCourse_clicked();
 
     void on_action_CourseSelector_triggered();
+
+    void on_action_Light_triggered();
+
+    void on_action_Dark_triggered();
 
 private:
     Ui::MainWindow *ui;

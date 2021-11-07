@@ -10,6 +10,19 @@ keyMappingsColor::keyMappingsColor(QWidget *parent) :
     ui->setupUi(this);
 }
 
+void keyMappingsColor::lightMap()
+{
+    ui->pushButton_OnShift->setStyleSheet("color: black; background-color: rgb(244, 244, 244);");
+    keyMappingsColor::setStyleSheet("background-color: rgb(244, 244, 244);");
+    ui->buttonBox->setStyleSheet("QPushButton {color: black; background-color: rgb(244, 244, 244);}");
+}
+void keyMappingsColor::darkMap()
+{
+    ui->pushButton_OnShift->setStyleSheet("color: rgb(211, 213, 201); background-color: rgb(36, 36, 44);");
+    keyMappingsColor::setStyleSheet("background-color: rgb(6, 6, 14);");
+    ui->buttonBox->setStyleSheet("QPushButton {color: rgb(211, 213, 201); background-color: rgb(36, 36, 44);}");
+}
+
 keyMappingsColor::~keyMappingsColor()
 {
     delete ui;

@@ -16,9 +16,14 @@ public:
     explicit customCoursesAdd(QWidget *parent = nullptr);
     ~customCoursesAdd();
 
+    void initialize();
+
     QString getName() { return name; }
     QString getText() { return text; }
     void setCurrSlot(int slot) {currSlot = slot;}
+
+    void lightCourseAdd();
+    void darkCourseAdd();
 
 private slots:
     void on_lineEdit_Name_textChanged(const QString &arg1);

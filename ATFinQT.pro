@@ -11,6 +11,7 @@ CONFIG += c++11
 SOURCES += \
     additionalinfogetter.cpp \
     courses.cpp \
+    customcoursesadd.cpp \
     keymappingscolor.cpp \
     main.cpp \
     mainwindow.cpp
@@ -18,11 +19,14 @@ SOURCES += \
 HEADERS += \
     additionalinfogetter.h \
     courses.h \
+    customcoursesadd.h \
     keymappingscolor.h \
-    mainwindow.h
+    mainwindow.h \
+    preapptasks.h
 
 FORMS += \
     courses.ui \
+    customcoursesadd.ui \
     keymappingscolor.ui \
     mainwindow.ui
 

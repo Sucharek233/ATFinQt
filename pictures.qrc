@@ -2,5 +2,7 @@
     <qresource prefix="/hands">
         <file>handRight.jpg</file>
         <file>handLeft.jpg</file>
+        <file>handLeftDark.jpg</file>
+        <file>handRightDark.jpg</file>
     </qresource>
 </RCC>

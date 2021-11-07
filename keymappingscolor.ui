@@ -10,6 +10,18 @@
     <height>272</height>
    </rect>
   </property>
+  <property name="minimumSize">
+   <size>
+    <width>624</width>
+    <height>272</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>624</width>
+    <height>272</height>
+   </size>
+  </property>
   <property name="windowTitle">
    <string>Key mapping</string>
   </property>

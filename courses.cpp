@@ -4,6 +4,7 @@
 int invalidSlotSelected;
 
 QString Path;
+int currSlot;
 
 //Slots
 QString Slot1Name;   QString Slot1Text;
@@ -27,9 +28,11 @@ QString Slot18Name;  QString Slot18Text;
 QString Slot19Name;  QString Slot19Text;
 QString Slot20Name;  QString Slot20Text;
 
-void updateVars() {
+void Courses::updateVars()
+{
     QFile *config = new QFile(Path);
     QTextStream in(config);
+    in.setCodec("UTF-8");
     config->open(QIODevice::ReadOnly | QIODevice::Text);
 
     in.readLine();
@@ -73,6 +76,27 @@ void updateVars() {
     in.readLine();
     Slot20Name = in.readLine();     Slot20Text = in.readLine();
     config->close();
+
+    if (Slot1Name == "") {ui->listWidget_Courses->addItem("Empty slot");} else {ui->listWidget_Courses->addItem(Slot1Name);}
+    if (Slot2Name == "") {ui->listWidget_Courses->addItem("Empty slot");} else {ui->listWidget_Courses->addItem(Slot2Name);}
+    if (Slot3Name == "") {ui->listWidget_Courses->addItem("Empty slot");} else {ui->listWidget_Courses->addItem(Slot3Name);}
+    if (Slot4Name == "") {ui->listWidget_Courses->addItem("Empty slot");} else {ui->listWidget_Courses->addItem(Slot4Name);}
+    if (Slot5Name == "") {ui->listWidget_Courses->addItem("Empty slot");} else {ui->listWidget_Courses->addItem(Slot5Name);}
+    if (Slot6Name == "") {ui->listWidget_Courses->addItem("Empty slot");} else {ui->listWidget_Courses->addItem(Slot6Name);}
+    if (Slot7Name == "") {ui->listWidget_Courses->addItem("Empty slot");} else {ui->listWidget_Courses->addItem(Slot7Name);}
+    if (Slot8Name == "") {ui->listWidget_Courses->addItem("Empty slot");} else {ui->listWidget_Courses->addItem(Slot8Name);}
+    if (Slot9Name == "") {ui->listWidget_Courses->addItem("Empty slot");} else {ui->listWidget_Courses->addItem(Slot9Name);}
+    if (Slot10Name == "") {ui->listWidget_Courses->addItem("Empty slot");} else {ui->listWidget_Courses->addItem(Slot10Name);}
+    if (Slot11Name == "") {ui->listWidget_Courses->addItem("Empty slot");} else {ui->listWidget_Courses->addItem(Slot11Name);}
+    if (Slot12Name == "") {ui->listWidget_Courses->addItem("Empty slot");} else {ui->listWidget_Courses->addItem(Slot12Name);}
+    if (Slot13Name == "") {ui->listWidget_Courses->addItem("Empty slot");} else {ui->listWidget_Courses->addItem(Slot13Name);}
+    if (Slot14Name == "") {ui->listWidget_Courses->addItem("Empty slot");} else {ui->listWidget_Courses->addItem(Slot14Name);}
+    if (Slot15Name == "") {ui->listWidget_Courses->addItem("Empty slot");} else {ui->listWidget_Courses->addItem(Slot15Name);}
+    if (Slot16Name == "") {ui->listWidget_Courses->addItem("Empty slot");} else {ui->listWidget_Courses->addItem(Slot16Name);}
+    if (Slot17Name == "") {ui->listWidget_Courses->addItem("Empty slot");} else {ui->listWidget_Courses->addItem(Slot17Name);}
+    if (Slot18Name == "") {ui->listWidget_Courses->addItem("Empty slot");} else {ui->listWidget_Courses->addItem(Slot18Name);}
+    if (Slot19Name == "") {ui->listWidget_Courses->addItem("Empty slot");} else {ui->listWidget_Courses->addItem(Slot19Name);}
+    if (Slot20Name == "") {ui->listWidget_Courses->addItem("Empty slot");} else {ui->listWidget_Courses->addItem(Slot20Name);}
 }
 
 Courses::Courses(QWidget *parent) :
@@ -83,26 +107,31 @@ Courses::Courses(QWidget *parent) :
     Path = additionalInfo.pathToInitFile();
 
     updateVars();
-    if (Slot1Name == "") {ui->listWidget->addItem("Empty slot");} else {ui->listWidget->addItem(Slot1Name);}
-    if (Slot2Name == "") {ui->listWidget->addItem("Empty slot");} else {ui->listWidget->addItem(Slot2Name);}
-    if (Slot3Name == "") {ui->listWidget->addItem("Empty slot");} else {ui->listWidget->addItem(Slot3Name);}
-    if (Slot4Name == "") {ui->listWidget->addItem("Empty slot");} else {ui->listWidget->addItem(Slot4Name);}
-    if (Slot5Name == "") {ui->listWidget->addItem("Empty slot");} else {ui->listWidget->addItem(Slot5Name);}
-    if (Slot6Name == "") {ui->listWidget->addItem("Empty slot");} else {ui->listWidget->addItem(Slot6Name);}
-    if (Slot7Name == "") {ui->listWidget->addItem("Empty slot");} else {ui->listWidget->addItem(Slot7Name);}
-    if (Slot8Name == "") {ui->listWidget->addItem("Empty slot");} else {ui->listWidget->addItem(Slot8Name);}
-    if (Slot9Name == "") {ui->listWidget->addItem("Empty slot");} else {ui->listWidget->addItem(Slot9Name);}
-    if (Slot10Name == "") {ui->listWidget->addItem("Empty slot");} else {ui->listWidget->addItem(Slot10Name);}
-    if (Slot11Name == "") {ui->listWidget->addItem("Empty slot");} else {ui->listWidget->addItem(Slot11Name);}
-    if (Slot12Name == "") {ui->listWidget->addItem("Empty slot");} else {ui->listWidget->addItem(Slot12Name);}
-    if (Slot13Name == "") {ui->listWidget->addItem("Empty slot");} else {ui->listWidget->addItem(Slot13Name);}
-    if (Slot14Name == "") {ui->listWidget->addItem("Empty slot");} else {ui->listWidget->addItem(Slot14Name);}
-    if (Slot15Name == "") {ui->listWidget->addItem("Empty slot");} else {ui->listWidget->addItem(Slot15Name);}
-    if (Slot16Name == "") {ui->listWidget->addItem("Empty slot");} else {ui->listWidget->addItem(Slot16Name);}
-    if (Slot17Name == "") {ui->listWidget->addItem("Empty slot");} else {ui->listWidget->addItem(Slot17Name);}
-    if (Slot18Name == "") {ui->listWidget->addItem("Empty slot");} else {ui->listWidget->addItem(Slot18Name);}
-    if (Slot19Name == "") {ui->listWidget->addItem("Empty slot");} else {ui->listWidget->addItem(Slot19Name);}
-    if (Slot20Name == "") {ui->listWidget->addItem("Empty slot");} else {ui->listWidget->addItem(Slot20Name);}
+}
+
+void Courses::lightCourses()
+{
+    QString button = "color: black; background-color: rgb(244, 244, 244);";
+    ui->pushButton_Add->setStyleSheet(button);
+    ui->pushButton_Remove->setStyleSheet(button);
+    ui->pushButton_Reset->setStyleSheet(button);
+    ui->buttonBox->setStyleSheet("QPushButton {color: black; background-color: rgb(244, 244, 244); font-size: 12px;}");
+    ui->label->setStyleSheet("color: black;");
+    ui->listWidget_Courses->setStyleSheet("QListWidget::item {color: black; background-color: white}"
+                                  "QListWidget::item:selected {color: white; background-color: rgb(0, 120, 215); border: 0.5px solid black}");
+    Courses::setStyleSheet("background-color: rgb(244, 244, 244);");
+}
+void Courses::darkCourses()
+{
+    QString button = "color: rgb(211, 213, 201); background-color: rgb(36, 36, 44);";
+    ui->pushButton_Add->setStyleSheet(button);
+    ui->pushButton_Remove->setStyleSheet(button);
+    ui->pushButton_Reset->setStyleSheet(button);
+    ui->buttonBox->setStyleSheet("QPushButton {color: rgb(211, 213, 201); background-color: rgb(36, 36, 44); font-size: 12px;}");
+    ui->label->setStyleSheet("color: rgb(211, 213, 201);");
+    ui->listWidget_Courses->setStyleSheet("QListWidget::item {color: rgb(211, 213, 201); background-color: rgb(36, 36, 44);}"
+                                  "QListWidget::item:selected {color: rgb(211, 213, 201); background-color: rgb(66, 66, 74); border: 0.5px solid black;}");
+    Courses::setStyleSheet("background-color: rgb(6, 6, 14);");
 }
 
 Courses::~Courses()
@@ -110,9 +139,10 @@ Courses::~Courses()
     delete ui;
 }
 
-void Courses::on_listWidget_currentRowChanged(int currentRow)
+void Courses::on_listWidget_Courses_currentRowChanged(int currentRow)
 {
     currSlot = currentRow;
+    add.setCurrSlot(currSlot);
 
     if (currSlot == 0) {
         if (Slot1Text == "") {invalidSlotSelected = 1;} else {selectedArticle = Slot1Text; invalidSlotSelected = 0;}
@@ -131,7 +161,7 @@ void Courses::on_listWidget_currentRowChanged(int currentRow)
     } else if (currSlot == 7) {
         if (Slot7Text == "") {invalidSlotSelected = 1;} else {selectedArticle = Slot8Text; invalidSlotSelected = 0;}
     } else if (currSlot == 8) {
-        if (Slot8Text == "") {invalidSlotSelected = 1;} else {selectedArticle = Slot9Text; invalidSlotSelected = 0;}
+        if (Slot8Text == "") { invalidSlotSelected = 1;} else {selectedArticle = Slot9Text; invalidSlotSelected = 0;}
     } else if (currSlot == 9) {
         if (Slot9Text == "") {invalidSlotSelected = 1;} else {selectedArticle = Slot10Text; invalidSlotSelected = 0;}
     } else if (currSlot == 10) {
@@ -157,6 +187,7 @@ void Courses::on_listWidget_currentRowChanged(int currentRow)
     }
 }
 
+
 void Courses::on_buttonBox_accepted()
 {
     if (invalidSlotSelected == 1) {
@@ -179,34 +210,16 @@ void Courses::on_pushButton_Add_clicked()
 {
     add.setModal(true);
     add.setCurrSlot(currSlot);
+    add.initialize();
     if (add.exec() == QDialog::Accepted) {
-        ui->listWidget->clear();
+        ui->listWidget_Courses->clear();
         updateVars();
-        if (Slot1Name == "") {ui->listWidget->addItem("Empty slot");} else {ui->listWidget->addItem(Slot1Name);}
-        if (Slot2Name == "") {ui->listWidget->addItem("Empty slot");} else {ui->listWidget->addItem(Slot2Name);}
-        if (Slot3Name == "") {ui->listWidget->addItem("Empty slot");} else {ui->listWidget->addItem(Slot3Name);}
-        if (Slot4Name == "") {ui->listWidget->addItem("Empty slot");} else {ui->listWidget->addItem(Slot4Name);}
-        if (Slot5Name == "") {ui->listWidget->addItem("Empty slot");} else {ui->listWidget->addItem(Slot5Name);}
-        if (Slot6Name == "") {ui->listWidget->addItem("Empty slot");} else {ui->listWidget->addItem(Slot6Name);}
-        if (Slot7Name == "") {ui->listWidget->addItem("Empty slot");} else {ui->listWidget->addItem(Slot7Name);}
-        if (Slot8Name == "") {ui->listWidget->addItem("Empty slot");} else {ui->listWidget->addItem(Slot8Name);}
-        if (Slot9Name == "") {ui->listWidget->addItem("Empty slot");} else {ui->listWidget->addItem(Slot9Name);}
-        if (Slot10Name == "") {ui->listWidget->addItem("Empty slot");} else {ui->listWidget->addItem(Slot10Name);}
-        if (Slot11Name == "") {ui->listWidget->addItem("Empty slot");} else {ui->listWidget->addItem(Slot11Name);}
-        if (Slot12Name == "") {ui->listWidget->addItem("Empty slot");} else {ui->listWidget->addItem(Slot12Name);}
-        if (Slot13Name == "") {ui->listWidget->addItem("Empty slot");} else {ui->listWidget->addItem(Slot13Name);}
-        if (Slot14Name == "") {ui->listWidget->addItem("Empty slot");} else {ui->listWidget->addItem(Slot14Name);}
-        if (Slot15Name == "") {ui->listWidget->addItem("Empty slot");} else {ui->listWidget->addItem(Slot15Name);}
-        if (Slot16Name == "") {ui->listWidget->addItem("Empty slot");} else {ui->listWidget->addItem(Slot16Name);}
-        if (Slot17Name == "") {ui->listWidget->addItem("Empty slot");} else {ui->listWidget->addItem(Slot17Name);}
-        if (Slot18Name == "") {ui->listWidget->addItem("Empty slot");} else {ui->listWidget->addItem(Slot18Name);}
-        if (Slot19Name == "") {ui->listWidget->addItem("Empty slot");} else {ui->listWidget->addItem(Slot19Name);}
-        if (Slot20Name == "") {ui->listWidget->addItem("Empty slot");} else {ui->listWidget->addItem(Slot20Name);}
     }
 }
 
 void Courses::on_pushButton_Remove_clicked()
 {
+    ui->listWidget_Courses->clear();
     updateVars();
     if (currSlot == 0) {
         Slot1Name = ""; Slot1Text = "";
@@ -277,28 +290,8 @@ void Courses::on_pushButton_Remove_clicked()
     config->write(contents.toUtf8());
     config->close();
 
+    ui->listWidget_Courses->clear();
     updateVars();
-    ui->listWidget->clear();
-    if (Slot1Name == "") {ui->listWidget->addItem("Empty slot");} else {ui->listWidget->addItem(Slot1Name);}
-    if (Slot2Name == "") {ui->listWidget->addItem("Empty slot");} else {ui->listWidget->addItem(Slot2Name);}
-    if (Slot3Name == "") {ui->listWidget->addItem("Empty slot");} else {ui->listWidget->addItem(Slot3Name);}
-    if (Slot4Name == "") {ui->listWidget->addItem("Empty slot");} else {ui->listWidget->addItem(Slot4Name);}
-    if (Slot5Name == "") {ui->listWidget->addItem("Empty slot");} else {ui->listWidget->addItem(Slot5Name);}
-    if (Slot6Name == "") {ui->listWidget->addItem("Empty slot");} else {ui->listWidget->addItem(Slot6Name);}
-    if (Slot7Name == "") {ui->listWidget->addItem("Empty slot");} else {ui->listWidget->addItem(Slot7Name);}
-    if (Slot8Name == "") {ui->listWidget->addItem("Empty slot");} else {ui->listWidget->addItem(Slot8Name);}
-    if (Slot9Name == "") {ui->listWidget->addItem("Empty slot");} else {ui->listWidget->addItem(Slot9Name);}
-    if (Slot10Name == "") {ui->listWidget->addItem("Empty slot");} else {ui->listWidget->addItem(Slot10Name);}
-    if (Slot11Name == "") {ui->listWidget->addItem("Empty slot");} else {ui->listWidget->addItem(Slot11Name);}
-    if (Slot12Name == "") {ui->listWidget->addItem("Empty slot");} else {ui->listWidget->addItem(Slot12Name);}
-    if (Slot13Name == "") {ui->listWidget->addItem("Empty slot");} else {ui->listWidget->addItem(Slot13Name);}
-    if (Slot14Name == "") {ui->listWidget->addItem("Empty slot");} else {ui->listWidget->addItem(Slot14Name);}
-    if (Slot15Name == "") {ui->listWidget->addItem("Empty slot");} else {ui->listWidget->addItem(Slot15Name);}
-    if (Slot16Name == "") {ui->listWidget->addItem("Empty slot");} else {ui->listWidget->addItem(Slot16Name);}
-    if (Slot17Name == "") {ui->listWidget->addItem("Empty slot");} else {ui->listWidget->addItem(Slot17Name);}
-    if (Slot18Name == "") {ui->listWidget->addItem("Empty slot");} else {ui->listWidget->addItem(Slot18Name);}
-    if (Slot19Name == "") {ui->listWidget->addItem("Empty slot");} else {ui->listWidget->addItem(Slot19Name);}
-    if (Slot20Name == "") {ui->listWidget->addItem("Empty slot");} else {ui->listWidget->addItem(Slot20Name);}
 }
 
 void Courses::on_pushButton_Reset_clicked()
@@ -315,26 +308,6 @@ void Courses::on_pushButton_Reset_clicked()
     config->write(contents.toUtf8());
     config->close();
 
+    ui->listWidget_Courses->clear();
     updateVars();
-    ui->listWidget->clear();
-    if (Slot1Name == "") {ui->listWidget->addItem("Empty slot");} else {ui->listWidget->addItem(Slot1Name);}
-    if (Slot2Name == "") {ui->listWidget->addItem("Empty slot");} else {ui->listWidget->addItem(Slot2Name);}
-    if (Slot3Name == "") {ui->listWidget->addItem("Empty slot");} else {ui->listWidget->addItem(Slot3Name);}
-    if (Slot4Name == "") {ui->listWidget->addItem("Empty slot");} else {ui->listWidget->addItem(Slot4Name);}
-    if (Slot5Name == "") {ui->listWidget->addItem("Empty slot");} else {ui->listWidget->addItem(Slot5Name);}
-    if (Slot6Name == "") {ui->listWidget->addItem("Empty slot");} else {ui->listWidget->addItem(Slot6Name);}
-    if (Slot7Name == "") {ui->listWidget->addItem("Empty slot");} else {ui->listWidget->addItem(Slot7Name);}
-    if (Slot8Name == "") {ui->listWidget->addItem("Empty slot");} else {ui->listWidget->addItem(Slot8Name);}
-    if (Slot9Name == "") {ui->listWidget->addItem("Empty slot");} else {ui->listWidget->addItem(Slot9Name);}
-    if (Slot10Name == "") {ui->listWidget->addItem("Empty slot");} else {ui->listWidget->addItem(Slot10Name);}
-    if (Slot11Name == "") {ui->listWidget->addItem("Empty slot");} else {ui->listWidget->addItem(Slot11Name);}
-    if (Slot12Name == "") {ui->listWidget->addItem("Empty slot");} else {ui->listWidget->addItem(Slot12Name);}
-    if (Slot13Name == "") {ui->listWidget->addItem("Empty slot");} else {ui->listWidget->addItem(Slot13Name);}
-    if (Slot14Name == "") {ui->listWidget->addItem("Empty slot");} else {ui->listWidget->addItem(Slot14Name);}
-    if (Slot15Name == "") {ui->listWidget->addItem("Empty slot");} else {ui->listWidget->addItem(Slot15Name);}
-    if (Slot16Name == "") {ui->listWidget->addItem("Empty slot");} else {ui->listWidget->addItem(Slot16Name);}
-    if (Slot17Name == "") {ui->listWidget->addItem("Empty slot");} else {ui->listWidget->addItem(Slot17Name);}
-    if (Slot18Name == "") {ui->listWidget->addItem("Empty slot");} else {ui->listWidget->addItem(Slot18Name);}
-    if (Slot19Name == "") {ui->listWidget->addItem("Empty slot");} else {ui->listWidget->addItem(Slot19Name);}
-    if (Slot20Name == "") {ui->listWidget->addItem("Empty slot");} else {ui->listWidget->addItem(Slot20Name);}
 }

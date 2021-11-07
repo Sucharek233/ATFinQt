@@ -138,6 +138,9 @@ public:
     QString getMenuS() { return menuS; }
     QString getRCtrlS() { return RCtrlS; }
 
+    void lightMap();
+    void darkMap();
+
 private slots:
     void on_lineEdit_Tilde_textChanged(const QString &arg1);
 

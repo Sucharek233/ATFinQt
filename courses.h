@@ -20,10 +20,21 @@ public:
     ~Courses();
 
     QString getArticle() {return selectedArticle;}
-    int getSlot() {return currSlot;}
+
+    void updateVars();
+
+    void theme(QString dol) {
+        if (dol == "light") {
+            add.lightCourseAdd();
+        } else {
+            add.darkCourseAdd();
+        }
+    };
+    void lightCourses();
+    void darkCourses();
 
 private slots:
-    void on_listWidget_currentRowChanged(int currentRow);
+    void on_listWidget_Courses_currentRowChanged(int currentRow);
 
     void on_buttonBox_accepted();
 
@@ -41,7 +52,6 @@ private:
     PreAppTasks additionalInfo;
 
     QString selectedArticle;
-    int currSlot;
 };
 
 #endif // COURSES_H

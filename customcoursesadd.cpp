@@ -29,6 +29,7 @@ QString slot20Name;  QString slot20Text;
 void updateVariables() {
     QFile *config = new QFile(path);
     QTextStream in(config);
+    in.setCodec("UTF-8");
     config->open(QIODevice::ReadOnly | QIODevice::Text);
 
     in.readLine();
@@ -79,7 +80,11 @@ customCoursesAdd::customCoursesAdd(QWidget *parent) :
     ui(new Ui::customCoursesAdd)
 {
     ui->setupUi(this);
+    initialize();
+}
 
+void customCoursesAdd::initialize()
+{
     PreAppTasks load;
     path = load.pathToInitFile();
     updateVariables();
@@ -147,6 +152,27 @@ customCoursesAdd::customCoursesAdd(QWidget *parent) :
     }
 }
 
+void customCoursesAdd::lightCourseAdd()
+{
+    customCoursesAdd::setStyleSheet("background-color: rgb(244, 244, 244);");
+    ui->buttonBox->setStyleSheet("QPushButton {color: black; background-color: rgb(244, 244, 244);}");
+    ui->label_Main->setStyleSheet("color: black;");
+    ui->label_Name->setStyleSheet("color: black;");
+    ui->label_Text->setStyleSheet("color: black;");
+    ui->textEdit_Text->setStyleSheet("color: black; background: white; font-size: 13px;");
+    ui->lineEdit_Name->setStyleSheet("color: black; background-color: white; font-size: 13px;");
+}
+void customCoursesAdd::darkCourseAdd()
+{
+    customCoursesAdd::setStyleSheet("background-color: rgb(6, 6, 14);");
+    ui->buttonBox->setStyleSheet("QPushButton {color: rgb(211, 213, 201); background-color: rgb(36, 36, 44);}");
+    ui->label_Main->setStyleSheet("color: rgb(211, 213, 201);");
+    ui->label_Name->setStyleSheet("color: rgb(211, 213, 201);");
+    ui->label_Text->setStyleSheet("color: rgb(211, 213, 201);");
+    ui->textEdit_Text->setStyleSheet("color: rgb(211, 213, 201); background-color: rgb(36, 36, 44); font-size: 13px;");
+    ui->lineEdit_Name->setStyleSheet("color: rgb(211, 213, 201); background-color: rgb(36, 36, 44); font-size: 13px;");
+}
+
 customCoursesAdd::~customCoursesAdd()
 {
     delete ui;
@@ -200,45 +226,45 @@ void customCoursesAdd::on_lineEdit_Name_textChanged(const QString &arg1)
 void customCoursesAdd::on_textEdit_Text_textChanged()
 {
     if (currSlot == 0) {
-        slot1Text = ui->textEdit_Text->toPlainText();
+        slot1Text = ui->textEdit_Text->toPlainText().simplified();
     } else if (currSlot == 1) {
-        slot2Text = ui->textEdit_Text->toPlainText();
+        slot2Text = ui->textEdit_Text->toPlainText().simplified();
     } else if (currSlot == 2) {
-        slot3Text = ui->textEdit_Text->toPlainText();
+        slot3Text = ui->textEdit_Text->toPlainText().simplified();
     } else if (currSlot == 3) {
-        slot4Text = ui->textEdit_Text->toPlainText();
+        slot4Text = ui->textEdit_Text->toPlainText().simplified();
     } else if (currSlot == 4) {
-        slot5Text = ui->textEdit_Text->toPlainText();
+        slot5Text = ui->textEdit_Text->toPlainText().simplified();
     } else if (currSlot == 5) {
-        slot6Text = ui->textEdit_Text->toPlainText();
+        slot6Text = ui->textEdit_Text->toPlainText().simplified();
     } else if (currSlot == 6) {
-        slot7Text = ui->textEdit_Text->toPlainText();
+        slot7Text = ui->textEdit_Text->toPlainText().simplified();
     } else if (currSlot == 7) {
-        slot8Text = ui->textEdit_Text->toPlainText();
+        slot8Text = ui->textEdit_Text->toPlainText().simplified();
     } else if (currSlot == 8) {
-        slot9Text = ui->textEdit_Text->toPlainText();
+        slot9Text = ui->textEdit_Text->toPlainText().simplified();
     } else if (currSlot == 9) {
-        slot10Text = ui->textEdit_Text->toPlainText();
+        slot10Text = ui->textEdit_Text->toPlainText().simplified();
     } else if (currSlot == 10) {
-        slot11Text = ui->textEdit_Text->toPlainText();
+        slot11Text = ui->textEdit_Text->toPlainText().simplified();
     } else if (currSlot == 11) {
-        slot12Text = ui->textEdit_Text->toPlainText();
+        slot12Text = ui->textEdit_Text->toPlainText().simplified();
     } else if (currSlot == 12) {
-        slot13Text = ui->textEdit_Text->toPlainText();
+        slot13Text = ui->textEdit_Text->toPlainText().simplified();
     } else if (currSlot == 13) {
-        slot14Text = ui->textEdit_Text->toPlainText();
+        slot14Text = ui->textEdit_Text->toPlainText().simplified();
     } else if (currSlot == 14) {
-        slot15Text = ui->textEdit_Text->toPlainText();
+        slot15Text = ui->textEdit_Text->toPlainText().simplified();
     } else if (currSlot == 15) {
-        slot16Text = ui->textEdit_Text->toPlainText();
+        slot16Text = ui->textEdit_Text->toPlainText().simplified();
     } else if (currSlot == 16) {
-        slot17Text = ui->textEdit_Text->toPlainText();
+        slot17Text = ui->textEdit_Text->toPlainText().simplified();
     } else if (currSlot == 17) {
-        slot18Text = ui->textEdit_Text->toPlainText();
+        slot18Text = ui->textEdit_Text->toPlainText().simplified();
     } else if (currSlot == 18) {
-        slot19Text = ui->textEdit_Text->toPlainText();
+        slot19Text = ui->textEdit_Text->toPlainText().simplified();
     } else if (currSlot == 19) {
-        slot20Text = ui->textEdit_Text->toPlainText();
+        slot20Text = ui->textEdit_Text->toPlainText().simplified();
     }
 }
 
@@ -270,6 +296,7 @@ void customCoursesAdd::on_buttonBox_accepted()
                        "Slot 20\n" + slot20Name + "\n" + slot20Text;
     config->write(contents.toUtf8());
     config->close();
+    updateVariables();
 
     accept();
     close();
