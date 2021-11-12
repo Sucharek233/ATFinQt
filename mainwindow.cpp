@@ -99,10 +99,10 @@ MainWindow::MainWindow(QWidget *parent)
     lHFive->setBrush(QColor(190, 230, 255));
     QPen penL5(QColor(190, 230, 255), 2); lHFive->setPen(penL5);
 
-    lightMain();
-    courses.lightCourses();
-    courses.theme("light");
-    mapColor.lightMap();
+    darkMain();
+    courses.darkCourses();
+    courses.theme("dark");
+    mapColor.darkMap();
 }
 
 void MainWindow::uncheck()
@@ -177,7 +177,7 @@ void MainWindow::uncheck()
     ui->pushButton_Space->setChecked(false);
     ui->pushButton_RAlt->setChecked(false);
     ui->pushButton_Menu->setChecked(false);
-    ui->pushButton_LCtrl->setChecked(false);
+    ui->pushButton_RCtrl->setChecked(false);
 
 }
 void MainWindow::findChar()
@@ -426,8 +426,8 @@ void MainWindow::lightMain()
                                "stop:0 rgb(240, 240, 240), stop:1 rgb(240, 240, 240)); color: black;}");
     ui->graphicsView_LeftHand->setStyleSheet("background-color: white;");
     ui->graphicsView_RightHand->setStyleSheet("background-color: white;");
-    QString menuStyles = "QMenu {background-color: white; border: 0.5px solid black; border-radius: 10px; padding: 5px;}"
-                         "QMenu::item {color: black; background-color: transparent;}"
+    QString menuStyles = "QMenu {background-color: white; border: 0.5px solid black;}"
+                         "QMenu::item {color: black; background-color: transparent; padding: 2px 10px 2px 10px;}"
                          "QMenu::item:selected {color: white; background-color: rgb(0, 120, 215);}";
     ui->menuCourses->setStyleSheet(menuStyles);
     ui->menuMapping->setStyleSheet(menuStyles);
@@ -459,6 +459,80 @@ void MainWindow::lightMain()
     ui->graphicsView_LeftHand->scene()->addItem(lHThree);
     ui->graphicsView_LeftHand->scene()->addItem(lHFour);
     ui->graphicsView_LeftHand->scene()->addItem(lHFive);
+
+    QString orange = "QPushButton {background-color: rgb(255, 170, 0); color:black;border: 3px solid rgb(175, 90, 0); border-radius:10px;}"
+                     "QPushButton:checked {background-color: rgb(205, 120, 0); color:black; border-radius:10px;}";
+    QString red = "QPushButton {background-color: rgb(255, 15, 15); color:black;border: 3px solid rgb(150, 0, 0); border-radius:10px;}"
+                  "QPushButton:checked {background-color: rgb(150, 0, 0); color:black; border-radius:10px;}";
+    QString green = "QPushButton {background-color: rgb(20, 255, 20); color:black;border: 3px solid rgb(0, 205, 0); border-radius:10px;}"
+                    "QPushButton:checked {background-color: rgb(0, 150, 0); color:black; border-radius:10px;}";
+    QString blue = "QPushButton {background-color: rgb(50, 50, 255); color:black;border: 3px solid rgb(0, 0, 205); border-radius:10px;}"
+                   "QPushButton:checked {background-color: rgb(0, 0, 175); color:black; border-radius:10px;}";
+    QString cyan = "QPushButton {background-color: rgb(0, 255, 255); color:black;border: 3px solid rgb(0, 205, 205); border-radius:10px;}"
+                   "QPushButton:checked {background-color: rgb(0, 175, 175); color:black; border-radius:10px;}";
+    QString whiteish = "QPushButton {background-color: rgb(190, 230, 255); color:black;;border: 3px solid rgb(160, 200, 225); border-radius:10px;}"
+                       "QPushButton:checked {background-color: rgb(140, 180, 205); color:black; border-radius:10px;}";
+
+    ui->pushButton_Tilde->setStyleSheet(orange);
+    ui->pushButton_1->setStyleSheet(orange);
+    ui->pushButton_2->setStyleSheet(orange);
+    ui->pushButton_3->setStyleSheet(red);
+    ui->pushButton_4->setStyleSheet(green);
+    ui->pushButton_5->setStyleSheet(blue);
+    ui->pushButton_6->setStyleSheet(blue);
+    ui->pushButton_7->setStyleSheet(cyan);
+    ui->pushButton_8->setStyleSheet(cyan);
+    ui->pushButton_9->setStyleSheet(green);
+    ui->pushButton_0->setStyleSheet(red);
+    ui->pushButton_Minus->setStyleSheet(orange);
+    ui->pushButton_Equals->setStyleSheet(orange);
+    ui->pushButton_Backspace->setStyleSheet(orange);
+    ui->pushButton_TAB->setStyleSheet(orange);
+    ui->pushButton_Q->setStyleSheet(orange);
+    ui->pushButton_W->setStyleSheet(red);
+    ui->pushButton_E->setStyleSheet(green);
+    ui->pushButton_R->setStyleSheet(blue);
+    ui->pushButton_T->setStyleSheet(blue);
+    ui->pushButton_Y->setStyleSheet(cyan);
+    ui->pushButton_U->setStyleSheet(cyan);
+    ui->pushButton_I->setStyleSheet(green);
+    ui->pushButton_O->setStyleSheet(red);
+    ui->pushButton_P->setStyleSheet(orange);
+    ui->pushButton_LeftSquareBracket->setStyleSheet(orange);
+    ui->pushButton_RightSquareBracket->setStyleSheet(orange);
+    ui->pushButton_Backslash->setStyleSheet(orange);
+    ui->pushButton_CAPS->setStyleSheet(orange);
+    ui->pushButton_A->setStyleSheet(orange);
+    ui->pushButton_S->setStyleSheet(red);
+    ui->pushButton_D->setStyleSheet(green);
+    ui->pushButton_F->setStyleSheet(blue);
+    ui->pushButton_G->setStyleSheet(blue);
+    ui->pushButton_H->setStyleSheet(cyan);
+    ui->pushButton_J->setStyleSheet(cyan);
+    ui->pushButton_K->setStyleSheet(green);
+    ui->pushButton_L->setStyleSheet(red);
+    ui->pushButton_Semicolon->setStyleSheet(orange);
+    ui->pushButton_Apostrophe->setStyleSheet(orange);
+    ui->pushButton_Enter->setStyleSheet(orange);
+    ui->pushButton_LShift->setStyleSheet(orange);
+    ui->pushButton_Z->setStyleSheet(orange);
+    ui->pushButton_X->setStyleSheet(red);
+    ui->pushButton_C->setStyleSheet(green);
+    ui->pushButton_V->setStyleSheet(blue);
+    ui->pushButton_B->setStyleSheet(blue);
+    ui->pushButton_N->setStyleSheet(cyan);
+    ui->pushButton_M->setStyleSheet(cyan);
+    ui->pushButton_Comma->setStyleSheet(green);
+    ui->pushButton_Period->setStyleSheet(red);
+    ui->pushButton_Slash->setStyleSheet(orange);
+    ui->pushButton_RShift->setStyleSheet(orange);
+    ui->pushButton_LCtrl->setStyleSheet(orange);
+    ui->pushButton_Super->setStyleSheet(whiteish);
+    ui->pushButton_LAlt->setStyleSheet(orange);
+    ui->pushButton_Space->setStyleSheet(whiteish);
+    ui->pushButton_RAlt->setStyleSheet(orange);
+    ui->pushButton_Menu->setStyleSheet(whiteish);
+    ui->pushButton_RCtrl->setStyleSheet(orange);
 }
 void MainWindow::darkMain()
 {
@@ -476,8 +550,8 @@ void MainWindow::darkMain()
                                "stop:0 rgb(36, 36, 44), stop:1 rgb(36, 36, 44)); color: rgb(211, 213, 201);}");
     ui->graphicsView_LeftHand->setStyleSheet("background-color: rgb(36, 36, 44);");
     ui->graphicsView_RightHand->setStyleSheet("background-color: rgb(36, 36, 44);");
-    QString menuStyles = "QMenu {background-color: rgb(36, 36, 44); border: 1px solid black; border-radius: 10px; padding: 5px;}"
-                         "QMenu::item {color: white; background-color: rgb(36, 36, 44);}"
+    QString menuStyles = "QMenu {background-color: rgb(36, 36, 44); border: 1px solid black;}"
+                         "QMenu::item {color: white; background-color: rgb(36, 36, 44); padding: 2px 10px 2px 10px;}"
                          "QMenu::item:selected {color: white; background-color: rgb(66, 66, 74);}";
     ui->menuCourses->setStyleSheet(menuStyles);
     ui->menuMapping->setStyleSheet(menuStyles);
@@ -509,6 +583,80 @@ void MainWindow::darkMain()
     ui->graphicsView_LeftHand->scene()->addItem(lHThree);
     ui->graphicsView_LeftHand->scene()->addItem(lHFour);
     ui->graphicsView_LeftHand->scene()->addItem(lHFive);
+
+    QString orange = "QPushButton {background-color: rgb(205, 120, 0); color:rgb(0, 0, 0);border: 3px solid rgb(235, 150, 0); border-radius:10px;}"
+                     "QPushButton:checked {background-color: rgb(255, 200, 30); color:rgb(0, 0, 0); border-radius:10px;}";
+    QString red = "QPushButton {background-color: rgb(150, 0, 0); color:rgb(0, 0, 0);border: 3px solid rgb(220, 8, 8); border-radius:10px;}"
+                  "QPushButton:checked {background-color: rgb(255, 50, 50); color:rgb(0, 0, 0); border-radius:10px;}";
+    QString green = "QPushButton {background-color: rgb(0, 150, 0); color:rgb(0, 0, 0);border: 3px solid rgb(10, 210, 10); border-radius:10px;}"
+                    "QPushButton:checked {background-color: rgb(50, 255, 50); color:rgb(0, 0, 0);} border-radius:10px;";
+    QString blue = "QPushButton {background-color: rgb(0, 0, 175); color:rgb(0, 0, 0);border: 3px solid rgb(25, 25, 235); border-radius:10px;}"
+                   "QPushButton:checked {background-color: rgb(100, 100, 255); color:rgb(0, 0, 0); border-radius:10px;}";
+    QString cyan = "QPushButton {background-color: rgb(0, 175, 175); color:rgb(0, 0, 0);border: 3px solid rgb(0, 235, 235); border-radius:10px;}"
+                   "QPushButton:checked {background-color: rgb(150, 255, 255); color:rgb(0, 0, 0); border-radius:10px;}";
+    QString whiteish = "QPushButton {background-color: rgb(140, 180, 205); color:rgb(0, 0, 0);border: 3px solid rgb(180, 215, 245); border-radius:10px;}"
+                       "QPushButton:checked {background-color: rgb(220, 250, 255); color:rgb(0, 0, 0); border-radius:10px;}";
+
+    ui->pushButton_Tilde->setStyleSheet(orange);
+    ui->pushButton_1->setStyleSheet(orange);
+    ui->pushButton_2->setStyleSheet(orange);
+    ui->pushButton_3->setStyleSheet(red);
+    ui->pushButton_4->setStyleSheet(green);
+    ui->pushButton_5->setStyleSheet(blue);
+    ui->pushButton_6->setStyleSheet(blue);
+    ui->pushButton_7->setStyleSheet(cyan);
+    ui->pushButton_8->setStyleSheet(cyan);
+    ui->pushButton_9->setStyleSheet(green);
+    ui->pushButton_0->setStyleSheet(red);
+    ui->pushButton_Minus->setStyleSheet(orange);
+    ui->pushButton_Equals->setStyleSheet(orange);
+    ui->pushButton_Backspace->setStyleSheet(orange);
+    ui->pushButton_TAB->setStyleSheet(orange);
+    ui->pushButton_Q->setStyleSheet(orange);
+    ui->pushButton_W->setStyleSheet(red);
+    ui->pushButton_E->setStyleSheet(green);
+    ui->pushButton_R->setStyleSheet(blue);
+    ui->pushButton_T->setStyleSheet(blue);
+    ui->pushButton_Y->setStyleSheet(cyan);
+    ui->pushButton_U->setStyleSheet(cyan);
+    ui->pushButton_I->setStyleSheet(green);
+    ui->pushButton_O->setStyleSheet(red);
+    ui->pushButton_P->setStyleSheet(orange);
+    ui->pushButton_LeftSquareBracket->setStyleSheet(orange);
+    ui->pushButton_RightSquareBracket->setStyleSheet(orange);
+    ui->pushButton_Backslash->setStyleSheet(orange);
+    ui->pushButton_CAPS->setStyleSheet(orange);
+    ui->pushButton_A->setStyleSheet(orange);
+    ui->pushButton_S->setStyleSheet(red);
+    ui->pushButton_D->setStyleSheet(green);
+    ui->pushButton_F->setStyleSheet(blue);
+    ui->pushButton_G->setStyleSheet(blue);
+    ui->pushButton_H->setStyleSheet(cyan);
+    ui->pushButton_J->setStyleSheet(cyan);
+    ui->pushButton_K->setStyleSheet(green);
+    ui->pushButton_L->setStyleSheet(red);
+    ui->pushButton_Semicolon->setStyleSheet(orange);
+    ui->pushButton_Apostrophe->setStyleSheet(orange);
+    ui->pushButton_Enter->setStyleSheet(orange);
+    ui->pushButton_LShift->setStyleSheet(orange);
+    ui->pushButton_Z->setStyleSheet(orange);
+    ui->pushButton_X->setStyleSheet(red);
+    ui->pushButton_C->setStyleSheet(green);
+    ui->pushButton_V->setStyleSheet(blue);
+    ui->pushButton_B->setStyleSheet(blue);
+    ui->pushButton_N->setStyleSheet(cyan);
+    ui->pushButton_M->setStyleSheet(cyan);
+    ui->pushButton_Comma->setStyleSheet(green);
+    ui->pushButton_Period->setStyleSheet(red);
+    ui->pushButton_Slash->setStyleSheet(orange);
+    ui->pushButton_RShift->setStyleSheet(orange);
+    ui->pushButton_LCtrl->setStyleSheet(orange);
+    ui->pushButton_Super->setStyleSheet(whiteish);
+    ui->pushButton_LAlt->setStyleSheet(orange);
+    ui->pushButton_Space->setStyleSheet(whiteish);
+    ui->pushButton_RAlt->setStyleSheet(orange);
+    ui->pushButton_Menu->setStyleSheet(whiteish);
+    ui->pushButton_RCtrl->setStyleSheet(orange);
 }
 
 MainWindow::~MainWindow()
