@@ -1,0 +1,688 @@
+#include "keycolor.h"
+#include "ui_keycolor.h"
+
+bool Toggled;
+
+QString QColSS;
+
+keyColor::keyColor(QWidget *parent) :
+    QDialog(parent),
+    ui(new Ui::keyColor)
+{
+    ui->setupUi(this);
+
+    updateCols();
+}
+
+void keyColor::updateCols()
+{
+    ui->toolButton_Col1->setStyleSheet("background-color: " + firstCol + "; border-radius: 10px;");
+    ui->toolButton_Col2->setStyleSheet("background-color: " + secondCol + "; border-radius: 10px;");
+    ui->toolButton_Col3->setStyleSheet("background-color: " + thirdCol + "; border-radius: 10px;");
+    ui->toolButton_Col4->setStyleSheet("background-color: " + fourthCol + "; border-radius: 10px;");
+    ui->toolButton_Col5->setStyleSheet("background-color: " + fifthCol + "; border-radius: 10px;");
+    ui->toolButton_Col6->setStyleSheet("background-color: " + sixthCol + "; border-radius: 10px;");
+
+    ui->toolButton_Bor1->setStyleSheet("background-color: " + firstBor + "; border-radius: 10px;");
+    ui->toolButton_Bor2->setStyleSheet("background-color: " + secondBor + "; border-radius: 10px;");
+    ui->toolButton_Bor3->setStyleSheet("background-color: " + thirdBor + "; border-radius: 10px;");
+    ui->toolButton_Bor4->setStyleSheet("background-color: " + fourthBor + "; border-radius: 10px;");
+    ui->toolButton_Bor5->setStyleSheet("background-color: " + fifthBor + "; border-radius: 10px;");
+    ui->toolButton_Bor6->setStyleSheet("background-color: " + sixthBor + "; border-radius: 10px;");
+
+    ui->toolButton_Tog1->setStyleSheet("background-color: " + firstTog + "; border-radius: 10px;");
+    ui->toolButton_Tog2->setStyleSheet("background-color: " + secondTog + "; border-radius: 10px;");
+    ui->toolButton_Tog3->setStyleSheet("background-color: " + thirdTog + "; border-radius: 10px;");
+    ui->toolButton_Tog4->setStyleSheet("background-color: " + fourthTog + "; border-radius: 10px;");
+    ui->toolButton_Tog5->setStyleSheet("background-color: " + fifthTog + "; border-radius: 10px;");
+    ui->toolButton_Tog6->setStyleSheet("background-color: " + sixthTog + "; border-radius: 10px;");
+
+    ui->prev1->setStyleSheet("color: " + textColor + "; background-color: " + firstCol + "; border: 3px solid " + firstBor + "; border-radius: 10px;");
+    ui->prev2->setStyleSheet("color: " + textColor + "; background-color: " + secondCol + "; border: 3px solid " + secondBor + "; border-radius: 10px;");
+    ui->prev3->setStyleSheet("color: " + textColor + "; background-color: " + thirdCol + "; border: 3px solid " + thirdBor + "; border-radius: 10px;");
+    ui->prev4->setStyleSheet("color: " + textColor + "; background-color: " + fourthCol + "; border: 3px solid " + fourthBor + "; border-radius: 10px;");
+    ui->prev5->setStyleSheet("color: " + textColor + "; background-color: " + fifthCol + "; border: 3px solid " + fifthBor + "; border-radius: 10px;");
+    ui->prev6->setStyleSheet("color: " + textColor + "; background-color: " + sixthCol + "; border: 3px solid " + sixthBor + "; border-radius: 10px;");
+
+    if (Toggled == true) {
+        ui->prev1->setStyleSheet("color: " + textColor + "; background-color: " + firstTog + "; border: 3px solid " + firstBor + "; border-radius: 10px;");
+        ui->prev2->setStyleSheet("color: " + textColor + "; background-color: " + secondTog + "; border: 3px solid " + secondBor + "; border-radius: 10px;");
+        ui->prev3->setStyleSheet("color: " + textColor + "; background-color: " + thirdTog + "; border: 3px solid " + thirdBor + "; border-radius: 10px;");
+        ui->prev4->setStyleSheet("color: " + textColor + "; background-color: " + fourthTog + "; border: 3px solid " + fourthBor + "; border-radius: 10px;");
+        ui->prev5->setStyleSheet("color: " + textColor + "; background-color: " + fifthTog + "; border: 3px solid " + fifthBor + "; border-radius: 10px;");
+        ui->prev6->setStyleSheet("color: " + textColor + "; background-color: " + sixthTog + "; border: 3px solid " + sixthBor + "; border-radius: 10px;");
+    }
+
+    orange = "QPushButton {color: " + textColor + "; background-color: " + firstCol + "; border: 3px solid " + firstBor + "; border-radius:10px;}"
+                     "QPushButton:checked {color: " + textColor + "; background-color: " + firstTog + "; border-radius:10px;}";
+    red = "QPushButton {color: " + textColor + "; background-color: " + secondCol + "; border: 3px solid " + secondBor + "; border-radius:10px;}"
+                  "QPushButton:checked {color: " + textColor + "; background-color: " + secondTog + "; border-radius:10px;}";
+    green = "QPushButton {color: " + textColor + "; background-color: " + thirdCol + "; border: 3px solid " + thirdBor + "; border-radius:10px;}"
+                    "QPushButton:checked {color: " + textColor + "; background-color: " + thirdTog + "; border-radius:10px;}";
+    blue = "QPushButton {color: " + textColor + "; background-color: " + fourthCol + "; border: 3px solid " + fourthBor + "; border-radius:10px;}"
+                   "QPushButton:checked {color: " + textColor + "; background-color: " + fourthTog + "; border-radius:10px;}";
+    cyan = "QPushButton {color: " + textColor + "; background-color: " + fifthCol + "; border: 3px solid " + fifthBor + "; border-radius:10px;}"
+                   "QPushButton:checked {color: " + textColor + "; background-color: " + fifthTog + "; border-radius:10px;}";
+    whiteish = "QPushButton {color: " + textColor + "; background-color: " + sixthCol + "; border: 3px solid " + sixthBor + "; border-radius:10px;}"
+                       "QPushButton:checked {color: " + textColor + "; background-color: " + sixthTog + "; border-radius:10px;}";
+
+    ui->pushButton_Tilde->setStyleSheet(orange);
+    ui->pushButton_1->setStyleSheet(orange);
+    ui->pushButton_2->setStyleSheet(orange);
+    ui->pushButton_3->setStyleSheet(red);
+    ui->pushButton_4->setStyleSheet(green);
+    ui->pushButton_5->setStyleSheet(blue);
+    ui->pushButton_6->setStyleSheet(blue);
+    ui->pushButton_7->setStyleSheet(cyan);
+    ui->pushButton_8->setStyleSheet(cyan);
+    ui->pushButton_9->setStyleSheet(green);
+    ui->pushButton_0->setStyleSheet(red);
+    ui->pushButton_Minus->setStyleSheet(orange);
+    ui->pushButton_Equals->setStyleSheet(orange);
+    ui->pushButton_Backspace->setStyleSheet(orange);
+    ui->pushButton_TAB->setStyleSheet(orange);
+    ui->pushButton_Q->setStyleSheet(orange);
+    ui->pushButton_W->setStyleSheet(red);
+    ui->pushButton_E->setStyleSheet(green);
+    ui->pushButton_R->setStyleSheet(blue);
+    ui->pushButton_T->setStyleSheet(blue);
+    ui->pushButton_Y->setStyleSheet(cyan);
+    ui->pushButton_U->setStyleSheet(cyan);
+    ui->pushButton_I->setStyleSheet(green);
+    ui->pushButton_O->setStyleSheet(red);
+    ui->pushButton_P->setStyleSheet(orange);
+    ui->pushButton_LeftSquareBracket->setStyleSheet(orange);
+    ui->pushButton_RightSquareBracket->setStyleSheet(orange);
+    ui->pushButton_Backslash->setStyleSheet(orange);
+    ui->pushButton_CAPS->setStyleSheet(orange);
+    ui->pushButton_A->setStyleSheet(orange);
+    ui->pushButton_S->setStyleSheet(red);
+    ui->pushButton_D->setStyleSheet(green);
+    ui->pushButton_F->setStyleSheet(blue);
+    ui->pushButton_G->setStyleSheet(blue);
+    ui->pushButton_H->setStyleSheet(cyan);
+    ui->pushButton_J->setStyleSheet(cyan);
+    ui->pushButton_K->setStyleSheet(green);
+    ui->pushButton_L->setStyleSheet(red);
+    ui->pushButton_Semicolon->setStyleSheet(orange);
+    ui->pushButton_Apostrophe->setStyleSheet(orange);
+    ui->pushButton_Enter->setStyleSheet(orange);
+    ui->pushButton_LShift->setStyleSheet(orange);
+    ui->pushButton_Z->setStyleSheet(orange);
+    ui->pushButton_X->setStyleSheet(red);
+    ui->pushButton_C->setStyleSheet(green);
+    ui->pushButton_V->setStyleSheet(blue);
+    ui->pushButton_B->setStyleSheet(blue);
+    ui->pushButton_N->setStyleSheet(cyan);
+    ui->pushButton_M->setStyleSheet(cyan);
+    ui->pushButton_Comma->setStyleSheet(green);
+    ui->pushButton_Period->setStyleSheet(red);
+    ui->pushButton_Slash->setStyleSheet(orange);
+    ui->pushButton_RShift->setStyleSheet(orange);
+    ui->pushButton_LCtrl->setStyleSheet(orange);
+    ui->pushButton_Super->setStyleSheet(whiteish);
+    ui->pushButton_LAlt->setStyleSheet(orange);
+    ui->pushButton_Space->setStyleSheet(whiteish);
+    ui->pushButton_RAlt->setStyleSheet(orange);
+    ui->pushButton_Menu->setStyleSheet(whiteish);
+    ui->pushButton_RCtrl->setStyleSheet(orange);
+}
+
+void keyColor::updateMapping(int shift)
+{
+    if (shift == 1) {
+        //Layer 1
+        ui->pushButton_Tilde->setText(tilde);
+        ui->pushButton_1->setText(n1);
+        ui->pushButton_2->setText(n2);
+        ui->pushButton_3->setText(n3);
+        ui->pushButton_4->setText(n4);
+        ui->pushButton_5->setText(n5);
+        ui->pushButton_6->setText(n6);
+        ui->pushButton_7->setText(n7);
+        ui->pushButton_8->setText(n8);
+        ui->pushButton_9->setText(n9);
+        ui->pushButton_0->setText(n0);
+        ui->pushButton_Minus->setText(minus);
+        ui->pushButton_Equals->setText(equals);
+        ui->pushButton_Backspace->setText(backspace);
+        //Layer 2
+        ui->pushButton_TAB->setText(TAB);
+        ui->pushButton_Q->setText(q);
+        ui->pushButton_W->setText(w);
+        ui->pushButton_E->setText(e);
+        ui->pushButton_R->setText(r);
+        ui->pushButton_T->setText(t);
+        ui->pushButton_Y->setText(y);
+        ui->pushButton_U->setText(u);
+        ui->pushButton_I->setText(i);
+        ui->pushButton_O->setText(o);
+        ui->pushButton_P->setText(p);
+        ui->pushButton_LeftSquareBracket->setText(leftSquareBracket);
+        ui->pushButton_RightSquareBracket->setText(rightSquareBracket);
+        ui->pushButton_Backslash->setText(backslash);
+        //Layer 3
+        ui->pushButton_CAPS->setText(CAPS);
+        ui->pushButton_A->setText(a);
+        ui->pushButton_S->setText(s);
+        ui->pushButton_D->setText(d);
+        ui->pushButton_F->setText(f);
+        ui->pushButton_G->setText(g);
+        ui->pushButton_H->setText(h);
+        ui->pushButton_J->setText(j);
+        ui->pushButton_K->setText(k);
+        ui->pushButton_L->setText(l);
+        ui->pushButton_Semicolon->setText(semicolon);
+        ui->pushButton_Apostrophe->setText(apostrophe);
+        ui->pushButton_Enter->setText(enter);
+        //Layer 4
+        ui->pushButton_LShift->setText(LShift);
+        ui->pushButton_Z->setText(z);
+        ui->pushButton_X->setText(x);
+        ui->pushButton_C->setText(c);
+        ui->pushButton_V->setText(v);
+        ui->pushButton_B->setText(b);
+        ui->pushButton_N->setText(n);
+        ui->pushButton_M->setText(m);
+        ui->pushButton_Comma->setText(comma);
+        ui->pushButton_Period->setText(period);
+        ui->pushButton_Slash->setText(slash);
+        ui->pushButton_RShift->setText(RShift);
+        //Layer 5
+        ui->pushButton_LCtrl->setText(LCtrl);
+        ui->pushButton_Super->setText(super);
+        ui->pushButton_LAlt->setText(LAlt);
+        ui->pushButton_Space->setText(space);
+        ui->pushButton_RAlt->setText(RAlt);
+        ui->pushButton_Menu->setText(menu);
+        ui->pushButton_RCtrl->setText(RCtrl);
+     } else {
+        //Layer 1
+        ui->pushButton_Tilde->setText(tildeS);
+        ui->pushButton_1->setText(n1S);
+        ui->pushButton_2->setText(n2S);
+        ui->pushButton_3->setText(n3S);
+        ui->pushButton_4->setText(n4S);
+        ui->pushButton_5->setText(n5S);
+        ui->pushButton_6->setText(n6S);
+        ui->pushButton_7->setText(n7S);
+        ui->pushButton_8->setText(n8S);
+        ui->pushButton_9->setText(n9S);
+        ui->pushButton_0->setText(n0S);
+        ui->pushButton_Minus->setText(minusS);
+        ui->pushButton_Equals->setText(equalsS);
+        ui->pushButton_Backspace->setText(backspaceS);
+        //Layer 2
+        ui->pushButton_TAB->setText(TABS);
+        ui->pushButton_Q->setText(qS);
+        ui->pushButton_W->setText(wS);
+        ui->pushButton_E->setText(eS);
+        ui->pushButton_R->setText(rS);
+        ui->pushButton_T->setText(tS);
+        ui->pushButton_Y->setText(yS);
+        ui->pushButton_U->setText(uS);
+        ui->pushButton_I->setText(iS);
+        ui->pushButton_O->setText(oS);
+        ui->pushButton_P->setText(pS);
+        ui->pushButton_LeftSquareBracket->setText(leftSquareBracketS);
+        ui->pushButton_RightSquareBracket->setText(rightSquareBracketS);
+        ui->pushButton_Backslash->setText(backslashS);
+        //Layer 3
+        ui->pushButton_CAPS->setText(CAPSS);
+        ui->pushButton_A->setText(aS);
+        ui->pushButton_S->setText(sS);
+        ui->pushButton_D->setText(dS);
+        ui->pushButton_F->setText(fS);
+        ui->pushButton_G->setText(gS);
+        ui->pushButton_H->setText(hS);
+        ui->pushButton_J->setText(jS);
+        ui->pushButton_K->setText(kS);
+        ui->pushButton_L->setText(lS);
+        ui->pushButton_Semicolon->setText(semicolonS);
+        ui->pushButton_Apostrophe->setText(apostropheS);
+        ui->pushButton_Enter->setText(enterS);
+        //Layer 4
+        ui->pushButton_LShift->setText(LShiftS);
+        ui->pushButton_Z->setText(zS);
+        ui->pushButton_X->setText(xS);
+        ui->pushButton_C->setText(cS);
+        ui->pushButton_V->setText(vS);
+        ui->pushButton_B->setText(bS);
+        ui->pushButton_N->setText(nS);
+        ui->pushButton_M->setText(mS);
+        ui->pushButton_Comma->setText(commaS);
+        ui->pushButton_Period->setText(periodS);
+        ui->pushButton_Slash->setText(slashS);
+        ui->pushButton_RShift->setText(RShiftS);
+        //Layer 5
+        ui->pushButton_LCtrl->setText(LCtrlS);
+        ui->pushButton_Super->setText(superS);
+        ui->pushButton_LAlt->setText(LAltS);
+        ui->pushButton_Space->setText(spaceS);
+        ui->pushButton_RAlt->setText(RAltS);
+        ui->pushButton_Menu->setText(menuS);
+        ui->pushButton_RCtrl->setText(RCtrlS);
+    }
+}
+
+void keyColor::lightCol()
+{
+    keyColor::setStyleSheet("background-color: rgb(244, 244, 244);");
+    ui->pushButton_Toggled->setStyleSheet("color: black; background-color: rgb(244, 244, 244);");
+    ui->pushButton_TextCol->setStyleSheet("color: black; background-color: rgb(244, 244, 244);");
+    ui->pushButton_Reset->setStyleSheet("color: black; background-color: rgb(244, 244, 244);");
+    ui->buttonBox->setStyleSheet("QPushButton {color: black; background-color: rgb(244, 244, 244);}");
+    QColSS = "QColorDialog {background-color: rgb(244, 244, 244);}"
+             "QPushButton {background-color: rgb(244, 244, 244); color: black; font-size: 11px;}"
+             "QLabel {background-color: rgb(244, 244, 244); color: black; font-size: 12px;}"
+             "QLineEdit {background-color: white; color: black; font-size: 11px;}"
+             "QSpinBox {background-color: white; color: black; font-size: 11px;}";
+}
+void keyColor::darkCol()
+{
+    keyColor::setStyleSheet("background-color: rgb(6, 6, 14);");
+    ui->pushButton_Toggled->setStyleSheet("color: rgb(211, 213, 201); background-color: rgb(36, 36, 44);");
+    ui->pushButton_TextCol->setStyleSheet("color: rgb(211, 213, 201); background-color: rgb(36, 36, 44);");
+    ui->pushButton_Reset->setStyleSheet("color: rgb(211, 213, 201); background-color: rgb(36, 36, 44);");
+    ui->buttonBox->setStyleSheet("QPushButton {color: rgb(211, 213, 201); background-color: rgb(36, 36, 44);}");
+    QColSS = "QColorDialog {background-color: rgb(6, 6, 14);}"
+             "QPushButton {color: rgb(211, 213, 201); background-color: rgb(36, 36, 44); font-size: 11px;}"
+             "QLabel {color: rgb(211, 213, 201); background-color: rgb(6, 6, 14); font-size: 12px;}"
+             "QLineEdit {color: rgb(211, 213, 201); background-color: rgb(36, 36, 44); font-size: 11px;}"
+             "QSpinBox {color: rgb(211, 213, 201); background-color: rgb(36, 36, 44); font-size: 11px;}";
+}
+
+void keyColor::unToggle()
+{
+    ui->pushButton_Toggled->setChecked(false);
+    updateMapping(1);
+}
+
+keyColor::~keyColor()
+{
+    delete ui;
+}
+
+void keyColor::on_toolButton_Col1_clicked()
+{
+    QColorDialog pick;
+    pick.setStyleSheet(QColSS); pick.setCurrentColor(firstCol);
+    if (pick.exec() == QColorDialog::Accepted) {
+        QColor const color  = pick.selectedColor().name();
+        firstCol = color.name();
+        updateCols();
+    }
+}
+
+void keyColor::on_toolButton_Bor1_clicked()
+{
+    QColorDialog pick;
+    pick.setStyleSheet(QColSS); pick.setCurrentColor(firstBor);
+    if (pick.exec() == QColorDialog::Accepted) {
+        QColor const color  = pick.selectedColor().name();
+        firstBor = color.name();
+        updateCols();
+    }
+}
+
+void keyColor::on_toolButton_Tog1_clicked()
+{
+    QColorDialog pick;
+    pick.setStyleSheet(QColSS); pick.setCurrentColor(firstTog);
+    if (pick.exec() == QColorDialog::Accepted) {
+        QColor const color  = pick.selectedColor().name();
+        firstTog = color.name();
+        updateCols();
+    }
+}
+
+void keyColor::on_toolButton_Col2_clicked()
+{
+    QColorDialog pick;
+    pick.setStyleSheet(QColSS); pick.setCurrentColor(secondCol);
+    if (pick.exec() == QColorDialog::Accepted) {
+        QColor const color  = pick.selectedColor().name();
+        secondCol = color.name();
+        updateCols();
+    }
+}
+
+void keyColor::on_toolButton_Bor2_clicked()
+{
+    QColorDialog pick;
+    pick.setStyleSheet(QColSS); pick.setCurrentColor(secondBor);
+    if (pick.exec() == QColorDialog::Accepted) {
+        QColor const color  = pick.selectedColor().name();
+        secondBor = color.name();
+        updateCols();
+    }
+}
+
+void keyColor::on_toolButton_Tog2_clicked()
+{
+    QColorDialog pick;
+    pick.setStyleSheet(QColSS); pick.setCurrentColor(secondTog);
+    if (pick.exec() == QColorDialog::Accepted) {
+        QColor const color  = pick.selectedColor().name();
+        secondTog = color.name();
+        updateCols();
+    }
+}
+
+void keyColor::on_toolButton_Col3_clicked()
+{
+    QColorDialog pick;
+    pick.setStyleSheet(QColSS); pick.setCurrentColor(thirdCol);
+    if (pick.exec() == QColorDialog::Accepted) {
+        QColor const color  = pick.selectedColor().name();
+        thirdCol = color.name();
+        updateCols();
+    }
+}
+
+void keyColor::on_toolButton_Bor3_clicked()
+{
+    QColorDialog pick;
+    pick.setStyleSheet(QColSS); pick.setCurrentColor(thirdBor);
+    if (pick.exec() == QColorDialog::Accepted) {
+        QColor const color  = pick.selectedColor().name();
+        thirdBor = color.name();
+        updateCols();
+    }
+}
+
+void keyColor::on_toolButton_Tog3_clicked()
+{
+    QColorDialog pick;
+    pick.setStyleSheet(QColSS); pick.setCurrentColor(thirdTog);
+    if (pick.exec() == QColorDialog::Accepted) {
+        QColor const color  = pick.selectedColor().name();
+        thirdTog = color.name();
+        updateCols();
+    }
+}
+
+void keyColor::on_toolButton_Col4_clicked()
+{
+    QColorDialog pick;
+    pick.setStyleSheet(QColSS); pick.setCurrentColor(fourthCol);
+    if (pick.exec() == QColorDialog::Accepted) {
+        QColor const color  = pick.selectedColor().name();
+        fourthCol = color.name();
+        updateCols();
+    }
+}
+
+void keyColor::on_toolButton_Bor4_clicked()
+{
+    QColorDialog pick;
+    pick.setStyleSheet(QColSS); pick.setCurrentColor(fourthBor);
+    if (pick.exec() == QColorDialog::Accepted) {
+        QColor const color  = pick.selectedColor().name();
+        fourthBor = color.name();
+        updateCols();
+    }
+}
+
+void keyColor::on_toolButton_Tog4_clicked()
+{
+    QColorDialog pick;
+    pick.setStyleSheet(QColSS); pick.setCurrentColor(fourthTog);
+    if (pick.exec() == QColorDialog::Accepted) {
+        QColor const color  = pick.selectedColor().name();
+        fourthTog = color.name();
+        updateCols();
+    }
+}
+
+void keyColor::on_toolButton_Col5_clicked()
+{
+    QColorDialog pick;
+    pick.setStyleSheet(QColSS); pick.setCurrentColor(fifthCol);
+    if (pick.exec() == QColorDialog::Accepted) {
+        QColor const color  = pick.selectedColor().name();
+        fifthCol = color.name();
+        updateCols();
+    }
+}
+
+void keyColor::on_toolButton_Bor5_clicked()
+{
+    QColorDialog pick;
+    pick.setStyleSheet(QColSS); pick.setCurrentColor(fifthBor);
+    if (pick.exec() == QColorDialog::Accepted) {
+        QColor const color  = pick.selectedColor().name();
+        fifthBor = color.name();
+        updateCols();
+    }
+}
+
+void keyColor::on_toolButton_Tog5_clicked()
+{
+    QColorDialog pick;
+    pick.setStyleSheet(QColSS); pick.setCurrentColor(fifthTog);
+    if (pick.exec() == QColorDialog::Accepted) {
+        QColor const color  = pick.selectedColor().name();
+        fifthTog = color.name();
+        updateCols();
+    }
+}
+
+void keyColor::on_toolButton_Col6_clicked()
+{
+    QColorDialog pick;
+    pick.setStyleSheet(QColSS); pick.setCurrentColor(sixthCol);
+    if (pick.exec() == QColorDialog::Accepted) {
+        QColor const color  = pick.selectedColor().name();
+        sixthCol = color.name();
+        updateCols();
+    }
+}
+
+void keyColor::on_toolButton_Bor6_clicked()
+{
+    QColorDialog pick;
+    pick.setStyleSheet(QColSS); pick.setCurrentColor(sixthBor);
+    if (pick.exec() == QColorDialog::Accepted) {
+        QColor const color  = pick.selectedColor().name();
+        sixthBor = color.name();
+        updateCols();
+    }
+}
+
+void keyColor::on_toolButton_Tog6_clicked()
+{
+    QColorDialog pick;
+    pick.setStyleSheet(QColSS); pick.setCurrentColor(sixthTog);
+    if (pick.exec() == QColorDialog::Accepted) {
+        QColor const color  = pick.selectedColor().name();
+        sixthTog = color.name();
+        updateCols();
+    }
+}
+
+void keyColor::on_pushButton_Toggled_toggled(bool checked)
+{
+    Toggled = checked;
+
+    if (Toggled == true) {
+        ui->pushButton_Tilde->setChecked(true);
+        ui->pushButton_1->setChecked(true);
+        ui->pushButton_2->setChecked(true);
+        ui->pushButton_3->setChecked(true);
+        ui->pushButton_4->setChecked(true);
+        ui->pushButton_5->setChecked(true);
+        ui->pushButton_6->setChecked(true);
+        ui->pushButton_7->setChecked(true);
+        ui->pushButton_8->setChecked(true);
+        ui->pushButton_9->setChecked(true);
+        ui->pushButton_0->setChecked(true);
+        ui->pushButton_Minus->setChecked(true);
+        ui->pushButton_Equals->setChecked(true);
+        ui->pushButton_Backspace->setChecked(true);
+        ui->pushButton_TAB->setChecked(true);
+        ui->pushButton_Q->setChecked(true);
+        ui->pushButton_W->setChecked(true);
+        ui->pushButton_E->setChecked(true);
+        ui->pushButton_R->setChecked(true);
+        ui->pushButton_T->setChecked(true);
+        ui->pushButton_Y->setChecked(true);
+        ui->pushButton_U->setChecked(true);
+        ui->pushButton_I->setChecked(true);
+        ui->pushButton_O->setChecked(true);
+        ui->pushButton_P->setChecked(true);
+        ui->pushButton_LeftSquareBracket->setChecked(true);
+        ui->pushButton_RightSquareBracket->setChecked(true);
+        ui->pushButton_Backslash->setChecked(true);
+        ui->pushButton_CAPS->setChecked(true);
+        ui->pushButton_A->setChecked(true);
+        ui->pushButton_S->setChecked(true);
+        ui->pushButton_D->setChecked(true);
+        ui->pushButton_F->setChecked(true);
+        ui->pushButton_G->setChecked(true);
+        ui->pushButton_H->setChecked(true);
+        ui->pushButton_J->setChecked(true);
+        ui->pushButton_K->setChecked(true);
+        ui->pushButton_L->setChecked(true);
+        ui->pushButton_Semicolon->setChecked(true);
+        ui->pushButton_Apostrophe->setChecked(true);
+        ui->pushButton_Enter->setChecked(true);
+        ui->pushButton_LShift->setChecked(true);
+        ui->pushButton_Z->setChecked(true);
+        ui->pushButton_X->setChecked(true);
+        ui->pushButton_C->setChecked(true);
+        ui->pushButton_V->setChecked(true);
+        ui->pushButton_B->setChecked(true);
+        ui->pushButton_N->setChecked(true);
+        ui->pushButton_M->setChecked(true);
+        ui->pushButton_Comma->setChecked(true);
+        ui->pushButton_Period->setChecked(true);
+        ui->pushButton_Slash->setChecked(true);
+        ui->pushButton_RShift->setChecked(true);
+        ui->pushButton_LCtrl->setChecked(true);
+        ui->pushButton_Super->setChecked(true);
+        ui->pushButton_LAlt->setChecked(true);
+        ui->pushButton_Space->setChecked(true);
+        ui->pushButton_RAlt->setChecked(true);
+        ui->pushButton_Menu->setChecked(true);
+        ui->pushButton_RCtrl->setChecked(true);
+
+        updateCols();
+        updateMapping(2);
+    } else {
+        ui->pushButton_Tilde->setChecked(false);
+        ui->pushButton_1->setChecked(false);
+        ui->pushButton_2->setChecked(false);
+        ui->pushButton_3->setChecked(false);
+        ui->pushButton_4->setChecked(false);
+        ui->pushButton_5->setChecked(false);
+        ui->pushButton_6->setChecked(false);
+        ui->pushButton_7->setChecked(false);
+        ui->pushButton_8->setChecked(false);
+        ui->pushButton_9->setChecked(false);
+        ui->pushButton_0->setChecked(false);
+        ui->pushButton_Minus->setChecked(false);
+        ui->pushButton_Equals->setChecked(false);
+        ui->pushButton_Backspace->setChecked(false);
+        ui->pushButton_TAB->setChecked(false);
+        ui->pushButton_Q->setChecked(false);
+        ui->pushButton_W->setChecked(false);
+        ui->pushButton_E->setChecked(false);
+        ui->pushButton_R->setChecked(false);
+        ui->pushButton_T->setChecked(false);
+        ui->pushButton_Y->setChecked(false);
+        ui->pushButton_U->setChecked(false);
+        ui->pushButton_I->setChecked(false);
+        ui->pushButton_O->setChecked(false);
+        ui->pushButton_P->setChecked(false);
+        ui->pushButton_LeftSquareBracket->setChecked(false);
+        ui->pushButton_RightSquareBracket->setChecked(false);
+        ui->pushButton_Backslash->setChecked(false);
+        ui->pushButton_CAPS->setChecked(false);
+        ui->pushButton_A->setChecked(false);
+        ui->pushButton_S->setChecked(false);
+        ui->pushButton_D->setChecked(false);
+        ui->pushButton_F->setChecked(false);
+        ui->pushButton_G->setChecked(false);
+        ui->pushButton_H->setChecked(false);
+        ui->pushButton_J->setChecked(false);
+        ui->pushButton_K->setChecked(false);
+        ui->pushButton_L->setChecked(false);
+        ui->pushButton_Semicolon->setChecked(false);
+        ui->pushButton_Apostrophe->setChecked(false);
+        ui->pushButton_Enter->setChecked(false);
+        ui->pushButton_LShift->setChecked(false);
+        ui->pushButton_Z->setChecked(false);
+        ui->pushButton_X->setChecked(false);
+        ui->pushButton_C->setChecked(false);
+        ui->pushButton_V->setChecked(false);
+        ui->pushButton_B->setChecked(false);
+        ui->pushButton_N->setChecked(false);
+        ui->pushButton_M->setChecked(false);
+        ui->pushButton_Comma->setChecked(false);
+        ui->pushButton_Period->setChecked(false);
+        ui->pushButton_Slash->setChecked(false);
+        ui->pushButton_RShift->setChecked(false);
+        ui->pushButton_LCtrl->setChecked(false);
+        ui->pushButton_Super->setChecked(false);
+        ui->pushButton_LAlt->setChecked(false);
+        ui->pushButton_Space->setChecked(false);
+        ui->pushButton_RAlt->setChecked(false);
+        ui->pushButton_Menu->setChecked(false);
+        ui->pushButton_RCtrl->setChecked(false);
+
+        updateCols();
+        updateMapping(1);
+    }
+}
+
+void keyColor::on_pushButton_Reset_clicked()
+{
+    firstCol = "#ffaa00";
+    firstBor = "#af5a00";
+    firstTog = "#cd7800";
+
+    secondCol = "#ff0f0f";
+    secondBor = "#960000";
+    secondTog = "#780000";
+
+    thirdCol = "#14ff14";
+    thirdBor = "#00cd00";
+    thirdTog = "#009600";
+
+    fourthCol = "#3232ff";
+    fourthBor = "#0000cd";
+    fourthTog = "#0000af";
+
+    fifthCol = "#00ffff";
+    fifthBor = "#00cdcd";
+    fifthTog = "#00afaf";
+
+    sixthCol = "#bee6ff";
+    sixthBor = "#a0c8e1";
+    sixthTog = "#8cb4cd";
+
+    textColor = "#000000";
+
+    updateCols();
+}
+
+void keyColor::on_pushButton_TextCol_clicked()
+{
+    QColor color = QColorDialog::getColor(textColor);
+    if (!color.isValid()) return;
+    textColor = color.name();
+    updateCols();
+}
+
+void keyColor::on_buttonBox_accepted()
+{
+    accept();
+    close();
+}
+
+void keyColor::on_buttonBox_rejected()
+{
+    reject();
+    close();
+}

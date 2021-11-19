@@ -12,23 +12,26 @@ SOURCES += \
     additionalinfogetter.cpp \
     courses.cpp \
     customcoursesadd.cpp \
-    keymappingscolor.cpp \
+    keymapping.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    keycolor.cpp
 
 HEADERS += \
     additionalinfogetter.h \
     courses.h \
     customcoursesadd.h \
-    keymappingscolor.h \
+    keymapping.h \
     mainwindow.h \
-    preapptasks.h
+    preapptasks.h \
+    keycolor.h
 
 FORMS += \
     courses.ui \
     customcoursesadd.ui \
-    keymappingscolor.ui \
-    mainwindow.ui
+    keymapping.ui \
+    mainwindow.ui \
+    keycolor.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

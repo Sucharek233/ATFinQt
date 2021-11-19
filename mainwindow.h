@@ -2,8 +2,9 @@
 #define MAINWINDOW_H
 
 #include "additionalinfogetter.h"
-#include "keymappingscolor.h"
+#include "keymapping.h"
 #include "courses.h"
+#include "keycolor.h"
 #include <QMainWindow>
 #include <QDebug>
 #include <QMessageBox>
@@ -27,6 +28,7 @@ public:
     void findChar();
     void lightMain();
     void darkMain();
+    void updateColors();
 
 private slots:
     void on_lineEdit_TextInput_textChanged(const QString &arg1);
@@ -34,6 +36,8 @@ private slots:
     void on_action_MakeCustomCourse_triggered();
 
     void on_action_ChangeKeyMapping_triggered();
+
+    void on_action_ChangeKeyColors_triggered();
 
     void on_pushButton_StartCourse_clicked();
 
@@ -46,7 +50,8 @@ private slots:
 private:
     Ui::MainWindow *ui;
     additionalInfoGetter getInfo;
-    keyMappingsColor mapColor;
+    keyMapping keyMap;
+    keyColor keyCol;
     Courses courses;
 };
 #endif // MAINWINDOW_H
