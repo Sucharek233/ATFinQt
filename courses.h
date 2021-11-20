@@ -46,6 +46,8 @@ private slots:
 
     void on_pushButton_Reset_clicked();
 
+    void on_pushButton_Edit_clicked();
+
 private:
     Ui::Courses *ui;
     customCoursesAdd add;

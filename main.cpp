@@ -12,17 +12,29 @@ int main(int argc, char *argv[])
     a.setStyle("fusion");
         QCoreApplication::setApplicationName("ATFinQt");
 
-        PreAppTasks::copyIniToDestDir();
+        PreAppTasks::copyIniToDestDirSlots();
 
-        QString pathToPersitentIni = PreAppTasks::pathToInitFile();
-        qDebug() << pathToPersitentIni;
+        QString pathToPersitentIniSlots = PreAppTasks::pathToInitFileSlots();
+        qDebug() << pathToPersitentIniSlots;
 
-        //Write Simple sentence to Local iniFile
-        QFile writeAbleIniFile(pathToPersitentIni);
-        if(!writeAbleIniFile.open(QIODevice::ReadWrite |QIODevice::Append)){
-            qDebug() << "Could not open local ini file" << writeAbleIniFile.errorString() << writeAbleIniFile.error();
+        QFile writeAbleIniFileSlots(pathToPersitentIniSlots);
+        if(!writeAbleIniFileSlots.open(QIODevice::ReadWrite |QIODevice::Append)){
+            qDebug() << "Could not open local ini file" << writeAbleIniFileSlots.errorString() << writeAbleIniFileSlots.error();
             return -1;
         }
+
+
+        PreAppTasks::copyIniToDestDirConfig();
+
+        QString pathToPersitentIniConfig = PreAppTasks::pathToInitFileConfig();
+        qDebug() << pathToPersitentIniConfig;
+
+        QFile writeAbleIniFileConfig(pathToPersitentIniConfig);
+        if(!writeAbleIniFileConfig.open(QIODevice::ReadWrite |QIODevice::Append)){
+            qDebug() << "Could not open local ini file" << writeAbleIniFileConfig.errorString() << writeAbleIniFileConfig.error();
+            return -1;
+        }
+
     MainWindow w;
     w.show();
     return a.exec();

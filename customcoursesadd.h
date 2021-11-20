@@ -16,7 +16,7 @@ public:
     explicit customCoursesAdd(QWidget *parent = nullptr);
     ~customCoursesAdd();
 
-    void initialize();
+    void initialize(int AoE);
 
     QString getName() { return name; }
     QString getText() { return text; }
