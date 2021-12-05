@@ -11,6 +11,9 @@
 #include <QInputDialog>
 #include <QVector>
 #include <QGraphicsEllipseItem>
+#include <QSize>
+#include <QtSvg/QGraphicsSvgItem>
+#include <QtSvg/QSvgRenderer>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -29,6 +32,9 @@ public:
     void lightMain();
     void darkMain();
     void updateColors();
+
+    void resizeEvent(QResizeEvent*);
+    void changeFontSize(int size);
 
 private slots:
     void on_lineEdit_TextInput_textChanged(const QString &arg1);

@@ -23,6 +23,10 @@ public:
     void lightCol();
     void darkCol();
 
+    void resizeEvent(QResizeEvent*);
+
+    void changeFontSize(int size);
+
     QString getFirstCol() {return firstCol;}
     QString getFirstBor() {return firstBor;}
     QString getFirstTog() {return firstTog;}

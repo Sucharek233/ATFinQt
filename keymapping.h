@@ -4,6 +4,7 @@
 #include <QDialog>
 #include <QDebug>
 
+
 namespace Ui {
 class keyMapping;
 }
@@ -15,6 +16,10 @@ class keyMapping : public QDialog
 public:
     explicit keyMapping(QWidget *parent = nullptr);
     ~keyMapping();
+
+    void resizeEvent(QResizeEvent*);
+
+    void changeFontSize(int size);
 
     QString getTilde() { return tilde; }
     QString getN1() { return n1; }
@@ -308,7 +313,7 @@ private:
     QString n0 = "0";
     QString minus = "-";
     QString equals = "=";
-    QString backspace = "←";
+    QString backspace = "⌫";
     QString TAB = "tab";
     QString q = "q";
     QString w = "w";
@@ -369,7 +374,7 @@ private:
     QString n0S = ")";
     QString minusS = "_";
     QString equalsS = "+";
-    QString backspaceS = "←";
+    QString backspaceS = "⌫";
     QString TABS = "tab";
     QString qS = "Q";
     QString wS = "W";

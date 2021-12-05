@@ -92,6 +92,76 @@ keyMapping::~keyMapping()
     delete ui;
 }
 
+void keyMapping::changeFontSize(int size)
+{
+    QFont font("Arial");
+    font.setPixelSize(size);
+    ui->lineEdit_0->setFont(font);
+    ui->lineEdit_Tilde->setFont(font);
+    ui->lineEdit_0->setFont(font);
+    ui->lineEdit_1->setFont(font);
+    ui->lineEdit_2->setFont(font);
+    ui->lineEdit_3->setFont(font);
+    ui->lineEdit_4->setFont(font);
+    ui->lineEdit_5->setFont(font);
+    ui->lineEdit_6->setFont(font);
+    ui->lineEdit_7->setFont(font);
+    ui->lineEdit_8->setFont(font);
+    ui->lineEdit_9->setFont(font);
+    ui->lineEdit_Minus->setFont(font);
+    ui->lineEdit_Equals->setFont(font);
+    ui->lineEdit_Q->setFont(font);
+    ui->lineEdit_W->setFont(font);
+    ui->lineEdit_E->setFont(font);
+    ui->lineEdit_E->setFont(font);
+    ui->lineEdit_R->setFont(font);
+    ui->lineEdit_T->setFont(font);
+    ui->lineEdit_Y->setFont(font);
+    ui->lineEdit_U->setFont(font);
+    ui->lineEdit_I->setFont(font);
+    ui->lineEdit_O->setFont(font);
+    ui->lineEdit_P->setFont(font);
+    ui->lineEdit_leftSqureBracket->setFont(font);
+    ui->lineEdit_rightSquareBracket->setFont(font);
+    ui->lineEdit_Backslash->setFont(font);
+    ui->lineEdit_A->setFont(font);
+    ui->lineEdit_S->setFont(font);
+    ui->lineEdit_D->setFont(font);
+    ui->lineEdit_F->setFont(font);
+    ui->lineEdit_G->setFont(font);
+    ui->lineEdit_H->setFont(font);
+    ui->lineEdit_J->setFont(font);
+    ui->lineEdit_K->setFont(font);
+    ui->lineEdit_L->setFont(font);
+    ui->lineEdit_Semicolon->setFont(font);
+    ui->lineEdit_Apostrophe->setFont(font);
+    ui->lineEdit_Z->setFont(font);
+    ui->lineEdit_X->setFont(font);
+    ui->lineEdit_C->setFont(font);
+    ui->lineEdit_V->setFont(font);
+    ui->lineEdit_B->setFont(font);
+    ui->lineEdit_N->setFont(font);
+    ui->lineEdit_M->setFont(font);
+    ui->lineEdit_Comma->setFont(font);
+    ui->lineEdit_Period->setFont(font);
+    ui->lineEdit_Slash->setFont(font);
+    ui->lineEdit_Backspace->setFont(font);
+    ui->lineEdit_TAB->setFont(font);
+    ui->lineEdit_CAPS->setFont(font);
+    ui->lineEdit_Enter->setFont(font);
+    ui->lineEdit_LCtrl->setFont(font);
+    ui->lineEdit_RCtrl->setFont(font);
+    ui->lineEdit_LAlt->setFont(font);
+    ui->lineEdit_RAlt->setFont(font);
+    ui->lineEdit_Super->setFont(font);
+    ui->lineEdit_Menu->setFont(font);
+    ui->lineEdit_Space->setFont(font);
+    QFont otherFont("Inconsolata Extra Expanded");
+    otherFont.setPointSize(size * 1.3409523809523809523809523809524);
+    ui->lineEdit_LShift->setFont(otherFont);
+    ui->lineEdit_RShift->setFont(otherFont);
+}
+
 void keyMapping::on_lineEdit_Tilde_textChanged(const QString &arg1)
 {
     if (toggled == true) {
@@ -882,6 +952,153 @@ void keyMapping::on_pushButton_OnShift_toggled(bool checked)
        ui->lineEdit_Menu->setStyleSheet(whiteish);
        ui->lineEdit_RCtrl->setStyleSheet(orange);
    }
+}
+
+void keyMapping::resizeEvent(QResizeEvent*)
+{
+    //624
+    //272
+    double width = this->size().width() / 17.828571428571428571428571428571;
+    double height = this->size().height() / 8.5;
+    ui->lineEdit_Tilde->setMaximumSize(width, height);
+    ui->lineEdit_0->setMaximumSize(width, height);
+    ui->lineEdit_0->setMinimumSize(width, height);
+    ui->lineEdit_1->setMaximumSize(width, height);
+    ui->lineEdit_1->setMinimumSize(width, height);
+    ui->lineEdit_2->setMaximumSize(width, height);
+    ui->lineEdit_2->setMinimumSize(width, height);
+    ui->lineEdit_3->setMaximumSize(width, height);
+    ui->lineEdit_3->setMinimumSize(width, height);
+    ui->lineEdit_4->setMaximumSize(width, height);
+    ui->lineEdit_4->setMinimumSize(width, height);
+    ui->lineEdit_5->setMaximumSize(width, height);
+    ui->lineEdit_5->setMinimumSize(width, height);
+    ui->lineEdit_6->setMaximumSize(width, height);
+    ui->lineEdit_6->setMinimumSize(width, height);
+    ui->lineEdit_7->setMaximumSize(width, height);
+    ui->lineEdit_7->setMinimumSize(width, height);
+    ui->lineEdit_8->setMaximumSize(width, height);
+    ui->lineEdit_8->setMinimumSize(width, height);
+    ui->lineEdit_9->setMaximumSize(width, height);
+    ui->lineEdit_9->setMinimumSize(width, height);
+    ui->lineEdit_Minus->setMaximumSize(width, height);
+    ui->lineEdit_Minus->setMinimumSize(width, height);
+    ui->lineEdit_Equals->setMaximumSize(width, height);
+    ui->lineEdit_Equals->setMinimumSize(width, height);
+    ui->lineEdit_Q->setMaximumSize(width, height);
+    ui->lineEdit_Q->setMinimumSize(width, height);
+    ui->lineEdit_W->setMaximumSize(width, height);
+    ui->lineEdit_W->setMinimumSize(width, height);
+    ui->lineEdit_E->setMaximumSize(width, height);
+    ui->lineEdit_E->setMinimumSize(width, height);
+    ui->lineEdit_R->setMaximumSize(width, height);
+    ui->lineEdit_R->setMinimumSize(width, height);
+    ui->lineEdit_T->setMaximumSize(width, height);
+    ui->lineEdit_T->setMinimumSize(width, height);
+    ui->lineEdit_Y->setMaximumSize(width, height);
+    ui->lineEdit_Y->setMinimumSize(width, height);
+    ui->lineEdit_U->setMaximumSize(width, height);
+    ui->lineEdit_U->setMinimumSize(width, height);
+    ui->lineEdit_I->setMaximumSize(width, height);
+    ui->lineEdit_I->setMinimumSize(width, height);
+    ui->lineEdit_O->setMaximumSize(width, height);
+    ui->lineEdit_O->setMinimumSize(width, height);
+    ui->lineEdit_P->setMaximumSize(width, height);
+    ui->lineEdit_P->setMinimumSize(width, height);
+    ui->lineEdit_leftSqureBracket->setMaximumSize(width, height);
+    ui->lineEdit_leftSqureBracket->setMinimumSize(width, height);
+    ui->lineEdit_rightSquareBracket->setMaximumSize(width, height);
+    ui->lineEdit_rightSquareBracket->setMinimumSize(width, height);
+    ui->lineEdit_Backslash->setMaximumSize(width, height);
+    ui->lineEdit_Backslash->setMinimumSize(width, height);
+    ui->lineEdit_A->setMaximumSize(width, height);
+    ui->lineEdit_A->setMinimumSize(width, height);
+    ui->lineEdit_S->setMaximumSize(width, height);
+    ui->lineEdit_S->setMinimumSize(width, height);
+    ui->lineEdit_D->setMaximumSize(width, height);
+    ui->lineEdit_D->setMinimumSize(width, height);
+    ui->lineEdit_F->setMaximumSize(width, height);
+    ui->lineEdit_F->setMinimumSize(width, height);
+    ui->lineEdit_G->setMaximumSize(width, height);
+    ui->lineEdit_G->setMinimumSize(width, height);
+    ui->lineEdit_H->setMaximumSize(width, height);
+    ui->lineEdit_H->setMinimumSize(width, height);
+    ui->lineEdit_J->setMaximumSize(width, height);
+    ui->lineEdit_J->setMinimumSize(width, height);
+    ui->lineEdit_K->setMaximumSize(width, height);
+    ui->lineEdit_K->setMinimumSize(width, height);
+    ui->lineEdit_L->setMaximumSize(width, height);
+    ui->lineEdit_L->setMinimumSize(width, height);
+    ui->lineEdit_Semicolon->setMaximumSize(width, height);
+    ui->lineEdit_Semicolon->setMinimumSize(width, height);
+    ui->lineEdit_Apostrophe->setMaximumSize(width, height);
+    ui->lineEdit_Apostrophe->setMinimumSize(width, height);
+    ui->lineEdit_Z->setMaximumSize(width, height);
+    ui->lineEdit_Z->setMinimumSize(width, height);
+    ui->lineEdit_X->setMaximumSize(width, height);
+    ui->lineEdit_X->setMinimumSize(width, height);
+    ui->lineEdit_C->setMaximumSize(width, height);
+    ui->lineEdit_C->setMinimumSize(width, height);
+    ui->lineEdit_V->setMaximumSize(width, height);
+    ui->lineEdit_V->setMinimumSize(width, height);
+    ui->lineEdit_B->setMaximumSize(width, height);
+    ui->lineEdit_B->setMinimumSize(width, height);
+    ui->lineEdit_N->setMaximumSize(width, height);
+    ui->lineEdit_N->setMinimumSize(width, height);
+    ui->lineEdit_M->setMaximumSize(width, height);
+    ui->lineEdit_M->setMinimumSize(width, height);
+    ui->lineEdit_Comma->setMaximumSize(width, height);
+    ui->lineEdit_Comma->setMinimumSize(width, height);
+    ui->lineEdit_Period->setMaximumSize(width, height);
+    ui->lineEdit_Period->setMinimumSize(width, height);
+    ui->lineEdit_Slash->setMaximumSize(width, height);
+    ui->lineEdit_Slash->setMinimumSize(width, height);
+
+    width = this->size().width() / 8.7887323943661971830985915492958;
+    ui->lineEdit_TAB->setMaximumSize(width, height);
+    ui->lineEdit_TAB->setMinimumSize(width, height);
+
+    width = this->size().width() / 6.4329896907216494845360824742268;
+    ui->lineEdit_Backspace->setMaximumSize(width, height);
+    ui->lineEdit_Backspace->setMinimumSize(width, height);
+
+    width = this->size().width() / 7.6097560975609756097560975609756;
+    ui->lineEdit_CAPS->setMaximumSize(width, height);
+    ui->lineEdit_CAPS->setMinimumSize(width, height);
+
+    width = this->size().width() / 9.6;
+    ui->lineEdit_Enter->setMaximumSize(width, height);
+    ui->lineEdit_Enter->setMinimumSize(width, height);
+
+    width = this->size().width() / 6.6382978723404255319148936170213;
+    ui->lineEdit_LShift->setMaximumSize(width, height);
+    ui->lineEdit_LShift->setMinimumSize(width, height);
+    ui->lineEdit_RShift->setMaximumSize(width, height);
+    ui->lineEdit_RShift->setMinimumSize(width, height);
+
+    width = this->size().width() / 13.276595744680851063829787234043;
+    ui->lineEdit_LCtrl->setMaximumSize(width, height);
+    ui->lineEdit_LCtrl->setMinimumSize(width, height);
+    ui->lineEdit_RCtrl->setMaximumSize(width, height);
+    ui->lineEdit_RCtrl->setMinimumSize(width, height);
+
+    width = this->size().width() / 14.857142857142857142857142857143;
+    ui->lineEdit_LAlt->setMaximumSize(width, height);
+    ui->lineEdit_LAlt->setMinimumSize(width, height);
+    ui->lineEdit_RAlt->setMaximumSize(width, height);
+    ui->lineEdit_RAlt->setMinimumSize(width, height);
+
+    width = this->size().width() / 13.866666666666666666666666666667;
+    ui->lineEdit_Super->setMaximumSize(width, height);
+    ui->lineEdit_Super->setMinimumSize(width, height);
+    ui->lineEdit_Menu->setMaximumSize(width, height);
+    ui->lineEdit_Menu->setMinimumSize(width, height);
+
+    width = this->size().width() / 2.08;
+    ui->lineEdit_Space->setMaximumSize(width, height);
+    ui->lineEdit_Space->setMinimumSize(width, height);
+
+    changeFontSize(this->size().width() / 29.14285714285714285714285714286);
 }
 
 void keyMapping::on_buttonBox_accepted()

@@ -34,6 +34,11 @@ auto rHThree = new QGraphicsEllipseItem(75, 0, 25, 25);
 auto rHFour = new QGraphicsEllipseItem(117, 8, 25, 25);
 auto rHFive = new QGraphicsEllipseItem(140, 40, 25, 25);
 
+QGraphicsSvgItem *svgLeft;
+QGraphicsSvgItem *svgRight;
+QGraphicsSvgItem *svgLeftDark;
+QGraphicsSvgItem *svgRightDark;
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -48,20 +53,17 @@ MainWindow::MainWindow(QWidget *parent)
     QObject::connect(ui->pushButton_StartCourse,SIGNAL(clicked()),&getInfo,SLOT(start()), Qt::QueuedConnection);
     QObject::connect(&getInfo,SIGNAL(signalValueUpdated(const QString&)),ui->statusbar,SLOT(showMessage(const QString&)), Qt::QueuedConnection);
 
-    QPixmap left(":/hands/handLeft.jpg");
-    if (! ui->graphicsView_LeftHand->scene()) {
-        QGraphicsScene *scene = new QGraphicsScene(this);
-        ui->graphicsView_LeftHand->setScene(scene);
-    }
-    ui->graphicsView_LeftHand->scene()->addPixmap(left);
+    QGraphicsScene *sceneLeft = new QGraphicsScene(this);
+    QGraphicsScene *sceneRight = new QGraphicsScene(this);
+        ui->graphicsView_LeftHand->setScene(sceneLeft);
+        ui->graphicsView_RightHand->setScene(sceneRight);
 
-    QPixmap right(":/hands/handRight.jpg");
-    if (! ui->graphicsView_RightHand->scene()) {
-        QGraphicsScene *scene = new QGraphicsScene(this);
-        ui->graphicsView_RightHand->setScene(scene);
-    }
-    ui->graphicsView_RightHand->scene()->addPixmap(right);
     ui->pushButton_StartCourse->setEnabled(false);
+
+    svgLeft = new QGraphicsSvgItem(":/hands/handLeft.svg");
+    svgRight = new QGraphicsSvgItem(":/hands/handRight.svg");
+    svgLeftDark = new QGraphicsSvgItem(":/hands/handLeftDark.svg");
+    svgRightDark = new QGraphicsSvgItem(":/hands/handRightDark.svg");
 
     MainWindow::lightMain();
 }
@@ -403,19 +405,11 @@ void MainWindow::lightMain()
                          "QPushButton {color: black; background-color: rgb(244, 244, 244); font-size: 14px;}";
 
     uncheck();
-    QPixmap left(":/hands/handLeft.jpg");
-    if (! ui->graphicsView_LeftHand->scene()) {
-        QGraphicsScene *scene = new QGraphicsScene(this);
-        ui->graphicsView_LeftHand->setScene(scene);
-    }
-    ui->graphicsView_LeftHand->scene()->addPixmap(left);
+    ui->graphicsView_LeftHand->scene()->removeItem(svgLeftDark);
+    ui->graphicsView_RightHand->scene()->removeItem(svgRightDark);
 
-    QPixmap right(":/hands/handRight.jpg");
-    if (! ui->graphicsView_RightHand->scene()) {
-        QGraphicsScene *scene = new QGraphicsScene(this);
-        ui->graphicsView_RightHand->setScene(scene);
-    }
-    ui->graphicsView_RightHand->scene()->addPixmap(right);
+    ui->graphicsView_LeftHand->scene()->addItem(svgLeft);
+    ui->graphicsView_RightHand->scene()->addItem(svgRight);
 
     ui->graphicsView_RightHand->scene()->addItem(rHOne);
     ui->graphicsView_RightHand->scene()->addItem(rHTwo);
@@ -460,19 +454,12 @@ void MainWindow::darkMain()
                          "QPushButton {color: rgb(211, 213, 201); background-color: rgb(36, 36, 44); font-size: 14px;}";
 
     uncheck();
-    QPixmap left(":/hands/handLeftDark.jpg");
-    if (! ui->graphicsView_LeftHand->scene()) {
-        QGraphicsScene *scene = new QGraphicsScene(this);
-        ui->graphicsView_LeftHand->setScene(scene);
-    }
-    ui->graphicsView_LeftHand->scene()->addPixmap(left);
 
-    QPixmap right(":/hands/handRightDark.jpg");
-    if (! ui->graphicsView_RightHand->scene()) {
-        QGraphicsScene *scene = new QGraphicsScene(this);
-        ui->graphicsView_RightHand->setScene(scene);
-    }
-    ui->graphicsView_RightHand->scene()->addPixmap(right);
+    ui->graphicsView_LeftHand->scene()->removeItem(svgLeft);
+    ui->graphicsView_RightHand->scene()->removeItem(svgRight);
+
+    ui->graphicsView_LeftHand->scene()->addItem(svgLeftDark);
+    ui->graphicsView_RightHand->scene()->addItem(svgRightDark);
 
     ui->graphicsView_RightHand->scene()->addItem(rHOne);
     ui->graphicsView_RightHand->scene()->addItem(rHTwo);
@@ -596,8 +583,79 @@ void MainWindow::updateColors()
     QPen penL5(QColor(keyCol.getSixthCol()), 2); lHFive->setPen(penL5);
 }
 
+void MainWindow::changeFontSize(int size)
+{
+    QFont font("Noto Sans");
+    font.setPixelSize(size);
+    ui->pushButton_0->setFont(font);
+    ui->pushButton_Tilde->setFont(font);
+    ui->pushButton_0->setFont(font);
+    ui->pushButton_1->setFont(font);
+    ui->pushButton_2->setFont(font);
+    ui->pushButton_3->setFont(font);
+    ui->pushButton_4->setFont(font);
+    ui->pushButton_5->setFont(font);
+    ui->pushButton_6->setFont(font);
+    ui->pushButton_7->setFont(font);
+    ui->pushButton_8->setFont(font);
+    ui->pushButton_9->setFont(font);
+    ui->pushButton_Minus->setFont(font);
+    ui->pushButton_Equals->setFont(font);
+    ui->pushButton_Q->setFont(font);
+    ui->pushButton_W->setFont(font);
+    ui->pushButton_E->setFont(font);
+    ui->pushButton_E->setFont(font);
+    ui->pushButton_R->setFont(font);
+    ui->pushButton_T->setFont(font);
+    ui->pushButton_Y->setFont(font);
+    ui->pushButton_U->setFont(font);
+    ui->pushButton_I->setFont(font);
+    ui->pushButton_O->setFont(font);
+    ui->pushButton_P->setFont(font);
+    ui->pushButton_LeftSquareBracket->setFont(font);
+    ui->pushButton_RightSquareBracket->setFont(font);
+    ui->pushButton_Backslash->setFont(font);
+    ui->pushButton_A->setFont(font);
+    ui->pushButton_S->setFont(font);
+    ui->pushButton_D->setFont(font);
+    ui->pushButton_F->setFont(font);
+    ui->pushButton_G->setFont(font);
+    ui->pushButton_H->setFont(font);
+    ui->pushButton_J->setFont(font);
+    ui->pushButton_K->setFont(font);
+    ui->pushButton_L->setFont(font);
+    ui->pushButton_Semicolon->setFont(font);
+    ui->pushButton_Apostrophe->setFont(font);
+    ui->pushButton_Z->setFont(font);
+    ui->pushButton_X->setFont(font);
+    ui->pushButton_C->setFont(font);
+    ui->pushButton_V->setFont(font);
+    ui->pushButton_B->setFont(font);
+    ui->pushButton_N->setFont(font);
+    ui->pushButton_M->setFont(font);
+    ui->pushButton_Comma->setFont(font);
+    ui->pushButton_Period->setFont(font);
+    ui->pushButton_Slash->setFont(font);
+    ui->pushButton_Backspace->setFont(font);
+    ui->pushButton_TAB->setFont(font);
+    ui->pushButton_CAPS->setFont(font);
+    ui->pushButton_Enter->setFont(font);
+    ui->pushButton_LCtrl->setFont(font);
+    ui->pushButton_RCtrl->setFont(font);
+    ui->pushButton_LAlt->setFont(font);
+    ui->pushButton_RAlt->setFont(font);
+    ui->pushButton_Super->setFont(font);
+    ui->pushButton_Menu->setFont(font);
+    ui->pushButton_Space->setFont(font);
+    QFont otherFont("Inconsolata Extra Expanded");
+    otherFont.setPointSize(size * 1.3409523809523809523809523809524);
+    ui->pushButton_LShift->setFont(otherFont);
+    ui->pushButton_RShift->setFont(otherFont);
+}
+
 MainWindow::~MainWindow()
 {
+    getInfo.stopRunning();
     delete ui;
 }
 
@@ -625,6 +683,7 @@ void MainWindow::on_lineEdit_TextInput_textChanged(const QString &arg1)
             missStop = 0;
             once = 0;
             characters = 0;
+            backspaceSpaceStop = 0;
             if (lastCharacter == " ")
             {
                 article = article.simplified();
@@ -669,25 +728,22 @@ void MainWindow::on_lineEdit_TextInput_textChanged(const QString &arg1)
         }
         if (article == "")
         {
-            ui->lineEdit_TextInput->setText("");
-            word = "";
-            lastCharacter = "";
-            articleIn = "";
-
             getInfo.stopRunning();
             ui->lineEdit_TextInput->setReadOnly(true);
             ui->menuCourses->setEnabled(true);
             ui->action_MakeCustomCourse->setEnabled(true);
 
-            int mis = misses - spaceMiss;
-            QString miss = QString::number(mis);
+            ui->lineEdit_TextInput->setText("");
+            word = "";
+            lastCharacter = "";
+            articleIn = "";
 
             QMessageBox finished;
 
             finished.setStyleSheet(finishedStyleSheet);
             finished.setWindowTitle("Course finished!");
 
-            QString text = "You've finished the course!\n" + getInfo.getTime() + "\nMisses: " + miss;
+            QString text = "You've finished the course!\n" + getInfo.getTime() + "\nMisses: " + QString::number(misses - spaceMiss);
 
             finished.setText(text);
 
@@ -713,7 +769,7 @@ void MainWindow::on_lineEdit_TextInput_textChanged(const QString &arg1)
             ui->graphicsView_LeftHand->scene()->addItem(lHFour);
             ui->graphicsView_LeftHand->scene()->addItem(lHFive);
         }
-    } else {
+    } else if (missStop == 1) {
         int currC = arg1.count();
         if (once == 0) {
             characters = text.count(); once = 1;
@@ -724,11 +780,37 @@ void MainWindow::on_lineEdit_TextInput_textChanged(const QString &arg1)
         }
         if (currC < characters)
         {
-            ui->lineEdit_TextInput->setText(textM);
             ui->pushButton_Backspace->setChecked(false);
             ui->graphicsView_RightHand->scene()->removeItem(rHFive);
-            missStop = 0;
+            ui->lineEdit_TextInput->setText(textM);
+            missStop = 2;
+
+            findChar();
+            if (lastCharacter == articleIn) {
+                missStop = 0;
+                article.remove(0, 1);
+                articleDeleted.remove(0, 1);
+                ui->textEdit_Article->setText(article);
+                if (theme == "light") {
+                    ui->lineEdit_TextInput->setStyleSheet("color: black; background-color: white; font-size: 20px;");
+                } else {
+                    ui->lineEdit_TextInput->setStyleSheet("color: rgb(211, 213, 201); background-color: rgb(36, 36, 44); font-size: 20px;");
+                }
+            } else {ui->lineEdit_TextInput->setText(textM);}
         }
+    } else {
+        findChar();
+        if (lastCharacter == articleIn) {
+            missStop = 0;
+            article.remove(0, 1);
+            articleDeleted.remove(0, 1);
+            ui->textEdit_Article->setText(article);
+            if (theme == "light") {
+                ui->lineEdit_TextInput->setStyleSheet("color: black; background-color: white; font-size: 20px;");
+            } else {
+                ui->lineEdit_TextInput->setStyleSheet("color: rgb(211, 213, 201); background-color: rgb(36, 36, 44); font-size: 20px;");
+            }
+        } else {ui->lineEdit_TextInput->setText(textM);}
     }
 }
 
@@ -1092,4 +1174,164 @@ void MainWindow::on_action_Dark_triggered()
     courses.theme("dark");
     keyMap.darkMap();
     keyCol.darkCol();
+}
+
+void MainWindow::resizeEvent(QResizeEvent*)
+{
+    //988 //35
+    //450 //32
+    double width = this->size().width() / 28.228571;
+    double height = this->size().height() / 14.0625;
+    ui->pushButton_Tilde->setMaximumSize(width, height);
+    ui->pushButton_0->setMaximumSize(width, height);
+    ui->pushButton_0->setMinimumSize(width, height);
+    ui->pushButton_1->setMaximumSize(width, height);
+    ui->pushButton_1->setMinimumSize(width, height);
+    ui->pushButton_2->setMaximumSize(width, height);
+    ui->pushButton_2->setMinimumSize(width, height);
+    ui->pushButton_3->setMaximumSize(width, height);
+    ui->pushButton_3->setMinimumSize(width, height);
+    ui->pushButton_4->setMaximumSize(width, height);
+    ui->pushButton_4->setMinimumSize(width, height);
+    ui->pushButton_5->setMaximumSize(width, height);
+    ui->pushButton_5->setMinimumSize(width, height);
+    ui->pushButton_6->setMaximumSize(width, height);
+    ui->pushButton_6->setMinimumSize(width, height);
+    ui->pushButton_7->setMaximumSize(width, height);
+    ui->pushButton_7->setMinimumSize(width, height);
+    ui->pushButton_8->setMaximumSize(width, height);
+    ui->pushButton_8->setMinimumSize(width, height);
+    ui->pushButton_9->setMaximumSize(width, height);
+    ui->pushButton_9->setMinimumSize(width, height);
+    ui->pushButton_Minus->setMaximumSize(width, height);
+    ui->pushButton_Minus->setMinimumSize(width, height);
+    ui->pushButton_Equals->setMaximumSize(width, height);
+    ui->pushButton_Equals->setMinimumSize(width, height);
+    ui->pushButton_Q->setMaximumSize(width, height);
+    ui->pushButton_Q->setMinimumSize(width, height);
+    ui->pushButton_W->setMaximumSize(width, height);
+    ui->pushButton_W->setMinimumSize(width, height);
+    ui->pushButton_E->setMaximumSize(width, height);
+    ui->pushButton_E->setMinimumSize(width, height);
+    ui->pushButton_R->setMaximumSize(width, height);
+    ui->pushButton_R->setMinimumSize(width, height);
+    ui->pushButton_T->setMaximumSize(width, height);
+    ui->pushButton_T->setMinimumSize(width, height);
+    ui->pushButton_Y->setMaximumSize(width, height);
+    ui->pushButton_Y->setMinimumSize(width, height);
+    ui->pushButton_U->setMaximumSize(width, height);
+    ui->pushButton_U->setMinimumSize(width, height);
+    ui->pushButton_I->setMaximumSize(width, height);
+    ui->pushButton_I->setMinimumSize(width, height);
+    ui->pushButton_O->setMaximumSize(width, height);
+    ui->pushButton_O->setMinimumSize(width, height);
+    ui->pushButton_P->setMaximumSize(width, height);
+    ui->pushButton_P->setMinimumSize(width, height);
+    ui->pushButton_LeftSquareBracket->setMaximumSize(width, height);
+    ui->pushButton_LeftSquareBracket->setMinimumSize(width, height);
+    ui->pushButton_RightSquareBracket->setMaximumSize(width, height);
+    ui->pushButton_RightSquareBracket->setMinimumSize(width, height);
+    ui->pushButton_Backslash->setMaximumSize(width, height);
+    ui->pushButton_Backslash->setMinimumSize(width, height);
+    ui->pushButton_A->setMaximumSize(width, height);
+    ui->pushButton_A->setMinimumSize(width, height);
+    ui->pushButton_S->setMaximumSize(width, height);
+    ui->pushButton_S->setMinimumSize(width, height);
+    ui->pushButton_D->setMaximumSize(width, height);
+    ui->pushButton_D->setMinimumSize(width, height);
+    ui->pushButton_F->setMaximumSize(width, height);
+    ui->pushButton_F->setMinimumSize(width, height);
+    ui->pushButton_G->setMaximumSize(width, height);
+    ui->pushButton_G->setMinimumSize(width, height);
+    ui->pushButton_H->setMaximumSize(width, height);
+    ui->pushButton_H->setMinimumSize(width, height);
+    ui->pushButton_J->setMaximumSize(width, height);
+    ui->pushButton_J->setMinimumSize(width, height);
+    ui->pushButton_K->setMaximumSize(width, height);
+    ui->pushButton_K->setMinimumSize(width, height);
+    ui->pushButton_L->setMaximumSize(width, height);
+    ui->pushButton_L->setMinimumSize(width, height);
+    ui->pushButton_Semicolon->setMaximumSize(width, height);
+    ui->pushButton_Semicolon->setMinimumSize(width, height);
+    ui->pushButton_Apostrophe->setMaximumSize(width, height);
+    ui->pushButton_Apostrophe->setMinimumSize(width, height);
+    ui->pushButton_Z->setMaximumSize(width, height);
+    ui->pushButton_Z->setMinimumSize(width, height);
+    ui->pushButton_X->setMaximumSize(width, height);
+    ui->pushButton_X->setMinimumSize(width, height);
+    ui->pushButton_C->setMaximumSize(width, height);
+    ui->pushButton_C->setMinimumSize(width, height);
+    ui->pushButton_V->setMaximumSize(width, height);
+    ui->pushButton_V->setMinimumSize(width, height);
+    ui->pushButton_B->setMaximumSize(width, height);
+    ui->pushButton_B->setMinimumSize(width, height);
+    ui->pushButton_N->setMaximumSize(width, height);
+    ui->pushButton_N->setMinimumSize(width, height);
+    ui->pushButton_M->setMaximumSize(width, height);
+    ui->pushButton_M->setMinimumSize(width, height);
+    ui->pushButton_Comma->setMaximumSize(width, height);
+    ui->pushButton_Comma->setMinimumSize(width, height);
+    ui->pushButton_Period->setMaximumSize(width, height);
+    ui->pushButton_Period->setMinimumSize(width, height);
+    ui->pushButton_Slash->setMaximumSize(width, height);
+    ui->pushButton_Slash->setMinimumSize(width, height);
+
+    width = this->size().width() / 12.35;
+    ui->pushButton_Backspace->setMaximumSize(width, height);
+    ui->pushButton_Backspace->setMinimumSize(width, height);
+    ui->pushButton_TAB->setMaximumSize(width, height);
+    ui->pushButton_TAB->setMinimumSize(width, height);
+
+    width = this->size().width() / 12.0487804;
+    ui->pushButton_CAPS->setMaximumSize(width, height);
+    ui->pushButton_CAPS->setMinimumSize(width, height);
+
+    width = this->size().width() / 14.529411764705882352941176470588;
+    ui->pushButton_Enter->setMaximumSize(width, height);
+    ui->pushButton_Enter->setMinimumSize(width, height);
+
+    width = this->size().width() / 10.291666666666666666666666666667;
+    ui->pushButton_LShift->setMaximumSize(width, height);
+    ui->pushButton_LShift->setMinimumSize(width, height);
+    ui->pushButton_RShift->setMaximumSize(width, height);
+    ui->pushButton_RShift->setMinimumSize(width, height);
+
+    width = this->size().width() / 16.7457621;
+    ui->pushButton_LCtrl->setMaximumSize(width, height);
+    ui->pushButton_LCtrl->setMinimumSize(width, height);
+    ui->pushButton_RCtrl->setMaximumSize(width, height);
+    ui->pushButton_RCtrl->setMinimumSize(width, height);
+
+    width = this->size().width() / 23.5238;
+    ui->pushButton_LAlt->setMaximumSize(width, height);
+    ui->pushButton_LAlt->setMinimumSize(width, height);
+    ui->pushButton_RAlt->setMaximumSize(width, height);
+    ui->pushButton_RAlt->setMinimumSize(width, height);
+
+    width = this->size().width() / 24.7;
+    ui->pushButton_Super->setMaximumSize(width, height);
+    ui->pushButton_Super->setMinimumSize(width, height);
+    ui->pushButton_Menu->setMaximumSize(width, height);
+    ui->pushButton_Menu->setMinimumSize(width, height);
+
+    width = this->size().width() / 3.6323529411764705882352941176471;
+    ui->pushButton_Space->setMaximumSize(width, height);
+    ui->pushButton_Space->setMinimumSize(width, height);
+
+    //180   //194
+    width = this->size().width() / 5.4888888888888888888888888888889;
+    height = this->size().height() / 2.5;
+    ui->graphicsView_LeftHand->setMaximumSize(width, height);
+    ui->graphicsView_LeftHand->setMinimumSize(width, height);
+    ui->graphicsView_RightHand->setMaximumSize(width, height);
+    ui->graphicsView_RightHand->setMinimumSize(width, height);
+
+    if (ui->graphicsView_LeftHand->height() > ui->graphicsView_LeftHand->width()) {
+        ui->graphicsView_LeftHand->resetTransform();
+        ui->graphicsView_LeftHand->scale(width / 173, width / 173);
+        ui->graphicsView_RightHand->resetTransform();
+        ui->graphicsView_RightHand->scale(width / 173, width / 173);
+    }
+
+    changeFontSize(this->size().width() / 47.047619047619047619047619047619);
 }

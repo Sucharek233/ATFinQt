@@ -298,6 +298,76 @@ void keyColor::unToggle()
     updateMapping(1);
 }
 
+void keyColor::changeFontSize(int size)
+{
+    QFont font("Arial");
+    font.setPixelSize(size);
+    ui->pushButton_0->setFont(font);
+    ui->pushButton_Tilde->setFont(font);
+    ui->pushButton_0->setFont(font);
+    ui->pushButton_1->setFont(font);
+    ui->pushButton_2->setFont(font);
+    ui->pushButton_3->setFont(font);
+    ui->pushButton_4->setFont(font);
+    ui->pushButton_5->setFont(font);
+    ui->pushButton_6->setFont(font);
+    ui->pushButton_7->setFont(font);
+    ui->pushButton_8->setFont(font);
+    ui->pushButton_9->setFont(font);
+    ui->pushButton_Minus->setFont(font);
+    ui->pushButton_Equals->setFont(font);
+    ui->pushButton_Q->setFont(font);
+    ui->pushButton_W->setFont(font);
+    ui->pushButton_E->setFont(font);
+    ui->pushButton_E->setFont(font);
+    ui->pushButton_R->setFont(font);
+    ui->pushButton_T->setFont(font);
+    ui->pushButton_Y->setFont(font);
+    ui->pushButton_U->setFont(font);
+    ui->pushButton_I->setFont(font);
+    ui->pushButton_O->setFont(font);
+    ui->pushButton_P->setFont(font);
+    ui->pushButton_LeftSquareBracket->setFont(font);
+    ui->pushButton_RightSquareBracket->setFont(font);
+    ui->pushButton_Backslash->setFont(font);
+    ui->pushButton_A->setFont(font);
+    ui->pushButton_S->setFont(font);
+    ui->pushButton_D->setFont(font);
+    ui->pushButton_F->setFont(font);
+    ui->pushButton_G->setFont(font);
+    ui->pushButton_H->setFont(font);
+    ui->pushButton_J->setFont(font);
+    ui->pushButton_K->setFont(font);
+    ui->pushButton_L->setFont(font);
+    ui->pushButton_Semicolon->setFont(font);
+    ui->pushButton_Apostrophe->setFont(font);
+    ui->pushButton_Z->setFont(font);
+    ui->pushButton_X->setFont(font);
+    ui->pushButton_C->setFont(font);
+    ui->pushButton_V->setFont(font);
+    ui->pushButton_B->setFont(font);
+    ui->pushButton_N->setFont(font);
+    ui->pushButton_M->setFont(font);
+    ui->pushButton_Comma->setFont(font);
+    ui->pushButton_Period->setFont(font);
+    ui->pushButton_Slash->setFont(font);
+    ui->pushButton_Backspace->setFont(font);
+    ui->pushButton_TAB->setFont(font);
+    ui->pushButton_CAPS->setFont(font);
+    ui->pushButton_Enter->setFont(font);
+    ui->pushButton_LCtrl->setFont(font);
+    ui->pushButton_RCtrl->setFont(font);
+    ui->pushButton_LAlt->setFont(font);
+    ui->pushButton_RAlt->setFont(font);
+    ui->pushButton_Super->setFont(font);
+    ui->pushButton_Menu->setFont(font);
+    ui->pushButton_Space->setFont(font);
+    QFont otherFont("Inconsolata Extra Expanded");
+    otherFont.setPointSize(size * 1.3409523809523809523809523809524);
+    ui->pushButton_LShift->setFont(otherFont);
+    ui->pushButton_RShift->setFont(otherFont);
+}
+
 keyColor::~keyColor()
 {
     delete ui;
@@ -673,6 +743,148 @@ void keyColor::on_pushButton_TextCol_clicked()
     if (!color.isValid()) return;
     textColor = color.name();
     updateCols();
+}
+
+void keyColor::resizeEvent(QResizeEvent*)
+{
+    //612   //351
+    double width = this->size().width() / 17.485714285714285714285714285714;
+    double height = this->size().height() / 10.96875;
+    ui->pushButton_Tilde->setMaximumSize(width, height);
+    ui->pushButton_0->setMaximumSize(width, height);
+    ui->pushButton_0->setMinimumSize(width, height);
+    ui->pushButton_1->setMaximumSize(width, height);
+    ui->pushButton_1->setMinimumSize(width, height);
+    ui->pushButton_2->setMaximumSize(width, height);
+    ui->pushButton_2->setMinimumSize(width, height);
+    ui->pushButton_3->setMaximumSize(width, height);
+    ui->pushButton_3->setMinimumSize(width, height);
+    ui->pushButton_4->setMaximumSize(width, height);
+    ui->pushButton_4->setMinimumSize(width, height);
+    ui->pushButton_5->setMaximumSize(width, height);
+    ui->pushButton_5->setMinimumSize(width, height);
+    ui->pushButton_6->setMaximumSize(width, height);
+    ui->pushButton_6->setMinimumSize(width, height);
+    ui->pushButton_7->setMaximumSize(width, height);
+    ui->pushButton_7->setMinimumSize(width, height);
+    ui->pushButton_8->setMaximumSize(width, height);
+    ui->pushButton_8->setMinimumSize(width, height);
+    ui->pushButton_9->setMaximumSize(width, height);
+    ui->pushButton_9->setMinimumSize(width, height);
+    ui->pushButton_Minus->setMaximumSize(width, height);
+    ui->pushButton_Minus->setMinimumSize(width, height);
+    ui->pushButton_Equals->setMaximumSize(width, height);
+    ui->pushButton_Equals->setMinimumSize(width, height);
+    ui->pushButton_Q->setMaximumSize(width, height);
+    ui->pushButton_Q->setMinimumSize(width, height);
+    ui->pushButton_W->setMaximumSize(width, height);
+    ui->pushButton_W->setMinimumSize(width, height);
+    ui->pushButton_E->setMaximumSize(width, height);
+    ui->pushButton_E->setMinimumSize(width, height);
+    ui->pushButton_R->setMaximumSize(width, height);
+    ui->pushButton_R->setMinimumSize(width, height);
+    ui->pushButton_T->setMaximumSize(width, height);
+    ui->pushButton_T->setMinimumSize(width, height);
+    ui->pushButton_Y->setMaximumSize(width, height);
+    ui->pushButton_Y->setMinimumSize(width, height);
+    ui->pushButton_U->setMaximumSize(width, height);
+    ui->pushButton_U->setMinimumSize(width, height);
+    ui->pushButton_I->setMaximumSize(width, height);
+    ui->pushButton_I->setMinimumSize(width, height);
+    ui->pushButton_O->setMaximumSize(width, height);
+    ui->pushButton_O->setMinimumSize(width, height);
+    ui->pushButton_P->setMaximumSize(width, height);
+    ui->pushButton_P->setMinimumSize(width, height);
+    ui->pushButton_LeftSquareBracket->setMaximumSize(width, height);
+    ui->pushButton_LeftSquareBracket->setMinimumSize(width, height);
+    ui->pushButton_RightSquareBracket->setMaximumSize(width, height);
+    ui->pushButton_RightSquareBracket->setMinimumSize(width, height);
+    ui->pushButton_Backslash->setMaximumSize(width, height);
+    ui->pushButton_Backslash->setMinimumSize(width, height);
+    ui->pushButton_A->setMaximumSize(width, height);
+    ui->pushButton_A->setMinimumSize(width, height);
+    ui->pushButton_S->setMaximumSize(width, height);
+    ui->pushButton_S->setMinimumSize(width, height);
+    ui->pushButton_D->setMaximumSize(width, height);
+    ui->pushButton_D->setMinimumSize(width, height);
+    ui->pushButton_F->setMaximumSize(width, height);
+    ui->pushButton_F->setMinimumSize(width, height);
+    ui->pushButton_G->setMaximumSize(width, height);
+    ui->pushButton_G->setMinimumSize(width, height);
+    ui->pushButton_H->setMaximumSize(width, height);
+    ui->pushButton_H->setMinimumSize(width, height);
+    ui->pushButton_J->setMaximumSize(width, height);
+    ui->pushButton_J->setMinimumSize(width, height);
+    ui->pushButton_K->setMaximumSize(width, height);
+    ui->pushButton_K->setMinimumSize(width, height);
+    ui->pushButton_L->setMaximumSize(width, height);
+    ui->pushButton_L->setMinimumSize(width, height);
+    ui->pushButton_Semicolon->setMaximumSize(width, height);
+    ui->pushButton_Semicolon->setMinimumSize(width, height);
+    ui->pushButton_Apostrophe->setMaximumSize(width, height);
+    ui->pushButton_Apostrophe->setMinimumSize(width, height);
+    ui->pushButton_Z->setMaximumSize(width, height);
+    ui->pushButton_Z->setMinimumSize(width, height);
+    ui->pushButton_X->setMaximumSize(width, height);
+    ui->pushButton_X->setMinimumSize(width, height);
+    ui->pushButton_C->setMaximumSize(width, height);
+    ui->pushButton_C->setMinimumSize(width, height);
+    ui->pushButton_V->setMaximumSize(width, height);
+    ui->pushButton_V->setMinimumSize(width, height);
+    ui->pushButton_B->setMaximumSize(width, height);
+    ui->pushButton_B->setMinimumSize(width, height);
+    ui->pushButton_N->setMaximumSize(width, height);
+    ui->pushButton_N->setMinimumSize(width, height);
+    ui->pushButton_M->setMaximumSize(width, height);
+    ui->pushButton_M->setMinimumSize(width, height);
+    ui->pushButton_Comma->setMaximumSize(width, height);
+    ui->pushButton_Comma->setMinimumSize(width, height);
+    ui->pushButton_Period->setMaximumSize(width, height);
+    ui->pushButton_Period->setMinimumSize(width, height);
+    ui->pushButton_Slash->setMaximumSize(width, height);
+    ui->pushButton_Slash->setMinimumSize(width, height);
+    ui->pushButton_Super->setMaximumSize(width, height);
+    ui->pushButton_Super->setMinimumSize(width, height);
+    ui->pushButton_Menu->setMaximumSize(width, height);
+    ui->pushButton_Menu->setMinimumSize(width, height);
+
+    width = this->size().width() / 8.7428571428571428571428571428571;
+    ui->pushButton_Backspace->setMaximumSize(width, height);
+    ui->pushButton_Backspace->setMinimumSize(width, height);
+    ui->pushButton_TAB->setMaximumSize(width, height);
+    ui->pushButton_TAB->setMinimumSize(width, height);
+
+    width = this->size().width() / 7.4634146341463414634146341463415;
+    ui->pushButton_CAPS->setMaximumSize(width, height);
+    ui->pushButton_CAPS->setMinimumSize(width, height);
+
+    width = this->size().width() / 9.8709677419354838709677419354839;
+    ui->pushButton_Enter->setMaximumSize(width, height);
+    ui->pushButton_Enter->setMinimumSize(width, height);
+
+    width = this->size().width() / 6.6521739130434782608695652173913;
+    ui->pushButton_LShift->setMaximumSize(width, height);
+    ui->pushButton_LShift->setMinimumSize(width, height);
+    ui->pushButton_RShift->setMaximumSize(width, height);
+    ui->pushButton_RShift->setMinimumSize(width, height);
+
+    width = this->size().width() / 10.372881355932203389830508474576;
+    ui->pushButton_LCtrl->setMaximumSize(width, height);
+    ui->pushButton_LCtrl->setMinimumSize(width, height);
+    ui->pushButton_RCtrl->setMaximumSize(width, height);
+    ui->pushButton_RCtrl->setMinimumSize(width, height);
+
+    width = this->size().width() / 14.571428571428571428571428571429;
+    ui->pushButton_LAlt->setMaximumSize(width, height);
+    ui->pushButton_LAlt->setMinimumSize(width, height);
+    ui->pushButton_RAlt->setMaximumSize(width, height);
+    ui->pushButton_RAlt->setMinimumSize(width, height);
+
+    width = this->size().width() / 2.1779359430604982206405693950178;
+    ui->pushButton_Space->setMaximumSize(width, height);
+    ui->pushButton_Space->setMinimumSize(width, height);
+
+    changeFontSize(this->size().width() / 29.142857142857142857142857142857);
 }
 
 void keyColor::on_buttonBox_accepted()
