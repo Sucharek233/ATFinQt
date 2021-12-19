@@ -1,6 +1,7 @@
 #ifndef KEYCOLOR_H
 #define KEYCOLOR_H
 
+#include <keycolorslots.h>
 #include <QDialog>
 #include <QColorDialog>
 #include <QDebug>
@@ -203,6 +204,10 @@ public:
 
     void unToggle();
 
+    QString getPath() {return colorSlots.getPath();}
+
+    void write(QString input, int line);
+
 private slots:
     void on_toolButton_Col1_clicked();
 
@@ -250,8 +255,12 @@ private slots:
 
     void on_pushButton_TextCol_clicked();
 
+    void on_pushButton_Slots_clicked();
+
 private:
     Ui::keyColor *ui;
+
+    keyColorSlots colorSlots;
 
     QString orange;
     QString red;

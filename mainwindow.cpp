@@ -65,7 +65,7 @@ MainWindow::MainWindow(QWidget *parent)
     svgLeftDark = new QGraphicsSvgItem(":/hands/handLeftDark.svg");
     svgRightDark = new QGraphicsSvgItem(":/hands/handRightDark.svg");
 
-    MainWindow::lightMain();
+    lightMain();
 }
 
 void MainWindow::uncheck()
@@ -385,8 +385,8 @@ void MainWindow::lightMain()
     ui->pushButton_StartCourse->setStyleSheet("QPushButton:enabled{color: black; background-color: rgb(244, 244, 244);}"
                                               "QPushButton:disabled{color: gray; background-color: rgb(244, 244, 244);}");
     ui->lineEdit_TextInput->setStyleSheet("color: black; background-color: white; font-size: 20px;");
-    ui->menubar->setStyleSheet("QMenuBar {background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1,"
-                               "stop:0 rgb(240, 240, 240), stop:1 rgb(240, 240, 240)); color: black;}");
+    ui->menubar->setStyleSheet("QMenuBar {background-color: transparent; color: black;}"
+                               "QMenuBar::selected {background-color: rgb(50, 150, 250); color: rgb(244, 244, 244);}");
     ui->graphicsView_LeftHand->setStyleSheet("background-color: white;");
     ui->graphicsView_RightHand->setStyleSheet("background-color: white;");
     QString menuStyles = "QMenu {background-color: white; border: 0.5px solid black;}"
@@ -434,8 +434,8 @@ void MainWindow::darkMain()
     ui->pushButton_StartCourse->setStyleSheet("QPushButton:enabled{color: rgb(211, 213, 201); background-color: rgb(36, 36, 44);}"
                                               "QPushButton:disabled{color: rgb(100, 100, 100); background-color: rgb(36, 36, 44);}");
     ui->lineEdit_TextInput->setStyleSheet("color: rgb(211, 213, 201); background-color: rgb(36, 36, 44); font-size: 20px;");
-    ui->menubar->setStyleSheet("QMenuBar {background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1,"
-                               "stop:0 rgb(36, 36, 44), stop:1 rgb(36, 36, 44)); color: rgb(211, 213, 201);}");
+    ui->menubar->setStyleSheet("QMenuBar {background-color: rgb(36, 36, 44); color: rgb(211, 213, 201);}"
+                               "QMenuBar::selected {background-color: rgb(96, 96, 104); color: white;}");
     ui->graphicsView_LeftHand->setStyleSheet("background-color: rgb(36, 36, 44);");
     ui->graphicsView_RightHand->setStyleSheet("background-color: rgb(36, 36, 44);");
     QString menuStyles = "QMenu {background-color: rgb(36, 36, 44); border: 1px solid black;}"
@@ -655,7 +655,6 @@ void MainWindow::changeFontSize(int size)
 
 MainWindow::~MainWindow()
 {
-    getInfo.stopRunning();
     delete ui;
 }
 
@@ -687,8 +686,10 @@ void MainWindow::on_lineEdit_TextInput_textChanged(const QString &arg1)
             if (lastCharacter == " ")
             {
                 article = article.simplified();
+                backspaceSpaceStop = 1;
             } else {
                 article.remove(0, 1);
+                backspaceSpaceStop = 1;
             }
             ui->textEdit_Article->setText(article);
 
@@ -699,7 +700,6 @@ void MainWindow::on_lineEdit_TextInput_textChanged(const QString &arg1)
                 {
                     articleDeleted = articleDeleted.simplified();
                     spaceMiss = spaceMiss + 1;
-                    backspaceSpaceStop = 1;
                 } else {
                     articleDeleted.remove(0, 1);
                 }
@@ -824,9 +824,15 @@ void MainWindow::on_action_MakeCustomCourse_triggered()
     getCustomText.setStyleSheet(setCStyleSheet);
     if (getCustomText.exec() == QInputDialog::Accepted) {
         text = getCustomText.textValue();
+        text = text.simplified();
 
-        if (text == "") {} else {
-            text = text.simplified();
+        if (text == "") {
+            QMessageBox empty;
+            empty.setStyleSheet(finishedStyleSheet);
+            empty.setWindowTitle("Empty");
+            empty.setText("Warning! You didn't enter anything!");
+            empty.exec();
+        } else {
 
             uncheck();
 
@@ -1110,49 +1116,19 @@ void MainWindow::on_action_ChangeKeyColors_triggered()
     keyCol.setRCtrlS(keyMap.getRCtrlS());
 
     //cancel handling
-    QString oFirstCol = keyCol.getFirstCol();
-    QString oFirstBor = keyCol.getFirstBor();
-    QString oFirstTog = keyCol.getFirstTog();
-    QString oSecondCol = keyCol.getSecondCol();
-    QString oSecondBor = keyCol.getSecondBor();
-    QString oSecondTog = keyCol.getSecondTog();
-    QString oThirdCol = keyCol.getThirdCol();
-    QString oThirdBor = keyCol.getThirdBor();
-    QString oThirdTog = keyCol.getThirdTog();
-    QString oFourthCol = keyCol.getFourthCol();
-    QString oFourthBor = keyCol.getFourthBor();
-    QString oFourthTog = keyCol.getFourthTog();
-    QString oFifthCol = keyCol.getFifthCol();
-    QString oFifthBor = keyCol.getFifthBor();
-    QString oFifthTog = keyCol.getFifthTog();
-    QString oSixthCol = keyCol.getSixthCol();
-    QString oSixthBor = keyCol.getSixthBor();
-    QString oSixthTog = keyCol.getSixthTog();
-    QString oTextCol = keyCol.getTextCol();
+    QFile *cancel = new QFile(keyCol.getPath());
+    QTextStream reading(cancel);
+    cancel->open(QIODevice::ReadOnly);
+    QString Cancel = reading.readAll();
+    cancel->close();
 
     keyCol.unToggle();
 
     if (keyCol.exec() == QDialog::Accepted) {updateColors();} else {
-        keyCol.setFirstCol(oFirstCol);
-        keyCol.setFirstBor(oFirstBor);
-        keyCol.setFirstTog(oFirstTog);
-        keyCol.setSecondCol(oFirstCol);
-        keyCol.setSecondBor(oSecondBor);
-        keyCol.setSecondTog(oSecondTog);
-        keyCol.setSecondCol(oSecondCol);
-        keyCol.setThirdBor(oThirdBor);
-        keyCol.setThirdTog(oThirdTog);
-        keyCol.setThirdCol(oThirdCol);
-        keyCol.setFourthBor(oFourthBor);
-        keyCol.setFourthTog(oFourthTog);
-        keyCol.setFourthCol(oFourthCol);
-        keyCol.setFifthCol(oFifthCol);
-        keyCol.setFifthBor(oFifthBor);
-        keyCol.setFifthTog(oFifthTog);
-        keyCol.setSixthCol(oSixthCol);
-        keyCol.setSixthBor(oSixthBor);
-        keyCol.setSixthTog(oSixthTog);
-        keyCol.setTextCol(oTextCol);
+        cancel->open(QIODevice::ReadWrite);
+        cancel->resize(0);
+        cancel->write(Cancel.toUtf8());
+        cancel->close();
 
         keyCol.updateCols();
     }

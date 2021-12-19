@@ -12,10 +12,43 @@ keyColor::keyColor(QWidget *parent) :
     ui->setupUi(this);
 
     updateCols();
+    lightCol();
 }
 
 void keyColor::updateCols()
 {
+    QFile *load = new QFile(colorSlots.getPath());
+    load->open(QIODevice::ReadOnly);
+    QTextStream reading(load);
+    reading.readLine();
+    firstCol = reading.readLine();
+    firstBor = reading.readLine();
+    firstTog = reading.readLine();
+
+    secondCol = reading.readLine();
+    secondBor = reading.readLine();
+    secondTog = reading.readLine();
+
+    thirdCol = reading.readLine();
+    thirdBor = reading.readLine();
+    thirdTog = reading.readLine();
+
+    fourthCol = reading.readLine();
+    fourthBor = reading.readLine();
+    fourthTog = reading.readLine();
+
+    fifthCol = reading.readLine();
+    fifthBor = reading.readLine();
+    fifthTog = reading.readLine();
+
+    sixthCol = reading.readLine();
+    sixthBor = reading.readLine();
+    sixthTog = reading.readLine();
+
+    textColor = reading.readLine();
+
+    load->close();
+
     ui->toolButton_Col1->setStyleSheet("background-color: " + firstCol + "; border-radius: 10px;");
     ui->toolButton_Col2->setStyleSheet("background-color: " + secondCol + "; border-radius: 10px;");
     ui->toolButton_Col3->setStyleSheet("background-color: " + thirdCol + "; border-radius: 10px;");
@@ -54,17 +87,17 @@ void keyColor::updateCols()
     }
 
     orange = "QPushButton {color: " + textColor + "; background-color: " + firstCol + "; border: 3px solid " + firstBor + "; border-radius:10px;}"
-                     "QPushButton:checked {color: " + textColor + "; background-color: " + firstTog + "; border-radius:10px;}";
+             "QPushButton:checked {color: " + textColor + "; background-color: " + firstTog + "; border-radius:10px;}";
     red = "QPushButton {color: " + textColor + "; background-color: " + secondCol + "; border: 3px solid " + secondBor + "; border-radius:10px;}"
-                  "QPushButton:checked {color: " + textColor + "; background-color: " + secondTog + "; border-radius:10px;}";
+          "QPushButton:checked {color: " + textColor + "; background-color: " + secondTog + "; border-radius:10px;}";
     green = "QPushButton {color: " + textColor + "; background-color: " + thirdCol + "; border: 3px solid " + thirdBor + "; border-radius:10px;}"
-                    "QPushButton:checked {color: " + textColor + "; background-color: " + thirdTog + "; border-radius:10px;}";
+            "QPushButton:checked {color: " + textColor + "; background-color: " + thirdTog + "; border-radius:10px;}";
     blue = "QPushButton {color: " + textColor + "; background-color: " + fourthCol + "; border: 3px solid " + fourthBor + "; border-radius:10px;}"
-                   "QPushButton:checked {color: " + textColor + "; background-color: " + fourthTog + "; border-radius:10px;}";
+           "QPushButton:checked {color: " + textColor + "; background-color: " + fourthTog + "; border-radius:10px;}";
     cyan = "QPushButton {color: " + textColor + "; background-color: " + fifthCol + "; border: 3px solid " + fifthBor + "; border-radius:10px;}"
-                   "QPushButton:checked {color: " + textColor + "; background-color: " + fifthTog + "; border-radius:10px;}";
+            "QPushButton:checked {color: " + textColor + "; background-color: " + fifthTog + "; border-radius:10px;}";
     whiteish = "QPushButton {color: " + textColor + "; background-color: " + sixthCol + "; border: 3px solid " + sixthBor + "; border-radius:10px;}"
-                       "QPushButton:checked {color: " + textColor + "; background-color: " + sixthTog + "; border-radius:10px;}";
+               "QPushButton:checked {color: " + textColor + "; background-color: " + sixthTog + "; border-radius:10px;}";
 
     ui->pushButton_Tilde->setStyleSheet(orange);
     ui->pushButton_1->setStyleSheet(orange);
@@ -271,12 +304,14 @@ void keyColor::lightCol()
     ui->pushButton_Toggled->setStyleSheet("color: black; background-color: rgb(244, 244, 244);");
     ui->pushButton_TextCol->setStyleSheet("color: black; background-color: rgb(244, 244, 244);");
     ui->pushButton_Reset->setStyleSheet("color: black; background-color: rgb(244, 244, 244);");
+    ui->pushButton_Slots->setStyleSheet("color: black; background-color: rgb(244, 244, 244);");
     ui->buttonBox->setStyleSheet("QPushButton {color: black; background-color: rgb(244, 244, 244);}");
     QColSS = "QColorDialog {background-color: rgb(244, 244, 244);}"
              "QPushButton {background-color: rgb(244, 244, 244); color: black; font-size: 11px;}"
              "QLabel {background-color: rgb(244, 244, 244); color: black; font-size: 12px;}"
              "QLineEdit {background-color: white; color: black; font-size: 11px;}"
              "QSpinBox {background-color: white; color: black; font-size: 11px;}";
+    colorSlots.lightColSlots();
 }
 void keyColor::darkCol()
 {
@@ -284,12 +319,14 @@ void keyColor::darkCol()
     ui->pushButton_Toggled->setStyleSheet("color: rgb(211, 213, 201); background-color: rgb(36, 36, 44);");
     ui->pushButton_TextCol->setStyleSheet("color: rgb(211, 213, 201); background-color: rgb(36, 36, 44);");
     ui->pushButton_Reset->setStyleSheet("color: rgb(211, 213, 201); background-color: rgb(36, 36, 44);");
+    ui->pushButton_Slots->setStyleSheet("color: rgb(211, 213, 201); background-color: rgb(36, 36, 44);");
     ui->buttonBox->setStyleSheet("QPushButton {color: rgb(211, 213, 201); background-color: rgb(36, 36, 44);}");
     QColSS = "QColorDialog {background-color: rgb(6, 6, 14);}"
              "QPushButton {color: rgb(211, 213, 201); background-color: rgb(36, 36, 44); font-size: 11px;}"
              "QLabel {color: rgb(211, 213, 201); background-color: rgb(6, 6, 14); font-size: 12px;}"
              "QLineEdit {color: rgb(211, 213, 201); background-color: rgb(36, 36, 44); font-size: 11px;}"
              "QSpinBox {color: rgb(211, 213, 201); background-color: rgb(36, 36, 44); font-size: 11px;}";
+    colorSlots.darkColSlots();
 }
 
 void keyColor::unToggle()
@@ -373,204 +410,225 @@ keyColor::~keyColor()
     delete ui;
 }
 
+void keyColor::write(QString input, int line)
+{
+    int check = 0;
+    QFile *write = new QFile(colorSlots.getPath());
+    write->open(QIODevice::ReadOnly);
+    QTextStream reading(write);
+    for (int i = 0; i < 25; i++) {
+        QString fileCheck = reading.readLine();
+        if (fileCheck == input) {
+            check = 1;
+            break;
+        } else {check = 0;}
+    }
+    write->close();
+    if (check == 1) {
+        QMessageBox dupe;
+        dupe.setWindowTitle("Duplicate");
+        dupe.setText("Warning! Duplicate color found!\nPlease select a different color!");
+        dupe.exec();
+    } else {
+        QString replace;
+        write->open(QIODevice::ReadWrite);
+        for (int i = 0; i < line; i++) {
+            replace = reading.readLine();
+        }
+
+        QFile *con = new QFile(colorSlots.getPath());
+        con->open(QIODevice::ReadOnly);
+        QTextStream read(con);
+        QString contents = read.readAll();
+        con->close();
+
+        contents = contents.replace(replace, input);
+        write->resize(0);
+        write->write(contents.toUtf8());
+        write->close();
+    }
+}
+
 void keyColor::on_toolButton_Col1_clicked()
 {
     QColorDialog pick;
     pick.setStyleSheet(QColSS); pick.setCurrentColor(firstCol);
     if (pick.exec() == QColorDialog::Accepted) {
-        QColor const color  = pick.selectedColor().name();
-        firstCol = color.name();
+        QColor const color = pick.selectedColor().name();
+        write(color.name(), 2);
         updateCols();
     }
 }
-
 void keyColor::on_toolButton_Bor1_clicked()
 {
     QColorDialog pick;
     pick.setStyleSheet(QColSS); pick.setCurrentColor(firstBor);
     if (pick.exec() == QColorDialog::Accepted) {
         QColor const color  = pick.selectedColor().name();
-        firstBor = color.name();
+        write(color.name(), 3);
         updateCols();
     }
 }
-
 void keyColor::on_toolButton_Tog1_clicked()
 {
     QColorDialog pick;
     pick.setStyleSheet(QColSS); pick.setCurrentColor(firstTog);
     if (pick.exec() == QColorDialog::Accepted) {
         QColor const color  = pick.selectedColor().name();
-        firstTog = color.name();
+        write(color.name(), 4);
         updateCols();
     }
 }
-
 void keyColor::on_toolButton_Col2_clicked()
 {
     QColorDialog pick;
     pick.setStyleSheet(QColSS); pick.setCurrentColor(secondCol);
     if (pick.exec() == QColorDialog::Accepted) {
         QColor const color  = pick.selectedColor().name();
-        secondCol = color.name();
+        write(color.name(), 5);
         updateCols();
     }
 }
-
 void keyColor::on_toolButton_Bor2_clicked()
 {
     QColorDialog pick;
     pick.setStyleSheet(QColSS); pick.setCurrentColor(secondBor);
     if (pick.exec() == QColorDialog::Accepted) {
         QColor const color  = pick.selectedColor().name();
-        secondBor = color.name();
+        write(color.name(), 6);
         updateCols();
     }
 }
-
 void keyColor::on_toolButton_Tog2_clicked()
 {
     QColorDialog pick;
     pick.setStyleSheet(QColSS); pick.setCurrentColor(secondTog);
     if (pick.exec() == QColorDialog::Accepted) {
         QColor const color  = pick.selectedColor().name();
-        secondTog = color.name();
+        write(color.name(), 7);
         updateCols();
     }
 }
-
 void keyColor::on_toolButton_Col3_clicked()
 {
     QColorDialog pick;
     pick.setStyleSheet(QColSS); pick.setCurrentColor(thirdCol);
     if (pick.exec() == QColorDialog::Accepted) {
         QColor const color  = pick.selectedColor().name();
-        thirdCol = color.name();
+        write(color.name(), 8);
         updateCols();
     }
 }
-
 void keyColor::on_toolButton_Bor3_clicked()
 {
     QColorDialog pick;
     pick.setStyleSheet(QColSS); pick.setCurrentColor(thirdBor);
     if (pick.exec() == QColorDialog::Accepted) {
         QColor const color  = pick.selectedColor().name();
-        thirdBor = color.name();
+        write(color.name(), 9);
         updateCols();
     }
 }
-
 void keyColor::on_toolButton_Tog3_clicked()
 {
     QColorDialog pick;
     pick.setStyleSheet(QColSS); pick.setCurrentColor(thirdTog);
     if (pick.exec() == QColorDialog::Accepted) {
         QColor const color  = pick.selectedColor().name();
-        thirdTog = color.name();
+        write(color.name(), 10);
         updateCols();
     }
 }
-
 void keyColor::on_toolButton_Col4_clicked()
 {
     QColorDialog pick;
     pick.setStyleSheet(QColSS); pick.setCurrentColor(fourthCol);
     if (pick.exec() == QColorDialog::Accepted) {
         QColor const color  = pick.selectedColor().name();
-        fourthCol = color.name();
+        write(color.name(), 11);
         updateCols();
     }
 }
-
 void keyColor::on_toolButton_Bor4_clicked()
 {
     QColorDialog pick;
     pick.setStyleSheet(QColSS); pick.setCurrentColor(fourthBor);
     if (pick.exec() == QColorDialog::Accepted) {
         QColor const color  = pick.selectedColor().name();
-        fourthBor = color.name();
+        write(color.name(), 12);
         updateCols();
     }
 }
-
 void keyColor::on_toolButton_Tog4_clicked()
 {
     QColorDialog pick;
     pick.setStyleSheet(QColSS); pick.setCurrentColor(fourthTog);
     if (pick.exec() == QColorDialog::Accepted) {
         QColor const color  = pick.selectedColor().name();
-        fourthTog = color.name();
+        write(color.name(), 13);
         updateCols();
     }
 }
-
 void keyColor::on_toolButton_Col5_clicked()
 {
     QColorDialog pick;
     pick.setStyleSheet(QColSS); pick.setCurrentColor(fifthCol);
     if (pick.exec() == QColorDialog::Accepted) {
         QColor const color  = pick.selectedColor().name();
-        fifthCol = color.name();
+        write(color.name(), 14);
         updateCols();
     }
 }
-
 void keyColor::on_toolButton_Bor5_clicked()
 {
     QColorDialog pick;
     pick.setStyleSheet(QColSS); pick.setCurrentColor(fifthBor);
     if (pick.exec() == QColorDialog::Accepted) {
         QColor const color  = pick.selectedColor().name();
-        fifthBor = color.name();
+        write(color.name(), 15);
         updateCols();
     }
 }
-
 void keyColor::on_toolButton_Tog5_clicked()
 {
     QColorDialog pick;
     pick.setStyleSheet(QColSS); pick.setCurrentColor(fifthTog);
     if (pick.exec() == QColorDialog::Accepted) {
         QColor const color  = pick.selectedColor().name();
-        fifthTog = color.name();
+        write(color.name(), 16);
         updateCols();
     }
 }
-
 void keyColor::on_toolButton_Col6_clicked()
 {
     QColorDialog pick;
     pick.setStyleSheet(QColSS); pick.setCurrentColor(sixthCol);
     if (pick.exec() == QColorDialog::Accepted) {
         QColor const color  = pick.selectedColor().name();
-        sixthCol = color.name();
+        write(color.name(), 17);
         updateCols();
     }
 }
-
 void keyColor::on_toolButton_Bor6_clicked()
 {
     QColorDialog pick;
     pick.setStyleSheet(QColSS); pick.setCurrentColor(sixthBor);
     if (pick.exec() == QColorDialog::Accepted) {
         QColor const color  = pick.selectedColor().name();
-        sixthBor = color.name();
+        write(color.name(), 18);
         updateCols();
     }
 }
-
 void keyColor::on_toolButton_Tog6_clicked()
 {
     QColorDialog pick;
     pick.setStyleSheet(QColSS); pick.setCurrentColor(sixthTog);
     if (pick.exec() == QColorDialog::Accepted) {
         QColor const color  = pick.selectedColor().name();
-        sixthTog = color.name();
+        write(color.name(), 19);
         updateCols();
     }
 }
-
 void keyColor::on_pushButton_Toggled_toggled(bool checked)
 {
     Toggled = checked;
@@ -708,31 +766,32 @@ void keyColor::on_pushButton_Toggled_toggled(bool checked)
 
 void keyColor::on_pushButton_Reset_clicked()
 {
-    firstCol = "#ffaa00";
-    firstBor = "#af5a00";
-    firstTog = "#cd7800";
-
-    secondCol = "#ff0f0f";
-    secondBor = "#960000";
-    secondTog = "#780000";
-
-    thirdCol = "#14ff14";
-    thirdBor = "#00cd00";
-    thirdTog = "#009600";
-
-    fourthCol = "#3232ff";
-    fourthBor = "#0000cd";
-    fourthTog = "#0000af";
-
-    fifthCol = "#00ffff";
-    fifthBor = "#00cdcd";
-    fifthTog = "#00afaf";
-
-    sixthCol = "#bee6ff";
-    sixthBor = "#a0c8e1";
-    sixthTog = "#8cb4cd";
-
-    textColor = "#000000";
+    QFile *reset = new QFile(colorSlots.getPath());
+    reset->open(QIODevice::ReadWrite);
+    QString keepName = reset->readLine();
+    reset->resize(0);
+    QString toWrite = keepName +
+                      "#ffaa00\n"
+                      "#af5a00\n"
+                      "#cd7800\n"
+                      "#ff0f0f\n"
+                      "#960000\n"
+                      "#780000\n"
+                      "#14ff14\n"
+                      "#00cd00\n"
+                      "#009600\n"
+                      "#3232ff\n"
+                      "#0000cd\n"
+                      "#0000af\n"
+                      "#00ffff\n"
+                      "#00cdcd\n"
+                      "#00afaf\n"
+                      "#bee6ff\n"
+                      "#a0c8e1\n"
+                      "#8cb4cd\n"
+                      "#000000\n";
+    reset->write(toWrite.toUtf8());
+    reset->close();
 
     updateCols();
 }
@@ -741,7 +800,7 @@ void keyColor::on_pushButton_TextCol_clicked()
 {
     QColor color = QColorDialog::getColor(textColor);
     if (!color.isValid()) return;
-    textColor = color.name();
+    write(color.name(), 20);
     updateCols();
 }
 
@@ -897,4 +956,13 @@ void keyColor::on_buttonBox_rejected()
 {
     reject();
     close();
+}
+
+void keyColor::on_pushButton_Slots_clicked()
+{
+    colorSlots.setModal(true);
+    colorSlots.initialize();
+    if (colorSlots.exec() == QDialog::Accepted) {
+        updateCols();
+    }
 }

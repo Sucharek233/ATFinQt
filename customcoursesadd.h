@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include <QDebug>
+#include <QMessageBox>
 
 namespace Ui {
 class customCoursesAdd;
@@ -24,6 +25,8 @@ public:
 
     void lightCourseAdd();
     void darkCourseAdd();
+
+    QString multipleCheck(QString varToCheck);
 
 private slots:
     void on_lineEdit_Name_textChanged(const QString &arg1);

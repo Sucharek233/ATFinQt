@@ -44,6 +44,7 @@ Courses::Courses(QWidget *parent) :
     pathConfig = additionalInfo.pathToInitFileConfig();
 
     updateVars();
+    lightCourses();
 }
 
 void Courses::lightCourses()
@@ -185,7 +186,7 @@ void Courses::on_pushButton_Remove_clicked()
     } else {
         QString fileContents = sIn.readAll();
         fileContents = fileContents.replace(currN + "\n", "");
-        fileContents = fileContents.replace(currT + "\n", "");
+        fileContents = fileContents.replace("\n" + currT, "");
         Slots->resize(0);
         Slots->write(fileContents.toUtf8());
     }

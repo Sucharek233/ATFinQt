@@ -12,6 +12,7 @@ SOURCES += \
     additionalinfogetter.cpp \
     courses.cpp \
     customcoursesadd.cpp \
+    keycolorslots.cpp \
     keymapping.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -21,6 +22,7 @@ HEADERS += \
     additionalinfogetter.h \
     courses.h \
     customcoursesadd.h \
+    keycolorslots.h \
     keymapping.h \
     mainwindow.h \
     preapptasks.h \
@@ -29,6 +31,7 @@ HEADERS += \
 FORMS += \
     courses.ui \
     customcoursesadd.ui \
+    keycolorslots.ui \
     keymapping.ui \
     mainwindow.ui \
     keycolor.ui

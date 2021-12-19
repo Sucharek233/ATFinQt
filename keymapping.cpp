@@ -8,6 +8,8 @@ keyMapping::keyMapping(QWidget *parent) :
     ui(new Ui::keyMapping)
 {
     ui->setupUi(this);
+
+    lightMap();
 }
 
 void keyMapping::lightMap()
