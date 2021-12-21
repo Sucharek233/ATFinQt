@@ -172,6 +172,89 @@ public:
     {
         return QStandardPaths::writableLocation(QStandardPaths::AppDataLocation) + QString("/Colors/");
     }
+
+    static void copyIniToDestDirMapMapping()
+    {
+        QFile destFile(pathToInitFileMapMapping());
+        QFile orgFile(":/Mapping/Mapping.ini");
+        if(destFile.exists()){
+            QFile *MapMapps = new QFile(pathToInitFileMapMapping());
+            QTextStream in(MapMapps);
+            MapMapps->open(QIODevice::ReadOnly | QIODevice::Text);
+        } else {
+            QFileInfo info(destFile.fileName());
+            info.setFile(info.absolutePath());
+            if(!info.exists()){
+                QDir d;
+                d.mkpath(info.absoluteFilePath());
+            }
+            orgFile.copy(destFile.fileName());
+            destFile.setPermissions(QFile::WriteUser | destFile.permissions());
+
+            QFile *MapMapps = new QFile(pathToInitFileMapMapping());
+            QTextStream in(MapMapps);
+
+            QString write = "Default\n"
+                            "~​\n1\n2\n3\n4\n5\n6\n7\n8\n9\n0\n-\n=\n⌫\n"
+                            "tab\nq\nw\ne\nr\nt\ny\nu\ni\no\np\n[\n]\n\\\n"
+                            "caps\na\ns\nd\nf\ng\nh\nj\nk\nl\n;\n'\n⏎\n"
+                            "⇧\nz\nx\nc\nv\nb\nn\nm\n,\n.\n/\n⇧\n"
+                            "ctrl\nsu\nalt\n \nalt\nme\nctrl\n"
+                            "~\n!\n@\n#\n$\n%\n^\n&\n*\n(\n)\n_\n+\n⌫\n"
+                            "tab\nQ\nW\nE\nR\nT\nY\nU\nI\nO\nP\n{\n}\n|\n"
+                            "caps\nA\nS\nD\nF\nG\nH\nJ\nK\nL\n:\n\"\n⏎\n"
+                            "⇧\nZ\nX\nC\nV\nB\nN\nM\n<\n>\n?\n⇧\n"
+                            "ctrl\nsu\nalt\n \nalt\nme\nctrl\n";
+
+            MapMapps->open(QIODevice::ReadWrite | QIODevice::Text);
+            MapMapps->write(write.toUtf8());
+            MapMapps->close();
+        }
+    }
+
+    static void copyIniToDestDirMapConfig()
+    {
+        QFile destFile(pathToInitFileMapConfig());
+        QFile orgFile(":/Mapping/Config.ini");
+        if(destFile.exists()){
+            QFile *MapConfig = new QFile(pathToInitFileMapConfig());
+            QTextStream in(MapConfig);
+            MapConfig->open(QIODevice::ReadOnly | QIODevice::Text);
+        } else {
+            QFileInfo info(destFile.fileName());
+            info.setFile(info.absolutePath());
+            if(!info.exists()){
+                QDir d;
+                d.mkpath(info.absoluteFilePath());
+            }
+            orgFile.copy(destFile.fileName());
+            destFile.setPermissions(QFile::WriteUser | destFile.permissions());
+
+            QFile *MapConfig = new QFile(pathToInitFileMapConfig());
+            QTextStream in(MapConfig);
+
+            QString write = pathToInitFileMap() + "Mapping.ini";
+
+            MapConfig->open(QIODevice::ReadWrite | QIODevice::Text);
+            MapConfig->write(write.toUtf8());
+            MapConfig->close();
+        }
+    }
+
+    static QString pathToInitFileMapMapping()
+    {
+        return QStandardPaths::writableLocation(QStandardPaths::AppDataLocation) + QString("/Mapping/Mapping.ini");
+    }
+
+    static QString pathToInitFileMapConfig()
+    {
+        return QStandardPaths::writableLocation(QStandardPaths::AppDataLocation) + QString("/Mapping/Config.ini");
+    }
+
+    static QString pathToInitFileMap()
+    {
+        return QStandardPaths::writableLocation(QStandardPaths::AppDataLocation) + QString("/Mapping/");
+    }
 };
 
 #endif // PREAPPTASKS_H

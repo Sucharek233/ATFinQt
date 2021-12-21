@@ -1,20 +1,55 @@
-#include "keycolorslots.h"
-#include "ui_keycolorslots.h"
+#include "keymappingslots.h"
+#include "ui_keymappingslots.h"
 
-QString mainPath;
+QString MainPath;
+QString FilePathHere;
 
-int fileCount;
+int FileCount;
 
-int currRow;
+int CurrRow;
 
-QString messBoxStyleSheet;
-QString inputDialogStyleSheet;
+QString MessBoxStyleSheet;
+QString InputDialogStyleSheet;
 
-QString filePathHere;
-
-void keyColorSlots::lightColSlots()
+keyMappingSlots::keyMappingSlots(QWidget *parent) :
+    QDialog(parent),
+    ui(new Ui::keyMappingSlots)
 {
-    keyColorSlots::setStyleSheet("background-color: rgb(244, 244, 244);");
+    ui->setupUi(this);
+
+    MainPath = Paths.pathToInitFileMap();
+
+    QFile file(Paths.pathToInitFileMapConfig());
+    file.open(QIODevice::ReadOnly);
+    FilePath = file.readLine();
+    FilePathHere = FilePath;
+    file.close();
+
+    Initialize();
+    lightMapSlots();
+}
+
+void keyMappingSlots::Initialize()
+{
+    ui->listWidget_Slots->clear();
+
+    QDir count(MainPath);
+    FileCount = count.count() - 3;
+
+    ui->listWidget_Slots->addItem("Default");
+
+    for (int i = 1; i < FileCount; i++) {
+        QFile *file = new QFile(MainPath + QString::number(i) + ".ini");
+        QTextStream reading(file);
+        file->open(QIODevice::ReadOnly);
+        ui->listWidget_Slots->addItem(reading.readLine());
+        file->close();
+    }
+}
+
+void keyMappingSlots::lightMapSlots()
+{
+    keyMappingSlots::setStyleSheet("background-color: rgb(244, 244, 244);");
     QString button = "color: black; background-color: rgb(244, 244, 244);";
     ui->pushButton_Add->setStyleSheet(button);
     ui->pushButton_Remove->setStyleSheet(button);
@@ -24,17 +59,17 @@ void keyColorSlots::lightColSlots()
     ui->listWidget_Slots->setStyleSheet("QListWidget {background-color: white; border: 0.5px solid grey;}"
                                         "QListWidget::item {color: black; background-color: white;}"
                                         "QListWidget::item:selected {color: white; background-color: rgb(0, 120, 215); border: 0.5px solid black;}");
-    messBoxStyleSheet = "QMessageBox {background-color: rgb(244, 244, 244);}"
+    MessBoxStyleSheet = "QMessageBox {background-color: rgb(244, 244, 244);}"
                         "QLabel {background-color: rgb(244, 244, 244); color: black; font-size: 16px;}"
                         "QPushButton {color: black; background-color: rgb(244, 244, 244); font-size: 14px;}";
-    inputDialogStyleSheet = "QInputDialog {background-color: rgb(244, 244, 244);}"
+    InputDialogStyleSheet = "QInputDialog {background-color: rgb(244, 244, 244);}"
                             "QLabel {background-color: rgb(244, 244, 244); color: black; font-size: 16px;}"
                             "QLineEdit {color: black; background-color: white; font-size: 14px;}"
                             "QPushButton {color: black; background-color: rgb(244, 244, 244); font-size: 12px;}";
 }
-void keyColorSlots::darkColSlots()
+void keyMappingSlots::darkMapSlots()
 {
-    keyColorSlots::setStyleSheet("background-color: rgb(6, 6, 14);");
+    keyMappingSlots::setStyleSheet("background-color: rgb(6, 6, 14);");
     QString button = "color: rgb(211, 213, 201); background-color: rgb(36, 36, 44);";
     ui->pushButton_Add->setStyleSheet(button);
     ui->pushButton_Remove->setStyleSheet(button);
@@ -44,64 +79,27 @@ void keyColorSlots::darkColSlots()
     ui->listWidget_Slots->setStyleSheet("QListWidget {background-color: rgb(36, 36, 44); border: 1px solid rgb(66, 66, 74);}"
                                           "QListWidget::item {color: rgb(211, 213, 201); background-color: rgb(36, 36, 44);}"
                                           "QListWidget::item:selected {color: rgb(211, 213, 201); background-color: rgb(66, 66, 74); border: 0.5px solid black;}");
-    messBoxStyleSheet = "QMessageBox {background-color: rgb(6, 6, 14);}"
+    MessBoxStyleSheet = "QMessageBox {background-color: rgb(6, 6, 14);}"
                         "QLabel {background-color: rgb(6, 6, 14); color: rgb(211, 213, 201); font-size: 16px;}"
                         "QPushButton {color: rgb(211, 213, 201); background-color: rgb(36, 36, 44); font-size: 14px;}";
-    inputDialogStyleSheet = "QInputDialog {background-color: rgb(6, 6, 14);}"
+    InputDialogStyleSheet = "QInputDialog {background-color: rgb(6, 6, 14);}"
                             "QLabel {background-color: rgb(6, 6, 14); color: rgb(211, 213, 201); font-size: 16px;}"
                             "QLineEdit {color: rgb(211, 213, 201); background-color: rgb(36, 36, 44); font-size: 14px;}"
                             "QPushButton {color: rgb(211, 213, 201); background-color: rgb(36, 36, 44); font-size: 12px;}";
 }
 
-keyColorSlots::keyColorSlots(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::keyColorSlots)
-{
-    ui->setupUi(this);
-
-    mainPath = paths.pathToInitFileCol();
-
-    QFile file(paths.pathToInitFileColConfig());
-    file.open(QIODevice::ReadOnly);
-    filePath = file.readLine();
-    filePathHere = filePath;
-    file.close();
-
-    initialize();
-
-    lightColSlots();
-}
-
-void keyColorSlots::initialize()
-{
-    ui->listWidget_Slots->clear();
-
-    QDir count(mainPath);
-    fileCount = count.count() - 3;
-
-    ui->listWidget_Slots->addItem("Default");
-
-    for (int i = 1; i < fileCount; i++) {
-        QFile *file = new QFile(mainPath + QString::number(i) + ".ini");
-        QTextStream reading(file);
-        file->open(QIODevice::ReadOnly);
-        ui->listWidget_Slots->addItem(reading.readLine());
-        file->close();
-    }
-}
-
-keyColorSlots::~keyColorSlots()
+keyMappingSlots::~keyMappingSlots()
 {
     delete ui;
 }
 
-void keyColorSlots::on_pushButton_Add_clicked()
+void keyMappingSlots::on_pushButton_Add_clicked()
 {
     QInputDialog name;
     name.setWindowTitle("Set name");
-    name.setLabelText("Type in or paste an article.");
+    name.setLabelText("Type in a name.");
     name.setInputMode(QInputDialog::TextInput);
-    name.setStyleSheet(inputDialogStyleSheet);
+    name.setStyleSheet(InputDialogStyleSheet);
     if (name.exec() == QInputDialog::Accepted) {
         QString text = name.textValue();
         text = text.simplified();
@@ -110,79 +108,70 @@ void keyColorSlots::on_pushButton_Add_clicked()
             QMessageBox empty;
             empty.setWindowTitle("Empty");
             empty.setText("You've not entered a name!\nPlease enter a name and click OK!");
-            empty.setStyleSheet(messBoxStyleSheet);
+            empty.setStyleSheet(MessBoxStyleSheet);
             empty.exec();
         } else {
-            QFile file(mainPath + QString::number(fileCount) + ".ini");
+            QFile file(MainPath + QString::number(FileCount) + ".ini");
             file.open(QIODevice::ReadWrite);
             file.write(text.toUtf8() +
-                       "\n#ffaa00\n"
-                       "#af5a00\n"
-                       "#cd7800\n"
-                       "#ff0f0f\n"
-                       "#960000\n"
-                       "#780000\n"
-                       "#14ff14\n"
-                       "#00cd00\n"
-                       "#009600\n"
-                       "#3232ff\n"
-                       "#0000cd\n"
-                       "#0000af\n"
-                       "#00ffff\n"
-                       "#00cdcd\n"
-                       "#00afaf\n"
-                       "#bee6ff\n"
-                       "#a0c8e1\n"
-                       "#8cb4cd\n"
-                       "#000000");
+                       "\n~​\n1\n2\n3\n4\n5\n6\n7\n8\n9\n0\n-\n=\n⌫\n"
+                       "tab\nq\nw\ne\nr\nt\ny\nu\ni\no\np\n[\n]\n\\\n"
+                       "caps\na\ns\nd\nf\ng\nh\nj\nk\nl\n;\n'\n⏎\n"
+                       "⇧\nz\nx\nc\nv\nb\nn\nm\n,\n.\n/\n⇧\n"
+                       "ctrl\nsu\nalt\n \nalt\nme\nctrl\n"
+                       "~\n!\n@\n#\n$\n%\n^\n&\n*\n(\n)\n_\n+\n⌫\n"
+                       "tab\nQ\nW\nE\nR\nT\nY\nU\nI\nO\nP\n{\n}\n|\n"
+                       "caps\nA\nS\nD\nF\nG\nH\nJ\nK\nL\n:\n\"\n⏎\n"
+                       "⇧\nZ\nX\nC\nV\nB\nN\nM\n<\n>\n?\n⇧\n"
+                       "ctrl\nsu\nalt\n \nalt\nme\nctrl\n");
             file.close();
-            initialize();
+            Initialize();
             ui->listWidget_Slots->setFocus();
             ui->listWidget_Slots->setCurrentRow(ui->listWidget_Slots->count() - 1);
         }
     }
 }
 
-void keyColorSlots::on_pushButton_Remove_clicked()
+void keyMappingSlots::on_pushButton_Remove_clicked()
 {
-    if (currRow != -1) {
-        if (currRow == 0) {
+    if (CurrRow != -1) {
+        if (CurrRow == 0) {
             QMessageBox def;
             def.setWindowTitle("Default slot");
             def.setText("Warning! You can't delete the default slot, beacuse\n"
-                        "the colors just don't randomly appear!\n"
+                        "the keys just don't randomly appear!\n"
                         "Please DO NOT try to delete this file manually!!!");
-            def.setStyleSheet(messBoxStyleSheet);
+            def.setStyleSheet(MessBoxStyleSheet);
             def.exec();
         } else {
-            QFile checkFile(mainPath + "Config.ini");
+            QFile checkFile(MainPath + "Config.ini");
             checkFile.open(QIODevice::ReadOnly);
             QString check = checkFile.readLine();
             checkFile.close();
-            if (check == QString(mainPath + QString::number(currRow) + ".ini")) {
+            if (check == QString(MainPath + QString::number(CurrRow) + ".ini")) {
                 QMessageBox inUse;
                 inUse.setWindowTitle("In use");
                 inUse.setText("Warning! This slot is currently being used!\n"
                               "Please DO NOT try to delete files that are being used!");
-                inUse.setStyleSheet(messBoxStyleSheet);
+                inUse.setStyleSheet(MessBoxStyleSheet);
                 inUse.exec();
             } else {
-            int items = fileCount;
-            int deletedItem = currRow + 1;
+                int items = FileCount;
+                int deletedItem = CurrRow + 1;
 
                 if (items == deletedItem) {
-                    QString path = mainPath + QString::number(currRow) + ".ini";
+                    QString path = MainPath + QString::number(CurrRow) + ".ini";
                     QFile file(path);
                     file.remove();
 
-                    initialize();
+                    Initialize();
                     ui->listWidget_Slots->setFocus();
                     ui->listWidget_Slots->setCurrentRow(ui->listWidget_Slots->count() - 1);
                 } else {
                     QMessageBox support;
                     support.setWindowTitle("Not supported!");
                     support.setText("Waring! Only deleting the last slot is supported!\nPlease update your version or wait untill the next beta release!");
-                    support.setStyleSheet(messBoxStyleSheet);
+                    support.setStyleSheet(MessBoxStyleSheet);
                     support.exec();
                 }
             }
@@ -191,74 +180,45 @@ void keyColorSlots::on_pushButton_Remove_clicked()
         QMessageBox un;
         un.setWindowTitle("Not selected");
         un.setText("Warning! You have not selected anything!\n"
-                   "Please select a slot and click Open!");
-        un.setStyleSheet(messBoxStyleSheet);
+                   "Please select a slot and click Remove!");
+        un.setStyleSheet(MessBoxStyleSheet);
         un.exec();
     }
 }
 
-void keyColorSlots::on_buttonBox_accepted()
+void keyMappingSlots::on_listWidget_Slots_currentRowChanged(int currentRow)
 {
-    if (currRow != -1) {
-        QFile file(paths.pathToInitFileColConfig());
-        file.open(QIODevice::ReadWrite);
-        file.resize(0);
-        if (currRow == 0) {
-        file.write(QString(mainPath + "Colors.ini").toUtf8());
-        } else {file.write(QString(mainPath + QString::number(currRow) + ".ini").toUtf8());}
-        file.close();
-        filePath = filePathHere;
-        accept();
-        close();
-    } else {
-        QMessageBox un;
-        un.setWindowTitle("Not selected");
-        un.setText("Warning! You have not selected anything!\n"
-                   "Please select a slot and click Open!");
-        un.setStyleSheet(messBoxStyleSheet);
-        un.exec();
-    }
+    CurrRow = currentRow;
+    if (CurrRow == 0) {FilePathHere = MainPath + "Mapping.ini";} else {
+    FilePathHere = MainPath + QString::number(CurrRow) + ".ini";}
 }
 
-void keyColorSlots::on_buttonBox_rejected()
+void keyMappingSlots::on_pushButton_Rename_clicked()
 {
-    reject();
-    close();
-}
-
-void keyColorSlots::on_listWidget_Slots_currentRowChanged(int currentRow)
-{
-    currRow = currentRow;
-    if (currRow == 0) {filePathHere = mainPath + "Colors.ini";} else {
-    filePathHere = mainPath + QString::number(currRow) + ".ini";}
-}
-
-void keyColorSlots::on_pushButton_Rename_clicked()
-{
-    if (currRow != -1) {
-        if (currRow == 0) {
+    if (CurrRow != -1) {
+        if (CurrRow == 0) {
             QMessageBox def;
             def.setWindowTitle("Default slot");
             def.setText("Warning! You can't rename the default slot\n"
                         "Well, you can, but it doesn't make a difference.\n"
                         "The default slot will ALWAYS be named \"Default\".");
-            def.setStyleSheet(messBoxStyleSheet);
+            def.setStyleSheet(MessBoxStyleSheet);
             def.exec();
         } else {
-            QFile *file = new QFile(filePathHere);
+            QFile *file = new QFile(FilePathHere);
             QTextStream reading(file);
             reading.setCodec("UTF-8");
             file->open(QIODevice::ReadWrite);
             reading.readLine();
             QString contents;
-            for (int i = 0; i < 19; i++) {
+            for (int i = 0; i < 120; i++) {
                 contents = contents + reading.readLine() + "\n";
             }
             QInputDialog rename;
             rename.setWindowTitle("Rename");
             rename.setLabelText("Type in a new name.");
             rename.setInputMode(QInputDialog::TextInput);
-            rename.setStyleSheet(inputDialogStyleSheet);
+            rename.setStyleSheet(InputDialogStyleSheet);
             if (rename.exec() == QInputDialog::Accepted) {
                 QString text = rename.textValue();
                 text = text.simplified();
@@ -267,15 +227,15 @@ void keyColorSlots::on_pushButton_Rename_clicked()
                     QMessageBox empty;
                     empty.setWindowTitle("Empty");
                     empty.setText("You've not entered a name!\nPlease enter a name and click OK!");
-                    empty.setStyleSheet(messBoxStyleSheet);
+                    empty.setStyleSheet(MessBoxStyleSheet);
                     empty.exec();
                 } else {
                     file->resize(0);
                     file->write(text.toUtf8() + "\n" + contents.toUtf8());
                 }
             file->close();
-            int saveCurrRow = currRow;
-            initialize();
+            int saveCurrRow = CurrRow;
+            Initialize();
             ui->listWidget_Slots->setCurrentRow(saveCurrRow);
             ui->listWidget_Slots->setFocus();
             }
@@ -285,7 +245,36 @@ void keyColorSlots::on_pushButton_Rename_clicked()
         un.setWindowTitle("Not selected");
         un.setText("Warning! You have not selected anything!\n"
                    "Please select a slot and click Remove!");
-        un.setStyleSheet(messBoxStyleSheet);
+        un.setStyleSheet(MessBoxStyleSheet);
         un.exec();
     }
+}
+
+void keyMappingSlots::on_buttonBox_accepted()
+{
+    if (CurrRow != -1) {
+        QFile file(Paths.pathToInitFileMapConfig());
+        file.open(QIODevice::ReadWrite);
+        file.resize(0);
+        if (CurrRow == 0) {
+        file.write(QString(MainPath + "Mapping.ini").toUtf8());
+        } else {file.write(QString(MainPath + QString::number(CurrRow) + ".ini").toUtf8());}
+        file.close();
+        FilePath = FilePathHere;
+        accept();
+        close();
+    } else {
+        QMessageBox un;
+        un.setWindowTitle("Not selected");
+        un.setText("Warning! You have not selected anything!\n"
+                   "Please select a slot and click Open!");
+        un.setStyleSheet(MessBoxStyleSheet);
+        un.exec();
+    }
+}
+
+void keyMappingSlots::on_buttonBox_rejected()
+{
+    reject();
+    close();
 }

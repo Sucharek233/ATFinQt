@@ -1,9 +1,9 @@
 #ifndef KEYMAPPINGH_H
 #define KEYMAPPINGH_H
 
+#include "keymappingslots.h"
 #include <QDialog>
 #include <QDebug>
-
 
 namespace Ui {
 class keyMapping;
@@ -20,6 +20,10 @@ public:
     void resizeEvent(QResizeEvent*);
 
     void changeFontSize(int size);
+
+    void updateKeys();
+
+    void Write();
 
     QString getTilde() { return tilde; }
     QString getN1() { return n1; }
@@ -297,130 +301,136 @@ public slots:
 
     void on_buttonBox_rejected();
 
+private slots:
+    void on_pushButton_Slots_clicked();
+
+    void on_pushButton_Reset_clicked();
+
 private:
     Ui::keyMapping *ui;
+    keyMappingSlots mapSlots;
 
-    QString tilde = "~";
-    QString n1 = "1";
-    QString n2 = "2";
-    QString n3 = "3";
-    QString n4 = "4";
-    QString n5 = "5";
-    QString n6 = "6";
-    QString n7 = "7";
-    QString n8 = "8";
-    QString n9 = "9";
-    QString n0 = "0";
-    QString minus = "-";
-    QString equals = "=";
-    QString backspace = "⌫";
-    QString TAB = "tab";
-    QString q = "q";
-    QString w = "w";
-    QString e = "e";
-    QString r = "r";
-    QString t = "t";
-    QString y = "y";
-    QString u = "u";
-    QString i = "i";
-    QString o = "o";
-    QString p = "p";
-    QString leftSquareBracket = "[";
-    QString rightSquareBracket = "]";
-    QString backslash = "\\";
-    QString CAPS = "caps";
-    QString a = "a";
-    QString s = "s";
-    QString d = "d";
-    QString f = "f";
-    QString g = "g";
-    QString h = "h";
-    QString j = "j";
-    QString k = "k";
-    QString l = "l";
-    QString semicolon = ";";
-    QString apostrophe = "'";
-    QString enter = "⏎";
-    QString LShift = "⇧";
-    QString z = "z";
-    QString x = "x";
-    QString c = "c";
-    QString v = "v";
-    QString b = "b";
-    QString n = "n";
-    QString m = "m";
-    QString comma = ",";
-    QString period = ".";
-    QString slash = "/";
-    QString RShift = "⇧";
-    QString LCtrl = "ctrl";
-    QString super = "su";
-    QString LAlt = "alt";
-    QString space = " ";
-    QString RAlt = "alt";
-    QString menu = "me";
-    QString RCtrl = "ctrl";
+    QString tilde;
+    QString n1;
+    QString n2;
+    QString n3;
+    QString n4;
+    QString n5;
+    QString n6;
+    QString n7;
+    QString n8;
+    QString n9;
+    QString n0;
+    QString minus;
+    QString equals;
+    QString backspace;
+    QString TAB;
+    QString q;
+    QString w;
+    QString e;
+    QString r;
+    QString t;
+    QString y;
+    QString u;
+    QString i;
+    QString o;
+    QString p;
+    QString leftSquareBracket;
+    QString rightSquareBracket;
+    QString backslash;
+    QString CAPS;
+    QString a;
+    QString s;
+    QString d;
+    QString f;
+    QString g;
+    QString h;
+    QString j;
+    QString k;
+    QString l;
+    QString semicolon;
+    QString apostrophe;
+    QString enter;
+    QString LShift;
+    QString z;
+    QString x;
+    QString c;
+    QString v;
+    QString b;
+    QString n;
+    QString m;
+    QString comma;
+    QString period;
+    QString slash;
+    QString RShift;
+    QString LCtrl;
+    QString super;
+    QString LAlt;
+    QString space;
+    QString RAlt;
+    QString menu;
+    QString RCtrl;
 
-    QString tildeS = "~";
-    QString n1S = "!";
-    QString n2S = "@";
-    QString n3S = "#";
-    QString n4S = "$";
-    QString n5S = "%";
-    QString n6S = "^";
-    QString n7S = "&&";
-    QString n8S = "*";
-    QString n9S = "(";
-    QString n0S = ")";
-    QString minusS = "_";
-    QString equalsS = "+";
-    QString backspaceS = "⌫";
-    QString TABS = "tab";
-    QString qS = "Q";
-    QString wS = "W";
-    QString eS = "E";
-    QString rS = "R";
-    QString tS = "T";
-    QString yS = "Y";
-    QString uS = "U";
-    QString iS = "I";
-    QString oS = "O";
-    QString pS = "P";
-    QString leftSquareBracketS = "{";
-    QString rightSquareBracketS = "}";
-    QString backslashS = "|";
-    QString CAPSS = "caps";
-    QString aS = "A";
-    QString sS = "S";
-    QString dS = "D";
-    QString fS = "F";
-    QString gS = "G";
-    QString hS = "H";
-    QString jS = "J";
-    QString kS = "K";
-    QString lS = "L";
-    QString semicolonS = ":";
-    QString apostropheS = "\"";
-    QString enterS = "⏎";
-    QString LShiftS = "⇧";
-    QString zS = "Z";
-    QString xS = "X";
-    QString cS = "C";
-    QString vS = "V";
-    QString bS = "B";
-    QString nS = "N";
-    QString mS = "M";
-    QString commaS = "<";
-    QString periodS = ">";
-    QString slashS = "?";
-    QString RShiftS = "⇧";
-    QString LCtrlS = "ctrl";
-    QString superS = "su";
-    QString LAltS = "alt";
-    QString spaceS = " ";
-    QString RAltS = "alt";
-    QString menuS = "me";
-    QString RCtrlS = "ctrl";
+    QString tildeS;
+    QString n1S;
+    QString n2S;
+    QString n3S;
+    QString n4S;
+    QString n5S;
+    QString n6S;
+    QString n7S;
+    QString n8S;
+    QString n9S;
+    QString n0S;
+    QString minusS;
+    QString equalsS;
+    QString backspaceS;
+    QString TABS;
+    QString qS;
+    QString wS;
+    QString eS;
+    QString rS;
+    QString tS;
+    QString yS;
+    QString uS;
+    QString iS;
+    QString oS;
+    QString pS;
+    QString leftSquareBracketS;
+    QString rightSquareBracketS;
+    QString backslashS;
+    QString CAPSS;
+    QString aS;
+    QString sS;
+    QString dS;
+    QString fS;
+    QString gS;
+    QString hS;
+    QString jS;
+    QString kS;
+    QString lS;
+    QString semicolonS;
+    QString apostropheS;
+    QString enterS;
+    QString LShiftS;
+    QString zS;
+    QString xS;
+    QString cS;
+    QString vS;
+    QString bS;
+    QString nS;
+    QString mS;
+    QString commaS;
+    QString periodS;
+    QString slashS;
+    QString RShiftS;
+    QString LCtrlS;
+    QString superS;
+    QString LAltS;
+    QString spaceS;
+    QString RAltS;
+    QString menuS;
+    QString RCtrlS;
 
     QString orange;
     QString red;

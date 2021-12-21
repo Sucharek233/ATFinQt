@@ -141,6 +141,8 @@ void Courses::on_pushButton_Add_clicked()
     if (add.exec() == QDialog::Accepted) {
         ui->listWidget_Courses->clear();
         updateVars();
+        ui->listWidget_Courses->setFocus();
+        ui->listWidget_Courses->setCurrentRow(ui->listWidget_Courses->count() - 1);
     }
 }
 
@@ -194,6 +196,8 @@ void Courses::on_pushButton_Remove_clicked()
 
     ui->listWidget_Courses->clear();
     updateVars();
+    ui->listWidget_Courses->setFocus();
+    ui->listWidget_Courses->setCurrentRow(ui->listWidget_Courses->count() - 1);
 }
 
 void Courses::on_pushButton_Reset_clicked()

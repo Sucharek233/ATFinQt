@@ -40,6 +40,8 @@ private slots:
 
     void on_listWidget_Slots_currentRowChanged(int currentRow);
 
+    void on_pushButton_Rename_clicked();
+
 private:
     Ui::keyColorSlots *ui;
 

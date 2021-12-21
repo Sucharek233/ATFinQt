@@ -45,6 +45,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     updateColors();
+    updateKeys();
 
     ui->textEdit_Article->setReadOnly(true);
     ui->lineEdit_TextInput->setReadOnly(true);
@@ -582,6 +583,76 @@ void MainWindow::updateColors()
     lHFive->setBrush(QColor(keyCol.getSixthCol()));
     QPen penL5(QColor(keyCol.getSixthCol()), 2); lHFive->setPen(penL5);
 }
+void MainWindow::updateKeys()
+{
+    keyMap.updateKeys();
+
+    //Layer 1
+    ui->pushButton_Tilde->setText(keyMap.getTilde());
+    ui->pushButton_1->setText(keyMap.getN1());
+    ui->pushButton_2->setText(keyMap.getN2());
+    ui->pushButton_3->setText(keyMap.getN3());
+    ui->pushButton_4->setText(keyMap.getN4());
+    ui->pushButton_5->setText(keyMap.getN5());
+    ui->pushButton_6->setText(keyMap.getN6());
+    ui->pushButton_7->setText(keyMap.getN7());
+    ui->pushButton_8->setText(keyMap.getN8());
+    ui->pushButton_9->setText( keyMap.getN9());
+    ui->pushButton_0->setText(keyMap.getN0());
+    ui->pushButton_Minus->setText(keyMap.getMinus());
+    ui->pushButton_Equals->setText(keyMap.getEquals());
+    ui->pushButton_Backspace->setText(keyMap.getBackspace());
+    //Layer 2
+    ui->pushButton_TAB->setText(keyMap.getTAB());
+    ui->pushButton_Q->setText(keyMap.getQ());
+    ui->pushButton_W->setText(keyMap.getW());
+    ui->pushButton_E->setText(keyMap.getE());
+    ui->pushButton_R->setText(keyMap.getR());
+    ui->pushButton_T->setText(keyMap.getT());
+    ui->pushButton_Y->setText(keyMap.getY());
+    ui->pushButton_U->setText(keyMap.getU());
+    ui->pushButton_I->setText(keyMap.getI());
+    ui->pushButton_O->setText(keyMap.getO());
+    ui->pushButton_P->setText(keyMap.getP());
+    ui->pushButton_LeftSquareBracket->setText(keyMap.getLeftSquareBracket());
+    ui->pushButton_RightSquareBracket->setText(keyMap.getRightSquareBracket());
+    ui->pushButton_Backslash->setText(keyMap.getBackslash());
+    //Layer 3
+    ui->pushButton_CAPS->setText(keyMap.getCAPS());
+    ui->pushButton_A->setText(keyMap.getA());
+    ui->pushButton_S->setText(keyMap.getS());
+    ui->pushButton_D->setText(keyMap.getD());
+    ui->pushButton_F->setText(keyMap.getF());
+    ui->pushButton_G->setText(keyMap.getG());
+    ui->pushButton_H->setText(keyMap.getH());
+    ui->pushButton_J->setText(keyMap.getJ());
+    ui->pushButton_K->setText(keyMap.getK());
+    ui->pushButton_L->setText(keyMap.getL());
+    ui->pushButton_Semicolon->setText(keyMap.getSemicolon());
+    ui->pushButton_Apostrophe->setText(keyMap.getApostrophe());
+    ui->pushButton_Enter->setText(keyMap.getEnter());
+    //Layer 4
+    ui->pushButton_LShift->setText(keyMap.getLShift());
+    ui->pushButton_Z->setText(keyMap.getZ());
+    ui->pushButton_X->setText(keyMap.getX());
+    ui->pushButton_C->setText(keyMap.getC());
+    ui->pushButton_V->setText(keyMap.getV());
+    ui->pushButton_B->setText(keyMap.getB());
+    ui->pushButton_N->setText(keyMap.getN());
+    ui->pushButton_M->setText(keyMap.getM());
+    ui->pushButton_Comma->setText(keyMap.getComma());
+    ui->pushButton_Period->setText(keyMap.getPeriod());
+    ui->pushButton_Slash->setText(keyMap.getSlash());
+    ui->pushButton_RShift->setText(keyMap.getRShift());
+    //Layer 5
+    ui->pushButton_LCtrl->setText(keyMap.getLCtrl());
+    ui->pushButton_Super->setText(keyMap.getSuper());
+    ui->pushButton_LAlt->setText(keyMap.getLAlt());
+    ui->pushButton_Space->setText(keyMap.getSpace());
+    ui->pushButton_RAlt->setText(keyMap.getRAlt());
+    ui->pushButton_Menu->setText(keyMap.getMenu());
+    ui->pushButton_RCtrl->setText(keyMap.getRCtrl());
+}
 
 void MainWindow::changeFontSize(int size)
 {
@@ -857,6 +928,7 @@ void MainWindow::on_pushButton_StartCourse_clicked()
 
 void MainWindow::on_action_ChangeKeyMapping_triggered()
 {
+    keyMap.updateKeys();
     keyMap.setModal(true);
 
     keyMap.setOrange("color: " + keyCol.getTextCol() +  "; background-color: " + keyCol.getFirstCol() + "; border: 3px solid " + keyCol.getFirstBor() + "; border-radius:10px;");
@@ -891,71 +963,7 @@ void MainWindow::on_action_ChangeKeyMapping_triggered()
     keyMap.updateColors();
     if (keyMap.exec() == QDialog::Accepted)
     {
-        //Layer 1
-        ui->pushButton_Tilde->setText(keyMap.getTilde());
-        ui->pushButton_1->setText(keyMap.getN1());
-        ui->pushButton_2->setText(keyMap.getN2());
-        ui->pushButton_3->setText(keyMap.getN3());
-        ui->pushButton_4->setText(keyMap.getN4());
-        ui->pushButton_5->setText(keyMap.getN5());
-        ui->pushButton_6->setText(keyMap.getN6());
-        ui->pushButton_7->setText(keyMap.getN7());
-        ui->pushButton_8->setText(keyMap.getN8());
-        ui->pushButton_9->setText( keyMap.getN9());
-        ui->pushButton_0->setText(keyMap.getN0());
-        ui->pushButton_Minus->setText(keyMap.getMinus());
-        ui->pushButton_Equals->setText(keyMap.getEquals());
-        ui->pushButton_Backspace->setText(keyMap.getBackspace());
-        //Layer 2
-        ui->pushButton_TAB->setText(keyMap.getTAB());
-        ui->pushButton_Q->setText(keyMap.getQ());
-        ui->pushButton_W->setText(keyMap.getW());
-        ui->pushButton_E->setText(keyMap.getE());
-        ui->pushButton_R->setText(keyMap.getR());
-        ui->pushButton_T->setText(keyMap.getT());
-        ui->pushButton_Y->setText(keyMap.getY());
-        ui->pushButton_U->setText(keyMap.getU());
-        ui->pushButton_I->setText(keyMap.getI());
-        ui->pushButton_O->setText(keyMap.getO());
-        ui->pushButton_P->setText(keyMap.getP());
-        ui->pushButton_LeftSquareBracket->setText(keyMap.getLeftSquareBracket());
-        ui->pushButton_RightSquareBracket->setText(keyMap.getRightSquareBracket());
-        ui->pushButton_Backslash->setText(keyMap.getBackslash());
-        //Layer 3
-        ui->pushButton_CAPS->setText(keyMap.getCAPS());
-        ui->pushButton_A->setText(keyMap.getA());
-        ui->pushButton_S->setText(keyMap.getS());
-        ui->pushButton_D->setText(keyMap.getD());
-        ui->pushButton_F->setText(keyMap.getF());
-        ui->pushButton_G->setText(keyMap.getG());
-        ui->pushButton_H->setText(keyMap.getH());
-        ui->pushButton_J->setText(keyMap.getJ());
-        ui->pushButton_K->setText(keyMap.getK());
-        ui->pushButton_L->setText(keyMap.getL());
-        ui->pushButton_Semicolon->setText(keyMap.getSemicolon());
-        ui->pushButton_Apostrophe->setText(keyMap.getApostrophe());
-        ui->pushButton_Enter->setText(keyMap.getEnter());
-        //Layer 4
-        ui->pushButton_LShift->setText(keyMap.getLShift());
-        ui->pushButton_Z->setText(keyMap.getZ());
-        ui->pushButton_X->setText(keyMap.getX());
-        ui->pushButton_C->setText(keyMap.getC());
-        ui->pushButton_V->setText(keyMap.getV());
-        ui->pushButton_B->setText(keyMap.getB());
-        ui->pushButton_N->setText(keyMap.getN());
-        ui->pushButton_M->setText(keyMap.getM());
-        ui->pushButton_Comma->setText(keyMap.getComma());
-        ui->pushButton_Period->setText(keyMap.getPeriod());
-        ui->pushButton_Slash->setText(keyMap.getSlash());
-        ui->pushButton_RShift->setText(keyMap.getRShift());
-        //Layer 5
-        ui->pushButton_LCtrl->setText(keyMap.getLCtrl());
-        ui->pushButton_Super->setText(keyMap.getSuper());
-        ui->pushButton_LAlt->setText(keyMap.getLAlt());
-        ui->pushButton_Space->setText(keyMap.getSpace());
-        ui->pushButton_RAlt->setText(keyMap.getRAlt());
-        ui->pushButton_Menu->setText(keyMap.getMenu());
-        ui->pushButton_RCtrl->setText(keyMap.getRCtrl());
+        updateKeys();
     }
 }
 

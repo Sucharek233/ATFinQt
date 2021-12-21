@@ -7,13 +7,13 @@
     <x>0</x>
     <y>0</y>
     <width>624</width>
-    <height>272</height>
+    <height>282</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
     <width>624</width>
-    <height>272</height>
+    <height>282</height>
    </size>
   </property>
   <property name="maximumSize">
@@ -26,17 +26,25 @@
    <string>Key mapping</string>
   </property>
   <layout class="QGridLayout" name="gridLayout_2">
-   <item row="6" column="0">
-    <widget class="QDialogButtonBox" name="buttonBox">
-     <property name="standardButtons">
-      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+   <item row="1" column="0" colspan="5">
+    <widget class="QPushButton" name="pushButton_OnShift">
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+      </font>
      </property>
-     <property name="centerButtons">
+     <property name="text">
+      <string>On shift</string>
+     </property>
+     <property name="checkable">
       <bool>true</bool>
+     </property>
+     <property name="checked">
+      <bool>false</bool>
      </property>
     </widget>
    </item>
-   <item row="4" column="0">
+   <item row="5" column="0" colspan="5">
     <layout class="QHBoxLayout" name="fourthEditableLayer">
      <item>
       <widget class="QLineEdit" name="lineEdit_LShift">
@@ -60,7 +68,6 @@
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>22</pointsize>
         </font>
        </property>
@@ -98,7 +105,6 @@ color:black;</string>
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>16</pointsize>
         </font>
        </property>
@@ -136,7 +142,6 @@ color:black;</string>
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>16</pointsize>
         </font>
        </property>
@@ -174,7 +179,6 @@ color:black;</string>
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>16</pointsize>
         </font>
        </property>
@@ -212,7 +216,6 @@ color:black;</string>
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>16</pointsize>
         </font>
        </property>
@@ -250,7 +253,6 @@ color:black;</string>
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>16</pointsize>
         </font>
        </property>
@@ -288,7 +290,6 @@ color:black;</string>
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>16</pointsize>
         </font>
        </property>
@@ -326,7 +327,6 @@ color:black;</string>
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>16</pointsize>
         </font>
        </property>
@@ -364,7 +364,6 @@ color:black;</string>
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>16</pointsize>
         </font>
        </property>
@@ -402,7 +401,6 @@ color:black;</string>
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>16</pointsize>
         </font>
        </property>
@@ -440,7 +438,6 @@ color:black;</string>
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>16</pointsize>
         </font>
        </property>
@@ -478,7 +475,6 @@ color:black;</string>
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>22</pointsize>
         </font>
        </property>
@@ -496,277 +492,40 @@ color:black;</string>
      </item>
     </layout>
    </item>
-   <item row="5" column="0">
-    <layout class="QHBoxLayout" name="fifthEditableLayer">
-     <item>
-      <widget class="QLineEdit" name="lineEdit_LCtrl">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="minimumSize">
-        <size>
-         <width>47</width>
-         <height>32</height>
-        </size>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>47</width>
-         <height>32</height>
-        </size>
-       </property>
-       <property name="font">
-        <font>
-         <family>Arial</family>
-         <pointsize>16</pointsize>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">background-color: rgb(255, 170, 0);
-color:black;</string>
-       </property>
-       <property name="text">
-        <string>ctrl</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLineEdit" name="lineEdit_Super">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="minimumSize">
-        <size>
-         <width>45</width>
-         <height>32</height>
-        </size>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>45</width>
-         <height>32</height>
-        </size>
-       </property>
-       <property name="font">
-        <font>
-         <family>Arial</family>
-         <pointsize>16</pointsize>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">background-color: rgb(190, 230, 255);
-color:black;</string>
-       </property>
-       <property name="text">
-        <string>su</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLineEdit" name="lineEdit_LAlt">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="minimumSize">
-        <size>
-         <width>42</width>
-         <height>32</height>
-        </size>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>42</width>
-         <height>32</height>
-        </size>
-       </property>
-       <property name="font">
-        <font>
-         <family>Arial</family>
-         <pointsize>16</pointsize>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">background-color: rgb(255, 170, 0);
-color:black;</string>
-       </property>
-       <property name="text">
-        <string>alt</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLineEdit" name="lineEdit_Space">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="minimumSize">
-        <size>
-         <width>300</width>
-         <height>32</height>
-        </size>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>300</width>
-         <height>32</height>
-        </size>
-       </property>
-       <property name="font">
-        <font>
-         <family>Arial</family>
-         <pointsize>16</pointsize>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">background-color: rgb(190, 230, 255);
-color:black;</string>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLineEdit" name="lineEdit_RAlt">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="minimumSize">
-        <size>
-         <width>42</width>
-         <height>32</height>
-        </size>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>42</width>
-         <height>32</height>
-        </size>
-       </property>
-       <property name="font">
-        <font>
-         <family>Arial</family>
-         <pointsize>16</pointsize>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">background-color: rgb(255, 170, 0);
-color:black;</string>
-       </property>
-       <property name="text">
-        <string>alt</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLineEdit" name="lineEdit_Menu">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="minimumSize">
-        <size>
-         <width>45</width>
-         <height>32</height>
-        </size>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>45</width>
-         <height>32</height>
-        </size>
-       </property>
-       <property name="font">
-        <font>
-         <family>Arial</family>
-         <pointsize>16</pointsize>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">background-color: rgb(190, 230, 255);
-color:black;</string>
-       </property>
-       <property name="text">
-        <string>me</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLineEdit" name="lineEdit_RCtrl">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="minimumSize">
-        <size>
-         <width>47</width>
-         <height>32</height>
-        </size>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>47</width>
-         <height>32</height>
-        </size>
-       </property>
-       <property name="font">
-        <font>
-         <family>Arial</family>
-         <pointsize>16</pointsize>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">background-color: rgb(255, 170, 0);
-color:black;</string>
-       </property>
-       <property name="text">
-        <string>ctrl</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
-       </property>
-      </widget>
-     </item>
-    </layout>
+   <item row="8" column="3">
+    <widget class="QPushButton" name="pushButton_Slots">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>Slots</string>
+     </property>
+    </widget>
    </item>
-   <item row="1" column="0">
+   <item row="8" column="4">
+    <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+      </font>
+     </property>
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+     </property>
+     <property name="centerButtons">
+      <bool>false</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0" colspan="5">
     <layout class="QHBoxLayout" name="firstEditableLayer">
      <property name="spacing">
       <number>4</number>
@@ -793,7 +552,6 @@ color:black;</string>
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>16</pointsize>
         </font>
        </property>
@@ -831,7 +589,6 @@ color:black;</string>
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>16</pointsize>
         </font>
        </property>
@@ -869,7 +626,6 @@ color:black;</string>
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>16</pointsize>
         </font>
        </property>
@@ -907,7 +663,6 @@ color:black;</string>
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>16</pointsize>
         </font>
        </property>
@@ -945,7 +700,6 @@ color:black;</string>
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>16</pointsize>
         </font>
        </property>
@@ -983,7 +737,6 @@ color:black;</string>
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>16</pointsize>
         </font>
        </property>
@@ -1021,7 +774,6 @@ color:black;</string>
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>16</pointsize>
         </font>
        </property>
@@ -1059,7 +811,6 @@ color:black;</string>
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>16</pointsize>
         </font>
        </property>
@@ -1097,7 +848,6 @@ color:black;</string>
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>16</pointsize>
         </font>
        </property>
@@ -1135,7 +885,6 @@ color:black;</string>
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>16</pointsize>
         </font>
        </property>
@@ -1173,7 +922,6 @@ color:black;</string>
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>16</pointsize>
         </font>
        </property>
@@ -1211,7 +959,6 @@ color:black;</string>
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>16</pointsize>
         </font>
        </property>
@@ -1249,7 +996,6 @@ color:black;</string>
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>16</pointsize>
         </font>
        </property>
@@ -1287,7 +1033,6 @@ color:black;</string>
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>16</pointsize>
         </font>
        </property>
@@ -1305,7 +1050,270 @@ color:black;</string>
      </item>
     </layout>
    </item>
-   <item row="2" column="0">
+   <item row="6" column="0" colspan="5">
+    <layout class="QHBoxLayout" name="fifthEditableLayer">
+     <item>
+      <widget class="QLineEdit" name="lineEdit_LCtrl">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>47</width>
+         <height>32</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>47</width>
+         <height>32</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>16</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(255, 170, 0);
+color:black;</string>
+       </property>
+       <property name="text">
+        <string>ctrl</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="lineEdit_Super">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>45</width>
+         <height>32</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>45</width>
+         <height>32</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>16</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(190, 230, 255);
+color:black;</string>
+       </property>
+       <property name="text">
+        <string>su</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="lineEdit_LAlt">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>42</width>
+         <height>32</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>42</width>
+         <height>32</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>16</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(255, 170, 0);
+color:black;</string>
+       </property>
+       <property name="text">
+        <string>alt</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="lineEdit_Space">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>300</width>
+         <height>32</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>300</width>
+         <height>32</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>16</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(190, 230, 255);
+color:black;</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="lineEdit_RAlt">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>42</width>
+         <height>32</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>42</width>
+         <height>32</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>16</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(255, 170, 0);
+color:black;</string>
+       </property>
+       <property name="text">
+        <string>alt</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="lineEdit_Menu">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>45</width>
+         <height>32</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>45</width>
+         <height>32</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>16</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(190, 230, 255);
+color:black;</string>
+       </property>
+       <property name="text">
+        <string>me</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="lineEdit_RCtrl">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>47</width>
+         <height>32</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>47</width>
+         <height>32</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>16</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(255, 170, 0);
+color:black;</string>
+       </property>
+       <property name="text">
+        <string>ctrl</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="3" column="0" colspan="5">
     <layout class="QHBoxLayout" name="secondEditableLayer">
      <item>
       <widget class="QLineEdit" name="lineEdit_TAB">
@@ -1329,7 +1337,6 @@ color:black;</string>
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>16</pointsize>
         </font>
        </property>
@@ -1367,7 +1374,6 @@ color:black;</string>
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>16</pointsize>
         </font>
        </property>
@@ -1405,7 +1411,6 @@ color:black;</string>
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>16</pointsize>
         </font>
        </property>
@@ -1443,7 +1448,6 @@ color:black;</string>
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>16</pointsize>
         </font>
        </property>
@@ -1481,7 +1485,6 @@ color:black;</string>
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>16</pointsize>
         </font>
        </property>
@@ -1519,7 +1522,6 @@ color:black;</string>
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>16</pointsize>
         </font>
        </property>
@@ -1557,7 +1559,6 @@ color:black;</string>
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>16</pointsize>
         </font>
        </property>
@@ -1595,7 +1596,6 @@ color:black;</string>
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>16</pointsize>
         </font>
        </property>
@@ -1633,7 +1633,6 @@ color:black;</string>
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>16</pointsize>
         </font>
        </property>
@@ -1671,7 +1670,6 @@ color:black;</string>
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>16</pointsize>
         </font>
        </property>
@@ -1709,7 +1707,6 @@ color:black;</string>
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>16</pointsize>
         </font>
        </property>
@@ -1747,7 +1744,6 @@ color:black;</string>
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>16</pointsize>
         </font>
        </property>
@@ -1785,7 +1781,6 @@ color:black;</string>
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>16</pointsize>
         </font>
        </property>
@@ -1823,7 +1818,6 @@ color:black;</string>
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>16</pointsize>
         </font>
        </property>
@@ -1841,7 +1835,7 @@ color:black;</string>
      </item>
     </layout>
    </item>
-   <item row="3" column="0">
+   <item row="4" column="0" colspan="5">
     <layout class="QHBoxLayout" name="thirdEditableLayer">
      <item>
       <widget class="QLineEdit" name="lineEdit_CAPS">
@@ -1865,7 +1859,6 @@ color:black;</string>
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>16</pointsize>
         </font>
        </property>
@@ -1903,7 +1896,6 @@ color:black;</string>
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>16</pointsize>
         </font>
        </property>
@@ -1943,7 +1935,6 @@ border-radius: 10px;</string>
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>16</pointsize>
         </font>
        </property>
@@ -1981,7 +1972,6 @@ color:black;</string>
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>16</pointsize>
         </font>
        </property>
@@ -2019,7 +2009,6 @@ color:black;</string>
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>16</pointsize>
         </font>
        </property>
@@ -2057,7 +2046,6 @@ color:black;</string>
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>16</pointsize>
         </font>
        </property>
@@ -2095,7 +2083,6 @@ color:black;</string>
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>16</pointsize>
         </font>
        </property>
@@ -2133,7 +2120,6 @@ color:black;</string>
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>16</pointsize>
         </font>
        </property>
@@ -2171,7 +2157,6 @@ color:black;</string>
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>16</pointsize>
         </font>
        </property>
@@ -2209,7 +2194,6 @@ color:black;</string>
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>16</pointsize>
         </font>
        </property>
@@ -2247,7 +2231,6 @@ color:black;</string>
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>16</pointsize>
         </font>
        </property>
@@ -2285,7 +2268,6 @@ color:black;</string>
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>16</pointsize>
         </font>
        </property>
@@ -2326,7 +2308,6 @@ color:black;</string>
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>16</pointsize>
         </font>
        </property>
@@ -2344,21 +2325,21 @@ color:black;</string>
      </item>
     </layout>
    </item>
-   <item row="0" column="0">
-    <widget class="QPushButton" name="pushButton_OnShift">
+   <item row="8" column="0" colspan="3">
+    <widget class="QPushButton" name="pushButton_Reset">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
      <property name="font">
       <font>
        <pointsize>12</pointsize>
       </font>
      </property>
      <property name="text">
-      <string>On shift</string>
-     </property>
-     <property name="checkable">
-      <bool>true</bool>
-     </property>
-     <property name="checked">
-      <bool>false</bool>
+      <string>Reset</string>
      </property>
     </widget>
    </item>

@@ -58,6 +58,29 @@ int main(int argc, char *argv[])
             return -1;
         }
 
+        PreAppTasks::copyIniToDestDirMapMapping();
+
+        QString pathToPersitentIniMapMapping = PreAppTasks::pathToInitFileMapMapping();
+        qDebug() << pathToPersitentIniMapMapping;
+
+        QFile writeAbleIniFileMapMapping(pathToPersitentIniMapMapping);
+        if(!writeAbleIniFileMapMapping.open(QIODevice::ReadWrite |QIODevice::Append)){
+            qDebug() << "Could not open local ini file" << writeAbleIniFileMapMapping.errorString() << writeAbleIniFileMapMapping.error();
+            return -1;
+        }
+
+
+        PreAppTasks::copyIniToDestDirMapConfig();
+
+        QString pathToPersitentIniMapConfig = PreAppTasks::pathToInitFileConfig();
+        qDebug() << pathToPersitentIniMapConfig;
+
+        QFile writeAbleIniFileMapConfig(pathToPersitentIniMapConfig);
+        if(!writeAbleIniFileMapConfig.open(QIODevice::ReadWrite |QIODevice::Append)){
+            qDebug() << "Could not open local ini file" << writeAbleIniFileMapConfig.errorString() << writeAbleIniFileMapConfig.error();
+            return -1;
+        }
+
     MainWindow w;
     w.show();
     return a.exec();

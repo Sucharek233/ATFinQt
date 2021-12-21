@@ -32,6 +32,7 @@ public:
     void lightMain();
     void darkMain();
     void updateColors();
+    void updateKeys();
 
     void resizeEvent(QResizeEvent*);
     void changeFontSize(int size);

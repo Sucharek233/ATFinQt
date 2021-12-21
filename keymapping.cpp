@@ -10,19 +10,26 @@ keyMapping::keyMapping(QWidget *parent) :
     ui->setupUi(this);
 
     lightMap();
+    updateKeys();
 }
 
 void keyMapping::lightMap()
 {
     ui->pushButton_OnShift->setStyleSheet("color: black; background-color: rgb(244, 244, 244);");
+    ui->pushButton_Slots->setStyleSheet("color: black; background-color: rgb(244, 244, 244);");
+    ui->pushButton_Reset->setStyleSheet("color: black; background-color: rgb(244, 244, 244);");
     keyMapping::setStyleSheet("background-color: rgb(244, 244, 244);");
     ui->buttonBox->setStyleSheet("QPushButton {color: black; background-color: rgb(244, 244, 244);}");
+    mapSlots.lightMapSlots();
 }
 void keyMapping::darkMap()
 {
     ui->pushButton_OnShift->setStyleSheet("color: rgb(211, 213, 201); background-color: rgb(36, 36, 44);");
+    ui->pushButton_Slots->setStyleSheet("color: rgb(211, 213, 201); background-color: rgb(36, 36, 44);");
+    ui->pushButton_Reset->setStyleSheet("color: rgb(211, 213, 201); background-color: rgb(36, 36, 44);");
     keyMapping::setStyleSheet("background-color: rgb(6, 6, 14);");
     ui->buttonBox->setStyleSheet("QPushButton {color: rgb(211, 213, 201); background-color: rgb(36, 36, 44);}");
+    mapSlots.darkMapSlots();
 }
 
 void keyMapping::updateColors()
@@ -87,6 +94,163 @@ void keyMapping::updateColors()
     ui->lineEdit_RAlt->setStyleSheet(orange);
     ui->lineEdit_Menu->setStyleSheet(whiteish);
     ui->lineEdit_RCtrl->setStyleSheet(orange);
+}
+void keyMapping::updateKeys()
+{
+    QFile *load = new QFile(mapSlots.GetPath());
+    load->open(QIODevice::ReadOnly);
+    QTextStream reading(load);
+    reading.setCodec("UTF-8");
+    reading.readLine();
+
+    tilde = reading.readLine(); ui->lineEdit_Tilde->setText(tilde);
+    n1 = reading.readLine();    ui->lineEdit_1->setText(n1);
+    n2 = reading.readLine();    ui->lineEdit_2->setText(n2);
+    n3 = reading.readLine();    ui->lineEdit_3->setText(n3);
+    n4 = reading.readLine();    ui->lineEdit_4->setText(n4);
+    n5 = reading.readLine();    ui->lineEdit_5->setText(n5);
+    n6 = reading.readLine();    ui->lineEdit_6->setText(n6);
+    n7 = reading.readLine();    ui->lineEdit_7->setText(n7);
+    n8 = reading.readLine();    ui->lineEdit_8->setText(n8);
+    n9 = reading.readLine();    ui->lineEdit_9->setText(n9);
+    n0 = reading.readLine();    ui->lineEdit_0->setText(n0);
+    minus = reading.readLine(); ui->lineEdit_Minus->setText(minus);
+    equals = reading.readLine();    ui->lineEdit_Equals->setText(equals);
+    backspace = reading.readLine(); ui->lineEdit_Backspace->setText(backspace);
+    TAB = reading.readLine();   ui->lineEdit_TAB->setText(TAB);
+    q = reading.readLine(); ui->lineEdit_Q->setText(q);
+    w = reading.readLine(); ui->lineEdit_W->setText(w);
+    e = reading.readLine(); ui->lineEdit_E->setText(e);
+    r = reading.readLine(); ui->lineEdit_R->setText(r);
+    t = reading.readLine(); ui->lineEdit_T->setText(t);
+    y = reading.readLine(); ui->lineEdit_Y->setText(y);
+    u = reading.readLine(); ui->lineEdit_U->setText(u);
+    i = reading.readLine(); ui->lineEdit_I->setText(i);
+    o = reading.readLine(); ui->lineEdit_O->setText(o);
+    p = reading.readLine(); ui->lineEdit_P->setText(p);
+    leftSquareBracket = reading.readLine();     ui->lineEdit_leftSqureBracket->setText(rightSquareBracket);
+    rightSquareBracket = reading.readLine();    ui->lineEdit_rightSquareBracket->setText(leftSquareBracket);
+    backslash = reading.readLine(); ui->lineEdit_Backslash->setText(backslash);
+    CAPS = reading.readLine();  ui->lineEdit_CAPS->setText(CAPS);
+    a = reading.readLine(); ui->lineEdit_A->setText(a);
+    s = reading.readLine(); ui->lineEdit_S->setText(s);
+    d = reading.readLine(); ui->lineEdit_D->setText(d);
+    f = reading.readLine(); ui->lineEdit_F->setText(f);
+    g = reading.readLine(); ui->lineEdit_G->setText(g);
+    h = reading.readLine(); ui->lineEdit_H->setText(h);
+    j = reading.readLine(); ui->lineEdit_J->setText(j);
+    k = reading.readLine(); ui->lineEdit_K->setText(k);
+    l = reading.readLine(); ui->lineEdit_L->setText(l);
+    semicolon = reading.readLine(); ui->lineEdit_Semicolon->setText(semicolon);
+    apostrophe = reading.readLine();    ui->lineEdit_Apostrophe->setText(apostrophe);
+    enter = reading.readLine(); ui->lineEdit_Enter->setText(enter);
+    LShift = reading.readLine();    ui->lineEdit_LShift->setText(LShift);
+    z = reading.readLine(); ui->lineEdit_Z->setText(z);
+    x = reading.readLine(); ui->lineEdit_X->setText(x);
+    c = reading.readLine(); ui->lineEdit_C->setText(c);
+    v = reading.readLine(); ui->lineEdit_V->setText(v);
+    b = reading.readLine(); ui->lineEdit_B->setText(b);
+    n = reading.readLine(); ui->lineEdit_N->setText(n);
+    m = reading.readLine(); ui->lineEdit_M->setText(m);
+    comma = reading.readLine(); ui->lineEdit_Comma->setText(comma);
+    period = reading.readLine();    ui->lineEdit_Period->setText(period);
+    slash = reading.readLine(); ui->lineEdit_Slash->setText(slash);
+    RShift = reading.readLine();    ui->lineEdit_RShift->setText(RShift);
+    LCtrl = reading.readLine(); ui->lineEdit_LCtrl->setText(LCtrl);
+    super = reading.readLine(); ui->lineEdit_Super->setText(super);
+    LAlt = reading.readLine();  ui->lineEdit_LAlt->setText(LAlt);
+    space = reading.readLine(); ui->lineEdit_Space->setText(space);
+    RAlt = reading.readLine();  ui->lineEdit_RAlt->setText(RAlt);
+    menu = reading.readLine();  ui->lineEdit_Menu->setText(menu);
+    RCtrl = reading.readLine(); ui->lineEdit_RCtrl->setText(RCtrl);
+
+    tildeS = reading.readLine();
+    n1S = reading.readLine();
+    n2S = reading.readLine();
+    n3S = reading.readLine();
+    n4S = reading.readLine();
+    n5S = reading.readLine();
+    n6S = reading.readLine();
+    n7S = reading.readLine();
+    n8S = reading.readLine();
+    n9S = reading.readLine();
+    n0S = reading.readLine();
+    minusS = reading.readLine();
+    equalsS = reading.readLine();
+    backspaceS = reading.readLine();
+    TABS = reading.readLine();
+    qS = reading.readLine();
+    wS = reading.readLine();
+    eS = reading.readLine();
+    rS = reading.readLine();
+    tS = reading.readLine();
+    yS = reading.readLine();
+    uS = reading.readLine();
+    iS = reading.readLine();
+    oS = reading.readLine();
+    pS = reading.readLine();
+    leftSquareBracketS = reading.readLine();
+    rightSquareBracketS = reading.readLine();
+    backslashS = reading.readLine();
+    CAPSS = reading.readLine();
+    aS = reading.readLine();
+    sS = reading.readLine();
+    dS = reading.readLine();
+    fS = reading.readLine();
+    gS = reading.readLine();
+    hS = reading.readLine();
+    jS = reading.readLine();
+    kS = reading.readLine();
+    lS = reading.readLine();
+    semicolonS = reading.readLine();
+    apostropheS = reading.readLine();
+    enterS = reading.readLine();
+    LShiftS = reading.readLine();
+    zS = reading.readLine();
+    xS = reading.readLine();
+    cS = reading.readLine();
+    vS = reading.readLine();
+    bS = reading.readLine();
+    nS = reading.readLine();
+    mS = reading.readLine();
+    commaS = reading.readLine();
+    periodS = reading.readLine();
+    slashS = reading.readLine();
+    RShiftS = reading.readLine();
+    LCtrlS = reading.readLine();
+    superS = reading.readLine();
+    LAltS = reading.readLine();
+    spaceS = reading.readLine();
+    RAltS = reading.readLine();
+    menuS = reading.readLine();
+    RCtrlS = reading.readLine();
+
+    load->close();
+}
+
+void keyMapping::Write()
+{
+    QFile *write = new QFile(mapSlots.GetPath());
+    write->open(QIODevice::ReadOnly);
+    QTextStream read(write);
+    read.setCodec("UTF-8");
+    QString name = read.readLine();
+    write->close();
+    QString toWrite = name+"\n"+tilde+"\n"+n1+"\n"+n2+"\n"+n3+"\n"+n4+"\n"+n5+"\n"+n6+"\n"+n7+"\n"+n8+"\n"+n9+"\n"+n0+"\n"+minus+"\n"+equals+"\n"+backspace+"\n"+
+                      TAB+"\n"+q+"\n"+w+"\n"+e+"\n"+r+"\n"+t+"\n"+y+"\n"+u+"\n"+i+"\n"+o+"\n"+p+"\n"+leftSquareBracket+"\n"+rightSquareBracket+"\n"+backslash+"\n"+
+                      CAPS+"\n"+a+"\n"+s+"\n"+d+"\n"+f+"\n"+g+"\n"+h+"\n"+j+"\n"+k+"\n"+l+"\n"+semicolon+"\n"+apostrophe+"\n"+enter+"\n"+
+                      LShift+"\n"+z+"\n"+x+"\n"+c+"\n"+v+"\n"+b+"\n"+n+"\n"+m+"\n"+comma+"\n"+period+"\n"+slash+"\n"+RShift+"\n"+
+                      LCtrl+"\n"+super+"\n"+LAlt+"\n"+space+"\n"+RAlt+"\n"+menu+"\n"+RCtrl+"\n"+
+
+                      tildeS+"\n"+n1S+"\n"+n2S+"\n"+n3S+"\n"+n4S+"\n"+n5S+"\n"+n6S+"\n"+n7S+"\n"+n8S+"\n"+n9S+"\n"+n0S+"\n"+minusS+"\n"+equalsS+"\n"+backspaceS+"\n"+
+                      TABS+"\n"+qS+"\n"+wS+"\n"+eS+"\n"+rS+"\n"+tS+"\n"+yS+"\n"+uS+"\n"+iS+"\n"+oS+"\n"+pS+"\n"+leftSquareBracketS+"\n"+rightSquareBracketS+"\n"+backslashS+"\n"+
+                      CAPSS+"\n"+aS+"\n"+sS+"\n"+dS+"\n"+fS+"\n"+gS+"\n"+hS+"\n"+jS+"\n"+kS+"\n"+lS+"\n"+semicolonS+"\n"+apostropheS+"\n"+enterS+"\n"+
+                      LShiftS+"\n"+zS+"\n"+xS+"\n"+cS+"\n"+vS+"\n"+bS+"\n"+nS+"\n"+mS+"\n"+commaS+"\n"+periodS+"\n"+slashS+"\n"+RShiftS+"\n"+
+                      LCtrlS+"\n"+superS+"\n"+LAltS+"\n"+spaceS+"\n"+RAltS+"\n"+menuS+"\n"+RCtrlS;
+    write->open(QIODevice::ReadWrite);
+    write->resize(0);
+    write->write(toWrite.toUtf8());
+    write->close();
 }
 
 keyMapping::~keyMapping()
@@ -1105,6 +1269,7 @@ void keyMapping::resizeEvent(QResizeEvent*)
 
 void keyMapping::on_buttonBox_accepted()
 {
+    Write();
     accept();
     close();
 }
@@ -1112,4 +1277,44 @@ void keyMapping::on_buttonBox_accepted()
 void keyMapping::on_buttonBox_rejected()
 {
     close();
+}
+
+void keyMapping::on_pushButton_Slots_clicked()
+{
+    mapSlots.setModal(true);
+    mapSlots.Initialize();
+    if (mapSlots.exec() == QDialog::Accepted) {
+        keyMapping::on_pushButton_OnShift_toggled(false);
+        updateColors();
+        updateKeys();
+    }
+}
+
+void keyMapping::on_pushButton_Reset_clicked()
+{
+    QFile *write = new QFile(mapSlots.GetPath());
+    write->open(QIODevice::ReadOnly);
+    QTextStream read(write);
+    read.setCodec("UTF-8");
+    QString name = read.readLine();
+    write->close();
+    QString toWrite = name + "\n~​\n1\n2\n3\n4\n5\n6\n7\n8\n9\n0\n-\n=\n⌫\n"
+                      "tab\nq\nw\ne\nr\nt\ny\nu\ni\no\np\n[\n]\n\\\n"
+                      "caps\na\ns\nd\nf\ng\nh\nj\nk\nl\n;\n'\n⏎\n"
+                      "⇧\nz\nx\nc\nv\nb\nn\nm\n,\n.\n/\n⇧\n"
+                      "ctrl\nsu\nalt\n \nalt\nme\nctrl\n"
+                      "~\n!\n@\n#\n$\n%\n^\n&\n*\n(\n)\n_\n+\n⌫\n"
+                      "tab\nQ\nW\nE\nR\nT\nY\nU\nI\nO\nP\n{\n}\n|\n"
+                      "caps\nA\nS\nD\nF\nG\nH\nJ\nK\nL\n:\n\"\n⏎\n"
+                      "⇧\nZ\nX\nC\nV\nB\nN\nM\n<\n>\n?\n⇧\n"
+                      "ctrl\nsu\nalt\n \nalt\nme\nctrl\n";
+    write->open(QIODevice::ReadWrite);
+    write->resize(0);
+    write->write(toWrite.toUtf8());
+    write->close();
+
+    keyMapping::on_pushButton_OnShift_toggled(false);
+    updateKeys();
+    updateColors();
+
 }
