@@ -88,6 +88,44 @@ void keyColorSlots::initialize()
         ui->listWidget_Slots->addItem(reading.readLine());
         file->close();
     }
+    QFile *file = new QFile(mainPath + "Config.ini");
+    file->open(QIODevice::ReadOnly);
+    QString used = file->readLine();
+    if (used == mainPath + "Colors.ini") {
+        ui->listWidget_Slots->setCurrentRow(0);
+    } else {
+        used.chop(4);
+        int select = QString(used.back()).toInt();
+        ui->listWidget_Slots->setCurrentRow(select);
+    }
+}
+
+void keyColorSlots::rearrange()
+{
+    for (int i = 1; i < fileCount - 1; i++) {
+        int fi = i;
+        QString path = mainPath + QString::number(i) + ".ini";
+        QFile file(path);
+        qDebug() << "current file check:" << QString::number(i);
+        while (!file.exists()) {
+            fi = fi + 1;
+            QString path = mainPath + QString::number(fi) + ".ini";
+            QFile check(path);
+            qDebug() << "old path:" << path;
+            if (check.exists()) {
+                check.open(QIODevice::ReadWrite);
+                QString contents = check.readAll();
+                check.close();
+                check.remove();
+                QFile renamed(mainPath + QString::number(i) + ".ini");
+                qDebug() << "new path:" << QString(mainPath + QString::number(i) + ".ini");
+                renamed.open(QIODevice::ReadWrite);
+                renamed.resize(0);
+                renamed.write(contents.toUtf8());
+                break;
+            }
+        }
+    }
 }
 
 keyColorSlots::~keyColorSlots()
@@ -137,7 +175,6 @@ void keyColorSlots::on_pushButton_Add_clicked()
                        "#000000");
             file.close();
             initialize();
-            ui->listWidget_Slots->setFocus();
             ui->listWidget_Slots->setCurrentRow(ui->listWidget_Slots->count() - 1);
         }
     }
@@ -174,16 +211,19 @@ void keyColorSlots::on_pushButton_Remove_clicked()
                     QString path = mainPath + QString::number(currRow) + ".ini";
                     QFile file(path);
                     file.remove();
-
                     initialize();
-                    ui->listWidget_Slots->setFocus();
+
                     ui->listWidget_Slots->setCurrentRow(ui->listWidget_Slots->count() - 1);
                 } else {
-                    QMessageBox support;
-                    support.setWindowTitle("Not supported!");
-                    support.setText("Waring! Only deleting the last slot is supported!\nPlease update your version or wait untill the next beta release!");
-                    support.setStyleSheet(messBoxStyleSheet);
-                    support.exec();
+                    QString path = mainPath + QString::number(currRow) + ".ini";
+                    QFile file(path);
+                    file.remove();
+
+                    int count = currRow;
+
+                    rearrange();
+                    initialize();
+                    ui->listWidget_Slots->setCurrentRow(count);
                 }
             }
         }
@@ -277,7 +317,6 @@ void keyColorSlots::on_pushButton_Rename_clicked()
             int saveCurrRow = currRow;
             initialize();
             ui->listWidget_Slots->setCurrentRow(saveCurrRow);
-            ui->listWidget_Slots->setFocus();
             }
         }
     } else {

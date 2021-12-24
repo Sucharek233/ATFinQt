@@ -29,6 +29,8 @@ public:
     void lightColSlots();
     void darkColSlots();
 
+    void rearrange();
+
 private slots:
     void on_pushButton_Add_clicked();
 

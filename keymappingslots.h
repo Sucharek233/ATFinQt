@@ -27,6 +27,8 @@ public:
     void lightMapSlots();
     void darkMapSlots();
 
+    void Rearrange();
+
 private slots:
     void on_pushButton_Add_clicked();
 

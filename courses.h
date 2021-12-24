@@ -22,14 +22,8 @@ public:
     QString getArticle() {return selectedArticle;}
 
     void updateVars();
+    void rearRange();
 
-    void theme(QString dol) {
-        if (dol == "light") {
-            add.lightCourseAdd();
-        } else {
-            add.darkCourseAdd();
-        }
-    };
     void lightCourses();
     void darkCourses();
 
@@ -42,11 +36,9 @@ private slots:
 
     void on_pushButton_Add_clicked();
 
-    void on_pushButton_Remove_clicked();
-
-    void on_pushButton_Reset_clicked();
-
     void on_pushButton_Edit_clicked();
+
+    void on_pushButton_Remove_clicked();
 
 private:
     Ui::Courses *ui;

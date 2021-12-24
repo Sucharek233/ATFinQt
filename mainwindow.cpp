@@ -597,7 +597,7 @@ void MainWindow::updateKeys()
     ui->pushButton_6->setText(keyMap.getN6());
     ui->pushButton_7->setText(keyMap.getN7());
     ui->pushButton_8->setText(keyMap.getN8());
-    ui->pushButton_9->setText( keyMap.getN9());
+    ui->pushButton_9->setText(keyMap.getN9());
     ui->pushButton_0->setText(keyMap.getN0());
     ui->pushButton_Minus->setText(keyMap.getMinus());
     ui->pushButton_Equals->setText(keyMap.getEquals());
@@ -970,6 +970,7 @@ void MainWindow::on_action_ChangeKeyMapping_triggered()
 void MainWindow::on_action_CourseSelector_triggered()
 {
     courses.setModal(true);
+    courses.updateVars();
     if (courses.exec() == QDialog::Accepted)
     {
         uncheck();
@@ -1146,16 +1147,13 @@ void MainWindow::on_action_Light_triggered()
 {
     lightMain();
     courses.lightCourses();
-    courses.theme("light");
     keyMap.lightMap();
     keyCol.lightCol();
 }
-
 void MainWindow::on_action_Dark_triggered()
 {
     darkMain();
     courses.darkCourses();
-    courses.theme("dark");
     keyMap.darkMap();
     keyCol.darkCol();
 }

@@ -128,8 +128,8 @@ void keyMapping::updateKeys()
     i = reading.readLine(); ui->lineEdit_I->setText(i);
     o = reading.readLine(); ui->lineEdit_O->setText(o);
     p = reading.readLine(); ui->lineEdit_P->setText(p);
-    leftSquareBracket = reading.readLine();     ui->lineEdit_leftSqureBracket->setText(rightSquareBracket);
-    rightSquareBracket = reading.readLine();    ui->lineEdit_rightSquareBracket->setText(leftSquareBracket);
+    leftSquareBracket = reading.readLine();     ui->lineEdit_leftSqureBracket->setText(leftSquareBracket);
+    rightSquareBracket = reading.readLine();    ui->lineEdit_rightSquareBracket->setText(rightSquareBracket);
     backslash = reading.readLine(); ui->lineEdit_Backslash->setText(backslash);
     CAPS = reading.readLine();  ui->lineEdit_CAPS->setText(CAPS);
     a = reading.readLine(); ui->lineEdit_A->setText(a);

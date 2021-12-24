@@ -12,26 +12,14 @@ int main(int argc, char *argv[])
     a.setStyle("fusion");
         QCoreApplication::setApplicationName("ATFinQt");
 
-        PreAppTasks::copyIniToDestDirSlots();
+        PreAppTasks::copyIniToDestDirCourses();
 
-        QString pathToPersitentIniSlots = PreAppTasks::pathToInitFileSlots();
-        qDebug() << pathToPersitentIniSlots;
+        QString pathToPersitentIniCourses = PreAppTasks::pathToInitFileCourses();
+        qDebug() << pathToPersitentIniCourses;
 
-        QFile writeAbleIniFileSlots(pathToPersitentIniSlots);
-        if(!writeAbleIniFileSlots.open(QIODevice::ReadWrite |QIODevice::Append)){
-            qDebug() << "Could not open local ini file" << writeAbleIniFileSlots.errorString() << writeAbleIniFileSlots.error();
-            return -1;
-        }
-
-
-        PreAppTasks::copyIniToDestDirConfig();
-
-        QString pathToPersitentIniConfig = PreAppTasks::pathToInitFileConfig();
-        qDebug() << pathToPersitentIniConfig;
-
-        QFile writeAbleIniFileConfig(pathToPersitentIniConfig);
-        if(!writeAbleIniFileConfig.open(QIODevice::ReadWrite |QIODevice::Append)){
-            qDebug() << "Could not open local ini file" << writeAbleIniFileConfig.errorString() << writeAbleIniFileConfig.error();
+        QFile writeAbleIniFileCourses(pathToPersitentIniCourses);
+        if(!writeAbleIniFileCourses.open(QIODevice::ReadWrite |QIODevice::Append)){
+            qDebug() << "Could not open local ini file" << writeAbleIniFileCourses.errorString() << writeAbleIniFileCourses.error();
             return -1;
         }
 
@@ -49,7 +37,7 @@ int main(int argc, char *argv[])
 
         PreAppTasks::copyIniToDestDirColConfig();
 
-        QString pathToPersitentIniColConfig = PreAppTasks::pathToInitFileConfig();
+        QString pathToPersitentIniColConfig = PreAppTasks::pathToInitFileColConfig();
         qDebug() << pathToPersitentIniColConfig;
 
         QFile writeAbleIniFileColConfig(pathToPersitentIniColConfig);
@@ -72,7 +60,7 @@ int main(int argc, char *argv[])
 
         PreAppTasks::copyIniToDestDirMapConfig();
 
-        QString pathToPersitentIniMapConfig = PreAppTasks::pathToInitFileConfig();
+        QString pathToPersitentIniMapConfig = PreAppTasks::pathToInitFileMapConfig();
         qDebug() << pathToPersitentIniMapConfig;
 
         QFile writeAbleIniFileMapConfig(pathToPersitentIniMapConfig);

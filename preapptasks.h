@@ -12,14 +12,14 @@ class PreAppTasks
 public:
     PreAppTasks() = default;
 
-    static void copyIniToDestDirSlots()
+    static void copyIniToDestDirCourses()
     {
-        QFile destFile(pathToInitFileSlots());
-        QFile orgFile(":/Slots/Slots.ini");
+        QFile destFile(pathToInitFileCourses());
+        QFile orgFile(":/Courses/1.ini");
         if(destFile.exists()){
-            QFile *Slots = new QFile(pathToInitFileSlots());
-            QTextStream in(Slots);
-            Slots->open(QIODevice::ReadOnly | QIODevice::Text);
+            QFile *Courses = new QFile(pathToInitFileCourses());
+            QTextStream in(Courses);
+            Courses->open(QIODevice::ReadOnly | QIODevice::Text);
         } else {
             QFileInfo info(destFile.fileName());
             info.setFile(info.absolutePath());
@@ -30,55 +30,26 @@ public:
             orgFile.copy(destFile.fileName());
             destFile.setPermissions(QFile::WriteUser | destFile.permissions());
 
-            QFile *Slots = new QFile(pathToInitFileSlots());
-            QTextStream in(Slots);
+            QFile *Courses = new QFile(pathToInitFileCourses());
+            QTextStream in(Courses);
 
             QString write = "Quick red fox\n"
                             "A quick red fox jumped over a lazy dog.\n";
 
-            Slots->open(QIODevice::ReadWrite | QIODevice::Text);
-            Slots->write(write.toUtf8());
-            Slots->close();
+            Courses->open(QIODevice::ReadWrite | QIODevice::Text);
+            Courses->write(write.toUtf8());
+            Courses->close();
         }
     }
 
-    static void copyIniToDestDirConfig()
+    static QString pathToInitFileCourses()
     {
-        QFile destFile(pathToInitFileConfig());
-        QFile orgFile(":/Slots/Config.ini");
-        if(destFile.exists()){
-            QFile *config = new QFile(pathToInitFileConfig());
-            QTextStream in(config);
-            config->open(QIODevice::ReadOnly | QIODevice::Text);
-        } else {
-            QFileInfo info(destFile.fileName());
-            info.setFile(info.absolutePath());
-            if(!info.exists()){
-                QDir d;
-                d.mkpath(info.absoluteFilePath());
-            }
-            orgFile.copy(destFile.fileName());
-            destFile.setPermissions(QFile::WriteUser | destFile.permissions());
-
-            QFile *config = new QFile(pathToInitFileConfig());
-            QTextStream in(config);
-
-            QString write = "1";
-
-            config->open(QIODevice::ReadWrite | QIODevice::Text);
-            config->write(write.toUtf8());
-            config->close();
-        }
+        return QStandardPaths::writableLocation(QStandardPaths::AppDataLocation) + QString("/Courses/1.ini");
     }
 
-    static QString pathToInitFileSlots()
+    static QString pathToInitFileCoursesMain()
     {
-        return QStandardPaths::writableLocation(QStandardPaths::AppDataLocation) + QString("/Slots/Slots.ini");
-    }
-
-    static QString pathToInitFileConfig()
-    {
-        return QStandardPaths::writableLocation(QStandardPaths::AppDataLocation) + QString("/Slots/Config.ini");
+        return QStandardPaths::writableLocation(QStandardPaths::AppDataLocation) + QString("/Courses/");
     }
 
     static void copyIniToDestDirColCols()
