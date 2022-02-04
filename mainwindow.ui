@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>988</width>
-    <height>450</height>
+    <height>480</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -19,7 +19,7 @@
   <property name="minimumSize">
    <size>
     <width>988</width>
-    <height>450</height>
+    <height>480</height>
    </size>
   </property>
   <property name="font">
@@ -2851,7 +2851,7 @@ QPushButton:checked {background-color: rgb(205, 120, 0); color:black;}</string>
      <x>0</x>
      <y>0</y>
      <width>988</width>
-     <height>23</height>
+     <height>27</height>
     </rect>
    </property>
    <property name="font">
@@ -2872,7 +2872,6 @@ QPushButton:checked {background-color: rgb(205, 120, 0); color:black;}</string>
    <widget class="QMenu" name="menuSlider">
     <property name="font">
      <font>
-      <family>Segoe UI</family>
       <pointsize>9</pointsize>
       <bold>false</bold>
      </font>
@@ -2892,8 +2891,8 @@ QPushButton:checked {background-color: rgb(205, 120, 0); color:black;}</string>
    <widget class="QMenu" name="menuCourses">
     <property name="font">
      <font>
-      <family>Segoe UI</family>
       <pointsize>9</pointsize>
+      <bold>false</bold>
      </font>
     </property>
     <property name="title">
@@ -2904,8 +2903,8 @@ QPushButton:checked {background-color: rgb(205, 120, 0); color:black;}</string>
    <widget class="QMenu" name="menuThemes">
     <property name="font">
      <font>
-      <family>Segoe UI</family>
       <pointsize>9</pointsize>
+      <bold>false</bold>
      </font>
     </property>
     <property name="title">
@@ -2925,9 +2924,7 @@ QPushButton:checked {background-color: rgb(205, 120, 0); color:black;}</string>
     <string>Set course text</string>
    </property>
    <property name="font">
-    <font>
-     <pointsize>9</pointsize>
-    </font>
+    <font/>
    </property>
   </action>
   <action name="action_ChangeKeyMapping">

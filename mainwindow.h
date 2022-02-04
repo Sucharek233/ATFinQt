@@ -14,6 +14,7 @@
 #include <QSize>
 #include <QtSvg/QGraphicsSvgItem>
 #include <QtSvg/QSvgRenderer>
+#include <QTimer>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -36,6 +37,7 @@ public:
 
     void resizeEvent(QResizeEvent*);
     void changeFontSize(int size);
+    void resize();
 
 private slots:
     void on_lineEdit_TextInput_textChanged(const QString &arg1);
