@@ -29,8 +29,8 @@ void customCoursesAdd::lightCourseAdd()
     ui->label_Main->setStyleSheet("color: black;");
     ui->label_Name->setStyleSheet("color: black;");
     ui->label_Text->setStyleSheet("color: black;");
-    ui->textEdit_Text->setStyleSheet("color: black; background: white; font-size: 13px;");
-    ui->lineEdit_Name->setStyleSheet("color: black; background-color: white; font-size: 13px;");
+    ui->textEdit_Text->setStyleSheet("color: black; background: white;");
+    ui->lineEdit_Name->setStyleSheet("color: black; background-color: white;");
     msgBoxStyleSheet = "QMessageBox {background-color: rgb(244, 244, 244);}"
                          "QLabel {background-color: rgb(244, 244, 244); color: black; font-size: 16px;}"
                          "QPushButton {color: black; background-color: rgb(244, 244, 244); font-size: 14px;}";
@@ -42,8 +42,8 @@ void customCoursesAdd::darkCourseAdd()
     ui->label_Main->setStyleSheet("color: rgb(211, 213, 201);");
     ui->label_Name->setStyleSheet("color: rgb(211, 213, 201);");
     ui->label_Text->setStyleSheet("color: rgb(211, 213, 201);");
-    ui->textEdit_Text->setStyleSheet("color: rgb(211, 213, 201); background-color: rgb(36, 36, 44); font-size: 13px;");
-    ui->lineEdit_Name->setStyleSheet("color: rgb(211, 213, 201); background-color: rgb(36, 36, 44); font-size: 13px;");
+    ui->textEdit_Text->setStyleSheet("color: rgb(211, 213, 201); background-color: rgb(36, 36, 44);");
+    ui->lineEdit_Name->setStyleSheet("color: rgb(211, 213, 201); background-color: rgb(36, 36, 44);");
     msgBoxStyleSheet = "QMessageBox {background-color: rgb(6, 6, 14);}"
                          "QLabel {background-color: rgb(6, 6, 14); color: rgb(211, 213, 201); font-size: 16px;}"
                          "QPushButton {color: rgb(211, 213, 201); background-color: rgb(36, 36, 44); font-size: 14px;}";

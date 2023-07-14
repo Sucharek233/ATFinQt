@@ -305,7 +305,7 @@ void keyColor::lightCol()
     ui->pushButton_TextCol->setStyleSheet("color: black; background-color: rgb(244, 244, 244);");
     ui->pushButton_Reset->setStyleSheet("color: black; background-color: rgb(244, 244, 244);");
     ui->pushButton_Slots->setStyleSheet("color: black; background-color: rgb(244, 244, 244);");
-    ui->buttonBox->setStyleSheet("QPushButton {color: black; background-color: rgb(244, 244, 244);}");
+    ui->buttonBox->setStyleSheet("QPushButton {color: black; background-color: rgb(244, 244, 244); font-size: 14px;}");
     QColSS = "QColorDialog {background-color: rgb(244, 244, 244);}"
              "QPushButton {background-color: rgb(244, 244, 244); color: black; font-size: 11px;}"
              "QLabel {background-color: rgb(244, 244, 244); color: black; font-size: 12px;}"
@@ -320,7 +320,7 @@ void keyColor::darkCol()
     ui->pushButton_TextCol->setStyleSheet("color: rgb(211, 213, 201); background-color: rgb(36, 36, 44);");
     ui->pushButton_Reset->setStyleSheet("color: rgb(211, 213, 201); background-color: rgb(36, 36, 44);");
     ui->pushButton_Slots->setStyleSheet("color: rgb(211, 213, 201); background-color: rgb(36, 36, 44);");
-    ui->buttonBox->setStyleSheet("QPushButton {color: rgb(211, 213, 201); background-color: rgb(36, 36, 44);}");
+    ui->buttonBox->setStyleSheet("QPushButton {color: rgb(211, 213, 201); background-color: rgb(36, 36, 44); font-size: 14px;}");
     QColSS = "QColorDialog {background-color: rgb(6, 6, 14);}"
              "QPushButton {color: rgb(211, 213, 201); background-color: rgb(36, 36, 44); font-size: 11px;}"
              "QLabel {color: rgb(211, 213, 201); background-color: rgb(6, 6, 14); font-size: 12px;}"

@@ -4,16 +4,13 @@
 bool isArticleCapitalised;
 QString article;
 int checker;
-QString articleDeleted;
 QString ActualFront;
 
 int misses;
 int stopTwice;
-int spaceMiss;
 int missStop;
 int once;
 int characters;
-int backspaceSpaceStop;
 
 QString text;
 QString textM;
@@ -24,10 +21,7 @@ QString finishedStyleSheet;
 
 int align = 1;
 
-double oH = 450;
-double oW = 988;
-double sOW;
-double sOH;
+int selectCheck;
 
 auto lHOne = new QGraphicsEllipseItem(9, 40, 25, 25);
 auto lHTwo = new QGraphicsEllipseItem(35, 11, 25, 25);
@@ -76,89 +70,40 @@ MainWindow::MainWindow(QWidget *parent)
     lightMain();
 }
 
+bool isItemRemoved(QGraphicsScene* scene, QGraphicsItem* item) {
+    QList<QGraphicsItem*> items = scene->items();
+    return !items.contains(item);
+}
 void MainWindow::uncheck()
 {
-    ui->graphicsView_RightHand->scene()->removeItem(rHOne);
-    ui->graphicsView_RightHand->scene()->removeItem(rHTwo);
-    ui->graphicsView_RightHand->scene()->removeItem(rHThree);
-    ui->graphicsView_RightHand->scene()->removeItem(rHFour);
-    ui->graphicsView_RightHand->scene()->removeItem(rHFive);
-    ui->graphicsView_LeftHand->scene()->removeItem(lHOne);
-    ui->graphicsView_LeftHand->scene()->removeItem(lHTwo);
-    ui->graphicsView_LeftHand->scene()->removeItem(lHThree);
-    ui->graphicsView_LeftHand->scene()->removeItem(lHFour);
-    ui->graphicsView_LeftHand->scene()->removeItem(lHFive);
+    if (!isItemRemoved(ui->graphicsView_RightHand->scene(), rHOne)) {ui->graphicsView_RightHand->scene()->removeItem(rHOne);}
+    if (!isItemRemoved(ui->graphicsView_RightHand->scene(), rHTwo)) {ui->graphicsView_RightHand->scene()->removeItem(rHTwo);}
+    if (!isItemRemoved(ui->graphicsView_RightHand->scene(), rHThree)) {ui->graphicsView_RightHand->scene()->removeItem(rHThree);}
+    if (!isItemRemoved(ui->graphicsView_RightHand->scene(), rHFour)) {ui->graphicsView_RightHand->scene()->removeItem(rHFour);}
+    if (!isItemRemoved(ui->graphicsView_RightHand->scene(), rHFive)) {ui->graphicsView_RightHand->scene()->removeItem(rHFive);}
+    if (!isItemRemoved(ui->graphicsView_LeftHand->scene(), lHOne)) {ui->graphicsView_LeftHand->scene()->removeItem(lHOne);}
+    if (!isItemRemoved(ui->graphicsView_LeftHand->scene(), lHTwo)) {ui->graphicsView_LeftHand->scene()->removeItem(lHTwo);}
+    if (!isItemRemoved(ui->graphicsView_LeftHand->scene(), lHThree)) {ui->graphicsView_LeftHand->scene()->removeItem(lHThree);}
+    if (!isItemRemoved(ui->graphicsView_LeftHand->scene(), lHFour)) {ui->graphicsView_LeftHand->scene()->removeItem(lHFour);}
+    if (!isItemRemoved(ui->graphicsView_LeftHand->scene(), lHFive)) {ui->graphicsView_LeftHand->scene()->removeItem(lHFive);}
 
-    ui->pushButton_Tilde->setChecked(false);
-    ui->pushButton_1->setChecked(false);
-    ui->pushButton_2->setChecked(false);
-    ui->pushButton_3->setChecked(false);
-    ui->pushButton_4->setChecked(false);
-    ui->pushButton_5->setChecked(false);
-    ui->pushButton_6->setChecked(false);
-    ui->pushButton_7->setChecked(false);
-    ui->pushButton_8->setChecked(false);
-    ui->pushButton_9->setChecked(false);
-    ui->pushButton_0->setChecked(false);
-    ui->pushButton_Minus->setChecked(false);
-    ui->pushButton_Equals->setChecked(false);
-    ui->pushButton_Backspace->setChecked(false);
-    ui->pushButton_TAB->setChecked(false);
-    ui->pushButton_Q->setChecked(false);
-    ui->pushButton_W->setChecked(false);
-    ui->pushButton_E->setChecked(false);
-    ui->pushButton_R->setChecked(false);
-    ui->pushButton_T->setChecked(false);
-    ui->pushButton_Y->setChecked(false);
-    ui->pushButton_U->setChecked(false);
-    ui->pushButton_I->setChecked(false);
-    ui->pushButton_O->setChecked(false);
-    ui->pushButton_P->setChecked(false);
-    ui->pushButton_LeftSquareBracket->setChecked(false);
-    ui->pushButton_RightSquareBracket->setChecked(false);
-    ui->pushButton_Backslash->setChecked(false);
-    ui->pushButton_CAPS->setChecked(false);
-    ui->pushButton_A->setChecked(false);
-    ui->pushButton_S->setChecked(false);
-    ui->pushButton_D->setChecked(false);
-    ui->pushButton_F->setChecked(false);
-    ui->pushButton_G->setChecked(false);
-    ui->pushButton_H->setChecked(false);
-    ui->pushButton_J->setChecked(false);
-    ui->pushButton_K->setChecked(false);
-    ui->pushButton_L->setChecked(false);
-    ui->pushButton_Semicolon->setChecked(false);
-    ui->pushButton_Apostrophe->setChecked(false);
-    ui->pushButton_Enter->setChecked(false);
-    ui->pushButton_LShift->setChecked(false);
-    ui->pushButton_Z->setChecked(false);
-    ui->pushButton_X->setChecked(false);
-    ui->pushButton_C->setChecked(false);
-    ui->pushButton_V->setChecked(false);
-    ui->pushButton_B->setChecked(false);
-    ui->pushButton_N->setChecked(false);
-    ui->pushButton_M->setChecked(false);
-    ui->pushButton_Comma->setChecked(false);
-    ui->pushButton_Period->setChecked(false);
-    ui->pushButton_Slash->setChecked(false);
-    ui->pushButton_RShift->setChecked(false);
-    ui->pushButton_LCtrl->setChecked(false);
-    ui->pushButton_Super->setChecked(false);
-    ui->pushButton_LAlt->setChecked(false);
-    ui->pushButton_Space->setChecked(false);
-    ui->pushButton_RAlt->setChecked(false);
-    ui->pushButton_Menu->setChecked(false);
-    ui->pushButton_RCtrl->setChecked(false);
-
+    foreach (QObject *widget, ui->centralwidget->children()) {
+        QPushButton *button = qobject_cast<QPushButton *>(widget);
+        if (button != nullptr) {
+            button->setChecked(false);
+        }
+    }
 }
 void MainWindow::findChar()
 {
+    if (selectCheck == 1) {selectCheck = 0; return;}
+
     QString articleHands;
-    ActualFront = articleDeleted.front();
+    ActualFront = article.front();
     isArticleCapitalised = article.isUpper();
 
-    if (ActualFront.isUpper() == true) {isArticleCapitalised = true;}
-    if (ActualFront.isLower() == true) {isArticleCapitalised = false;}
+    if (ActualFront.isUpper()) {isArticleCapitalised = true;}
+    if (ActualFront.isLower()) {isArticleCapitalised = false;}
     if (ActualFront == " ") {isArticleCapitalised = false;}
 
     if (ActualFront == keyMap.getTildeS()) {isArticleCapitalised = true;}
@@ -183,7 +128,7 @@ void MainWindow::findChar()
     if (ActualFront == keyMap.getPeriodS()) {isArticleCapitalised = true;}
     if (ActualFront == keyMap.getSlashS()) {isArticleCapitalised = true;}
 
-    if (isArticleCapitalised == true) {
+    if (isArticleCapitalised) {
         ui->pushButton_Tilde->setText(keyMap.getTildeS());
         ui->pushButton_1->setText(keyMap.getN1S());
         ui->pushButton_2->setText(keyMap.getN2S());
@@ -316,73 +261,95 @@ void MainWindow::findChar()
     QString fixes = ui->pushButton_7->text();
     if (fixes == "&&") {fixes = "&";}
 
-    characterSearch = ui->pushButton_Tilde->text(); if (characterSearch == articleHands) {ui->pushButton_Tilde->setChecked(true); ui->graphicsView_LeftHand->scene()->addItem(lHOne); if (isArticleCapitalised == true) {ui->graphicsView_LeftHand->scene()->addItem(lHTwo);}}
-    characterSearch = ui->pushButton_1->text(); if (characterSearch == articleHands) {ui->pushButton_1->setChecked(true); ui->graphicsView_LeftHand->scene()->addItem(lHOne); if (isArticleCapitalised == true) {ui->graphicsView_LeftHand->scene()->addItem(lHTwo);}}
-    characterSearch = ui->pushButton_2->text(); if (characterSearch == articleHands) {ui->pushButton_2->setChecked(true); ui->graphicsView_LeftHand->scene()->addItem(lHOne); if (isArticleCapitalised == true) {ui->graphicsView_LeftHand->scene()->addItem(lHTwo);}}
-    characterSearch = ui->pushButton_3->text(); if (characterSearch == articleHands) {ui->pushButton_3->setChecked(true); ui->graphicsView_LeftHand->scene()->addItem(lHTwo);}
-    characterSearch = ui->pushButton_4->text(); if (characterSearch == articleHands) {ui->pushButton_4->setChecked(true); ui->graphicsView_LeftHand->scene()->addItem(lHThree);}
-    characterSearch = ui->pushButton_5->text(); if (characterSearch == articleHands) {ui->pushButton_5->setChecked(true); ui->graphicsView_LeftHand->scene()->addItem(lHFour);}
-    characterSearch = ui->pushButton_6->text(); if (characterSearch == articleHands) {ui->pushButton_6->setChecked(true); ui->graphicsView_LeftHand->scene()->addItem(lHFour);}
-    characterSearch = ui->pushButton_7->text(); if (fixes == articleHands)           {ui->pushButton_7->setChecked(true); ui->graphicsView_RightHand->scene()->addItem(rHTwo);}
-    characterSearch = ui->pushButton_8->text(); if (characterSearch == articleHands) {ui->pushButton_8->setChecked(true); ui->graphicsView_RightHand->scene()->addItem(rHTwo);}
-    characterSearch = ui->pushButton_9->text(); if (characterSearch == articleHands) {ui->pushButton_9->setChecked(true); ui->graphicsView_RightHand->scene()->addItem(rHThree);}
-    characterSearch = ui->pushButton_0->text(); if (characterSearch == articleHands) {ui->pushButton_0->setChecked(true); ui->graphicsView_RightHand->scene()->addItem(rHFour);}
-    characterSearch = ui->pushButton_Minus->text(); if (characterSearch == articleHands) {ui->pushButton_Minus->setChecked(true); ui->graphicsView_RightHand->scene()->addItem(rHFive);}
-    characterSearch = ui->pushButton_Equals->text(); if (characterSearch == articleHands) {ui->pushButton_Equals->setChecked(true); ui->graphicsView_RightHand->scene()->addItem(rHFive);}
-    characterSearch = ui->pushButton_Backspace->text(); if (characterSearch == articleHands) {ui->pushButton_Backspace->setChecked(true); ui->graphicsView_RightHand->scene()->addItem(rHFive);}
-    characterSearch = ui->pushButton_TAB->text(); if (characterSearch == articleHands) {ui->pushButton_TAB->setChecked(true); ui->graphicsView_LeftHand->scene()->addItem(lHOne);}
-    characterSearch = ui->pushButton_Q->text(); if (characterSearch == articleHands) {ui->pushButton_Q->setChecked(true); ui->graphicsView_LeftHand->scene()->addItem(lHOne); if (isArticleCapitalised == true) {ui->graphicsView_LeftHand->scene()->addItem(lHTwo);}}
-    characterSearch = ui->pushButton_W->text(); if (characterSearch == articleHands) {ui->pushButton_W->setChecked(true); ui->graphicsView_LeftHand->scene()->addItem(lHTwo);}
-    characterSearch = ui->pushButton_E->text(); if (characterSearch == articleHands) {ui->pushButton_E->setChecked(true); ui->graphicsView_LeftHand->scene()->addItem(lHThree);}
-    characterSearch = ui->pushButton_R->text(); if (characterSearch == articleHands) {ui->pushButton_R->setChecked(true); ui->graphicsView_LeftHand->scene()->addItem(lHFour);}
-    characterSearch = ui->pushButton_T->text(); if (characterSearch == articleHands) {ui->pushButton_T->setChecked(true); ui->graphicsView_LeftHand->scene()->addItem(lHFour);}
-    characterSearch = ui->pushButton_Y->text(); if (characterSearch == articleHands) {ui->pushButton_Y->setChecked(true); ui->graphicsView_RightHand->scene()->addItem(rHTwo);}
-    characterSearch = ui->pushButton_U->text(); if (characterSearch == articleHands) {ui->pushButton_U->setChecked(true); ui->graphicsView_RightHand->scene()->addItem(rHTwo);}
-    characterSearch = ui->pushButton_I->text(); if (characterSearch == articleHands) {ui->pushButton_I->setChecked(true); ui->graphicsView_RightHand->scene()->addItem(rHThree);}
-    characterSearch = ui->pushButton_O->text(); if (characterSearch == articleHands) {ui->pushButton_O->setChecked(true); ui->graphicsView_RightHand->scene()->addItem(rHFour);}
-    characterSearch = ui->pushButton_P->text(); if (characterSearch == articleHands) {ui->pushButton_P->setChecked(true); ui->graphicsView_RightHand->scene()->addItem(rHFive);}
-    characterSearch = ui->pushButton_LeftSquareBracket->text(); if (characterSearch == articleHands) {ui->pushButton_LeftSquareBracket->setChecked(true); ui->graphicsView_RightHand->scene()->addItem(rHFive);}
-    characterSearch = ui->pushButton_RightSquareBracket->text(); if (characterSearch == articleHands) {ui->pushButton_RightSquareBracket->setChecked(true); ui->graphicsView_RightHand->scene()->addItem(rHFive);}
-    characterSearch = ui->pushButton_Backslash->text(); if (characterSearch == articleHands) {ui->pushButton_Backslash->setChecked(true); ui->graphicsView_RightHand->scene()->addItem(rHFive);}
-    characterSearch = ui->pushButton_CAPS->text(); if (characterSearch == articleHands) {ui->pushButton_CAPS->setChecked(true); ui->graphicsView_LeftHand->scene()->addItem(lHOne);}
-    characterSearch = ui->pushButton_A->text(); if (characterSearch == articleHands) {ui->pushButton_A->setChecked(true); ui->graphicsView_LeftHand->scene()->addItem(lHOne); if (isArticleCapitalised == true) {ui->graphicsView_LeftHand->scene()->addItem(lHTwo);}}
-    characterSearch = ui->pushButton_S->text(); if (characterSearch == articleHands) {ui->pushButton_S->setChecked(true); ui->graphicsView_LeftHand->scene()->addItem(lHTwo);}
-    characterSearch = ui->pushButton_D->text(); if (characterSearch == articleHands) {ui->pushButton_D->setChecked(true); ui->graphicsView_LeftHand->scene()->addItem(lHThree);}
-    characterSearch = ui->pushButton_F->text(); if (characterSearch == articleHands) {ui->pushButton_F->setChecked(true); ui->graphicsView_LeftHand->scene()->addItem(lHFour);}
-    characterSearch = ui->pushButton_G->text(); if (characterSearch == articleHands) {ui->pushButton_G->setChecked(true); ui->graphicsView_LeftHand->scene()->addItem(lHFour);}
-    characterSearch = ui->pushButton_H->text(); if (characterSearch == articleHands) {ui->pushButton_H->setChecked(true); ui->graphicsView_RightHand->scene()->addItem(rHTwo);}
-    characterSearch = ui->pushButton_J->text(); if (characterSearch == articleHands) {ui->pushButton_J->setChecked(true); ui->graphicsView_RightHand->scene()->addItem(rHTwo);}
-    characterSearch = ui->pushButton_K->text(); if (characterSearch == articleHands) {ui->pushButton_K->setChecked(true); ui->graphicsView_RightHand->scene()->addItem(rHThree);}
-    characterSearch = ui->pushButton_L->text(); if (characterSearch == articleHands) {ui->pushButton_L->setChecked(true); ui->graphicsView_RightHand->scene()->addItem(rHFour);}
-    characterSearch = ui->pushButton_Semicolon->text(); if (characterSearch == articleHands) {ui->pushButton_Semicolon->setChecked(true); ui->graphicsView_RightHand->scene()->addItem(rHFive);}
-    characterSearch = ui->pushButton_Apostrophe->text(); if (characterSearch == articleHands) {ui->pushButton_Apostrophe->setChecked(true); ui->graphicsView_RightHand->scene()->addItem(rHFive);}
-    characterSearch = ui->pushButton_Enter->text(); if (characterSearch == articleHands) {ui->pushButton_Enter->setChecked(true); ui->graphicsView_RightHand->scene()->addItem(rHFive);}
-    characterSearch = ui->pushButton_LShift->text(); if (characterSearch == articleHands) {ui->pushButton_LShift->setChecked(true); ui->graphicsView_LeftHand->scene()->addItem(lHOne);}
-    characterSearch = ui->pushButton_Z->text(); if (characterSearch == articleHands) {ui->pushButton_Z->setChecked(true); ui->graphicsView_LeftHand->scene()->addItem(lHOne); if (isArticleCapitalised == true) {ui->graphicsView_LeftHand->scene()->addItem(lHTwo);}}
-    characterSearch = ui->pushButton_X->text(); if (characterSearch == articleHands) {ui->pushButton_X->setChecked(true); ui->graphicsView_LeftHand->scene()->addItem(lHTwo);}
-    characterSearch = ui->pushButton_C->text(); if (characterSearch == articleHands) {ui->pushButton_C->setChecked(true); ui->graphicsView_LeftHand->scene()->addItem(lHThree);}
-    characterSearch = ui->pushButton_V->text(); if (characterSearch == articleHands) {ui->pushButton_V->setChecked(true); ui->graphicsView_LeftHand->scene()->addItem(lHFour);}
-    characterSearch = ui->pushButton_B->text(); if (characterSearch == articleHands) {ui->pushButton_B->setChecked(true); ui->graphicsView_LeftHand->scene()->addItem(lHFour);}
-    characterSearch = ui->pushButton_N->text(); if (characterSearch == articleHands) {ui->pushButton_N->setChecked(true); ui->graphicsView_RightHand->scene()->addItem(rHTwo);}
-    characterSearch = ui->pushButton_M->text(); if (characterSearch == articleHands) {ui->pushButton_M->setChecked(true); ui->graphicsView_RightHand->scene()->addItem(rHTwo);}
-    characterSearch = ui->pushButton_Comma->text(); if (characterSearch == articleHands) {ui->pushButton_Comma->setChecked(true); ui->graphicsView_RightHand->scene()->addItem(rHThree);}
-    characterSearch = ui->pushButton_Period->text(); if (characterSearch == articleHands) {ui->pushButton_Period->setChecked(true); ui->graphicsView_RightHand->scene()->addItem(rHFour);}
-    characterSearch = ui->pushButton_Slash->text(); if (characterSearch == articleHands) {ui->pushButton_Slash->setChecked(true); ui->graphicsView_RightHand->scene()->addItem(rHFive);}
-    characterSearch = ui->pushButton_RShift->text(); if (characterSearch == articleHands) {ui->pushButton_RShift->setChecked(true); ui->graphicsView_RightHand->scene()->addItem(rHFive);}
-    characterSearch = ui->pushButton_LCtrl->text(); if (characterSearch == articleHands) {ui->pushButton_LCtrl->setChecked(true); ui->graphicsView_LeftHand->scene()->addItem(lHOne);}
-    characterSearch = ui->pushButton_Super->text(); if (characterSearch == articleHands) {ui->pushButton_Super->setChecked(true); ui->graphicsView_LeftHand->scene()->addItem(lHFive);}
-    characterSearch = ui->pushButton_LAlt->text(); if (characterSearch == articleHands) {ui->pushButton_LAlt->setChecked(true); ui->graphicsView_LeftHand->scene()->addItem(lHOne);}
-    characterSearch = ui->pushButton_RAlt->text(); if (characterSearch == articleHands) {ui->pushButton_RAlt->setChecked(true); ui->graphicsView_RightHand->scene()->addItem(rHFive);}
-    characterSearch = ui->pushButton_Menu->text(); if (characterSearch == articleHands) {ui->pushButton_Menu->setChecked(true); ui->graphicsView_RightHand->scene()->addItem(rHOne);}
-    characterSearch = ui->pushButton_RCtrl->text(); if (characterSearch == articleHands) {ui->pushButton_RCtrl->setChecked(true); ui->graphicsView_RightHand->scene()->addItem(rHFive);}
-    if (ActualFront == " ") {ui->pushButton_Space->setChecked(true); ui->graphicsView_LeftHand->scene()->addItem(lHFive); ui->graphicsView_RightHand->scene()->addItem(rHOne);}
-    if (isArticleCapitalised == true) {
+    struct ButtonData {
+        QPushButton* button;
+        QGraphicsScene* scene;
+        QGraphicsItem* item;
+    };
+
+    QVector<ButtonData> buttonDataList = {
+        {ui->pushButton_Tilde, ui->graphicsView_LeftHand->scene(), lHOne},
+        {ui->pushButton_1, ui->graphicsView_LeftHand->scene(), lHOne},
+        {ui->pushButton_2, ui->graphicsView_LeftHand->scene(), lHOne},
+        {ui->pushButton_3, ui->graphicsView_LeftHand->scene(), lHTwo},
+        {ui->pushButton_4, ui->graphicsView_LeftHand->scene(), lHThree},
+        {ui->pushButton_5, ui->graphicsView_LeftHand->scene(), lHFour},
+        {ui->pushButton_6, ui->graphicsView_LeftHand->scene(), lHFour},
+        {ui->pushButton_7, ui->graphicsView_RightHand->scene(), rHTwo},
+        {ui->pushButton_8, ui->graphicsView_RightHand->scene(), rHTwo},
+        {ui->pushButton_9, ui->graphicsView_RightHand->scene(), rHThree},
+        {ui->pushButton_0, ui->graphicsView_RightHand->scene(), rHFour},
+        {ui->pushButton_Minus, ui->graphicsView_RightHand->scene(), rHFive},
+        {ui->pushButton_Equals, ui->graphicsView_RightHand->scene(), rHFive},
+        {ui->pushButton_Backspace, ui->graphicsView_RightHand->scene(), rHFive},
+        {ui->pushButton_TAB, ui->graphicsView_LeftHand->scene(), lHOne},
+        {ui->pushButton_Q, ui->graphicsView_LeftHand->scene(), lHOne},
+        {ui->pushButton_W, ui->graphicsView_LeftHand->scene(), lHTwo},
+        {ui->pushButton_E, ui->graphicsView_LeftHand->scene(), lHThree},
+        {ui->pushButton_R, ui->graphicsView_LeftHand->scene(), lHFour},
+        {ui->pushButton_T, ui->graphicsView_LeftHand->scene(), lHFour},
+        {ui->pushButton_Y, ui->graphicsView_RightHand->scene(), rHTwo},
+        {ui->pushButton_U, ui->graphicsView_RightHand->scene(), rHTwo},
+        {ui->pushButton_I, ui->graphicsView_RightHand->scene(), rHThree},
+        {ui->pushButton_O, ui->graphicsView_RightHand->scene(), rHFour},
+        {ui->pushButton_P, ui->graphicsView_RightHand->scene(), rHFive},
+        {ui->pushButton_LeftSquareBracket, ui->graphicsView_RightHand->scene(), rHFive},
+        {ui->pushButton_RightSquareBracket, ui->graphicsView_RightHand->scene(), rHFive},
+        {ui->pushButton_Backslash, ui->graphicsView_RightHand->scene(), rHFive},
+        {ui->pushButton_CAPS, ui->graphicsView_LeftHand->scene(), lHOne},
+        {ui->pushButton_A, ui->graphicsView_LeftHand->scene(), lHOne},
+        {ui->pushButton_S, ui->graphicsView_LeftHand->scene(), lHTwo},
+        {ui->pushButton_D, ui->graphicsView_LeftHand->scene(), lHThree},
+        {ui->pushButton_F, ui->graphicsView_LeftHand->scene(), lHFour},
+        {ui->pushButton_G, ui->graphicsView_LeftHand->scene(), lHFour},
+        {ui->pushButton_H, ui->graphicsView_RightHand->scene(), rHTwo},
+        {ui->pushButton_J, ui->graphicsView_RightHand->scene(), rHTwo},
+        {ui->pushButton_K, ui->graphicsView_RightHand->scene(), rHThree},
+        {ui->pushButton_L, ui->graphicsView_RightHand->scene(), rHFour},
+        {ui->pushButton_Semicolon, ui->graphicsView_RightHand->scene(), rHFive},
+        {ui->pushButton_Apostrophe, ui->graphicsView_RightHand->scene(), rHFive},
+        {ui->pushButton_Enter, ui->graphicsView_RightHand->scene(), rHFive},
+        {ui->pushButton_LShift, ui->graphicsView_LeftHand->scene(), lHOne},
+        {ui->pushButton_Z, ui->graphicsView_LeftHand->scene(), lHOne},
+        {ui->pushButton_X, ui->graphicsView_LeftHand->scene(), lHTwo},
+        {ui->pushButton_C, ui->graphicsView_LeftHand->scene(), lHThree},
+        {ui->pushButton_V, ui->graphicsView_LeftHand->scene(), lHFour},
+        {ui->pushButton_B, ui->graphicsView_LeftHand->scene(), lHFour},
+        {ui->pushButton_N, ui->graphicsView_RightHand->scene(), rHTwo},
+        {ui->pushButton_M, ui->graphicsView_RightHand->scene(), rHTwo},
+        {ui->pushButton_Comma, ui->graphicsView_RightHand->scene(), rHThree},
+        {ui->pushButton_Period, ui->graphicsView_RightHand->scene(), rHFour},
+        {ui->pushButton_Slash, ui->graphicsView_RightHand->scene(), rHFive},
+        {ui->pushButton_RShift, ui->graphicsView_RightHand->scene(), rHFive},
+        {ui->pushButton_LCtrl, ui->graphicsView_LeftHand->scene(), lHOne},
+        {ui->pushButton_Super, ui->graphicsView_LeftHand->scene(), lHFive},
+        {ui->pushButton_LAlt, ui->graphicsView_LeftHand->scene(), lHOne},
+        {ui->pushButton_RAlt, ui->graphicsView_RightHand->scene(), rHFive},
+        {ui->pushButton_Menu, ui->graphicsView_RightHand->scene(), rHOne},
+        {ui->pushButton_RCtrl, ui->graphicsView_RightHand->scene(), rHFive},
+        {ui->pushButton_Space, ui->graphicsView_LeftHand->scene(), lHFive},
+    };
+
+    for (const ButtonData& buttonData : buttonDataList) {
+        QString characterSearch = buttonData.button->text();
+        if (characterSearch == articleHands) {
+            buttonData.button->setChecked(true);
+            if (isItemRemoved(buttonData.scene, buttonData.item)) {buttonData.scene->addItem(buttonData.item);}
+
+            if (isArticleCapitalised) {
+                buttonData.scene->addItem(lHTwo);
+            }
+        }
+    }
+
+    if (isArticleCapitalised) {
         ui->pushButton_LShift->setChecked(true); ui->graphicsView_LeftHand->scene()->addItem(lHOne);
         ui->pushButton_RShift->setChecked(true); ui->graphicsView_RightHand->scene()->addItem(rHFive);
     }
 }
 void MainWindow::lightMain()
 {
+    if (theme == "light") {return;}
     theme = "light";
     ui->textEdit_Article->setStyleSheet("color: black; background: white; font-size: 20px;");
     centralWidget()->setAutoFillBackground(true);
@@ -406,15 +373,15 @@ void MainWindow::lightMain()
     ui->menuThemes->setStyleSheet(menuStyles);
     setCStyleSheet = "QInputDialog {background-color: rgb(244, 244, 244);}"
                      "QLabel {background-color: rgb(244, 244, 244); color: black; font-size: 16px;}"
-                     "QPlainTextEdit {color: black; background-color: white; font-size: 14px;}"
-                     "QPushButton {color: black; background-color: rgb(244, 244, 244); font-size: 12px;}";
+                     "QPlainTextEdit {color: black; background-color: white; font-size: 15px;}"
+                     "QPushButton {color: black; background-color: rgb(244, 244, 244); font-size: 14px;}";
     finishedStyleSheet = "QMessageBox {background-color: rgb(244, 244, 244);}"
                          "QLabel {background-color: rgb(244, 244, 244); color: black; font-size: 16px;}"
                          "QPushButton {color: black; background-color: rgb(244, 244, 244); font-size: 14px;}";
 
     uncheck();
-    ui->graphicsView_LeftHand->scene()->removeItem(svgLeftDark);
-    ui->graphicsView_RightHand->scene()->removeItem(svgRightDark);
+    if (!isItemRemoved(ui->graphicsView_LeftHand->scene(), svgLeftDark)) {ui->graphicsView_LeftHand->scene()->removeItem(svgLeftDark);}
+    if (!isItemRemoved(ui->graphicsView_RightHand->scene(), svgRightDark)) {ui->graphicsView_RightHand->scene()->removeItem(svgRightDark);}
 
     ui->graphicsView_LeftHand->scene()->addItem(svgLeft);
     ui->graphicsView_RightHand->scene()->addItem(svgRight);
@@ -432,6 +399,7 @@ void MainWindow::lightMain()
 }
 void MainWindow::darkMain()
 {
+    if (theme == "dark") {return;}
     theme = "dark";
     ui->textEdit_Article->setStyleSheet("color: rgb(211, 213, 201); background-color: rgb(36, 36, 44); font-size: 20px;");
     centralWidget()->setAutoFillBackground(true);
@@ -455,16 +423,16 @@ void MainWindow::darkMain()
     ui->menuThemes->setStyleSheet(menuStyles);
     setCStyleSheet = "QInputDialog {background-color: rgb(6, 6, 14);}"
                      "QLabel {background-color: rgb(6, 6, 14); color: rgb(211, 213, 201); font-size: 16px;}"
-                     "QPlainTextEdit {color: rgb(211, 213, 201); background-color: rgb(36, 36, 44); font-size: 14px;}"
-                     "QPushButton {color: rgb(211, 213, 201); background-color: rgb(36, 36, 44); font-size: 12px;}";
+                     "QPlainTextEdit {color: rgb(211, 213, 201); background-color: rgb(36, 36, 44); font-size: 15px;}"
+                     "QPushButton {color: rgb(211, 213, 201); background-color: rgb(36, 36, 44); font-size: 14px;}";
     finishedStyleSheet = "QMessageBox {background-color: rgb(6, 6, 14);}"
                          "QLabel {background-color: rgb(6, 6, 14); color: rgb(211, 213, 201); font-size: 16px;}"
                          "QPushButton {color: rgb(211, 213, 201); background-color: rgb(36, 36, 44); font-size: 14px;}";
 
     uncheck();
 
-    ui->graphicsView_LeftHand->scene()->removeItem(svgLeft);
-    ui->graphicsView_RightHand->scene()->removeItem(svgRight);
+    if (!isItemRemoved(ui->graphicsView_LeftHand->scene(), svgLeft)) {ui->graphicsView_LeftHand->scene()->removeItem(svgLeft);}
+    if (!isItemRemoved(ui->graphicsView_RightHand->scene(), svgRight)) {ui->graphicsView_RightHand->scene()->removeItem(svgRight);}
 
     ui->graphicsView_LeftHand->scene()->addItem(svgLeftDark);
     ui->graphicsView_RightHand->scene()->addItem(svgRightDark);
@@ -594,286 +562,136 @@ void MainWindow::updateKeys()
 {
     keyMap.updateKeys();
 
-    //Layer 1
-    ui->pushButton_Tilde->setText(keyMap.getTilde());
-    ui->pushButton_1->setText(keyMap.getN1());
-    ui->pushButton_2->setText(keyMap.getN2());
-    ui->pushButton_3->setText(keyMap.getN3());
-    ui->pushButton_4->setText(keyMap.getN4());
-    ui->pushButton_5->setText(keyMap.getN5());
-    ui->pushButton_6->setText(keyMap.getN6());
-    ui->pushButton_7->setText(keyMap.getN7());
-    ui->pushButton_8->setText(keyMap.getN8());
-    ui->pushButton_9->setText(keyMap.getN9());
-    ui->pushButton_0->setText(keyMap.getN0());
-    ui->pushButton_Minus->setText(keyMap.getMinus());
-    ui->pushButton_Equals->setText(keyMap.getEquals());
-    ui->pushButton_Backspace->setText(keyMap.getBackspace());
-    //Layer 2
-    ui->pushButton_TAB->setText(keyMap.getTAB());
-    ui->pushButton_Q->setText(keyMap.getQ());
-    ui->pushButton_W->setText(keyMap.getW());
-    ui->pushButton_E->setText(keyMap.getE());
-    ui->pushButton_R->setText(keyMap.getR());
-    ui->pushButton_T->setText(keyMap.getT());
-    ui->pushButton_Y->setText(keyMap.getY());
-    ui->pushButton_U->setText(keyMap.getU());
-    ui->pushButton_I->setText(keyMap.getI());
-    ui->pushButton_O->setText(keyMap.getO());
-    ui->pushButton_P->setText(keyMap.getP());
-    ui->pushButton_LeftSquareBracket->setText(keyMap.getLeftSquareBracket());
-    ui->pushButton_RightSquareBracket->setText(keyMap.getRightSquareBracket());
-    ui->pushButton_Backslash->setText(keyMap.getBackslash());
-    //Layer 3
-    ui->pushButton_CAPS->setText(keyMap.getCAPS());
-    ui->pushButton_A->setText(keyMap.getA());
-    ui->pushButton_S->setText(keyMap.getS());
-    ui->pushButton_D->setText(keyMap.getD());
-    ui->pushButton_F->setText(keyMap.getF());
-    ui->pushButton_G->setText(keyMap.getG());
-    ui->pushButton_H->setText(keyMap.getH());
-    ui->pushButton_J->setText(keyMap.getJ());
-    ui->pushButton_K->setText(keyMap.getK());
-    ui->pushButton_L->setText(keyMap.getL());
-    ui->pushButton_Semicolon->setText(keyMap.getSemicolon());
-    ui->pushButton_Apostrophe->setText(keyMap.getApostrophe());
-    ui->pushButton_Enter->setText(keyMap.getEnter());
-    //Layer 4
-    ui->pushButton_LShift->setText(keyMap.getLShift());
-    ui->pushButton_Z->setText(keyMap.getZ());
-    ui->pushButton_X->setText(keyMap.getX());
-    ui->pushButton_C->setText(keyMap.getC());
-    ui->pushButton_V->setText(keyMap.getV());
-    ui->pushButton_B->setText(keyMap.getB());
-    ui->pushButton_N->setText(keyMap.getN());
-    ui->pushButton_M->setText(keyMap.getM());
-    ui->pushButton_Comma->setText(keyMap.getComma());
-    ui->pushButton_Period->setText(keyMap.getPeriod());
-    ui->pushButton_Slash->setText(keyMap.getSlash());
-    ui->pushButton_RShift->setText(keyMap.getRShift());
-    //Layer 5
-    ui->pushButton_LCtrl->setText(keyMap.getLCtrl());
-    ui->pushButton_Super->setText(keyMap.getSuper());
-    ui->pushButton_LAlt->setText(keyMap.getLAlt());
-    ui->pushButton_Space->setText(keyMap.getSpace());
-    ui->pushButton_RAlt->setText(keyMap.getRAlt());
-    ui->pushButton_Menu->setText(keyMap.getMenu());
-    ui->pushButton_RCtrl->setText(keyMap.getRCtrl());
+    QPushButton* buttons[] = {
+        ui->pushButton_Tilde, ui->pushButton_1, ui->pushButton_2, ui->pushButton_3, ui->pushButton_4,
+        ui->pushButton_5, ui->pushButton_6, ui->pushButton_7, ui->pushButton_8, ui->pushButton_9,
+        ui->pushButton_0, ui->pushButton_Minus, ui->pushButton_Equals, ui->pushButton_Backspace,
+        ui->pushButton_TAB, ui->pushButton_Q, ui->pushButton_W, ui->pushButton_E, ui->pushButton_R,
+        ui->pushButton_T, ui->pushButton_Y, ui->pushButton_U, ui->pushButton_I, ui->pushButton_O,
+        ui->pushButton_P, ui->pushButton_LeftSquareBracket, ui->pushButton_RightSquareBracket,
+        ui->pushButton_Backslash, ui->pushButton_CAPS, ui->pushButton_A, ui->pushButton_S,
+        ui->pushButton_D, ui->pushButton_F, ui->pushButton_G, ui->pushButton_H, ui->pushButton_J,
+        ui->pushButton_K, ui->pushButton_L, ui->pushButton_Semicolon, ui->pushButton_Apostrophe,
+        ui->pushButton_Enter, ui->pushButton_LShift, ui->pushButton_Z, ui->pushButton_X,
+        ui->pushButton_C, ui->pushButton_V, ui->pushButton_B, ui->pushButton_N, ui->pushButton_M,
+        ui->pushButton_Comma, ui->pushButton_Period, ui->pushButton_Slash, ui->pushButton_RShift,
+        ui->pushButton_LCtrl, ui->pushButton_Super, ui->pushButton_LAlt, ui->pushButton_Space,
+        ui->pushButton_RAlt, ui->pushButton_Menu, ui->pushButton_RCtrl
+    };
+
+    QString keyValues[] = {
+        keyMap.getTilde(), keyMap.getN1(), keyMap.getN2(), keyMap.getN3(), keyMap.getN4(),
+        keyMap.getN5(), keyMap.getN6(), keyMap.getN7(), keyMap.getN8(), keyMap.getN9(),
+        keyMap.getN0(), keyMap.getMinus(), keyMap.getEquals(), keyMap.getBackspace(),
+        keyMap.getTAB(), keyMap.getQ(), keyMap.getW(), keyMap.getE(), keyMap.getR(),
+        keyMap.getT(), keyMap.getY(), keyMap.getU(), keyMap.getI(), keyMap.getO(),
+        keyMap.getP(), keyMap.getLeftSquareBracket(), keyMap.getRightSquareBracket(),
+        keyMap.getBackslash(), keyMap.getCAPS(), keyMap.getA(), keyMap.getS(),
+        keyMap.getD(), keyMap.getF(), keyMap.getG(), keyMap.getH(), keyMap.getJ(),
+        keyMap.getK(), keyMap.getL(), keyMap.getSemicolon(), keyMap.getApostrophe(),
+        keyMap.getEnter(), keyMap.getLShift(), keyMap.getZ(), keyMap.getX(),
+        keyMap.getC(), keyMap.getV(), keyMap.getB(), keyMap.getN(), keyMap.getM(),
+        keyMap.getComma(), keyMap.getPeriod(), keyMap.getSlash(), keyMap.getRShift(),
+        keyMap.getLCtrl(), keyMap.getSuper(), keyMap.getLAlt(), keyMap.getSpace(),
+        keyMap.getRAlt(), keyMap.getMenu(), keyMap.getRCtrl()
+    };
+
+    for (unsigned long long i = 0; i < sizeof(buttons) / sizeof(buttons[0]); ++i) {
+        buttons[i]->setText(keyValues[i]);
+    }
 }
 
 void MainWindow::changeFontSize(int size)
 {
     QFont font("Noto Sans");
     font.setPixelSize(size);
-    ui->pushButton_0->setFont(font);
-    ui->pushButton_Tilde->setFont(font);
-    ui->pushButton_0->setFont(font);
-    ui->pushButton_1->setFont(font);
-    ui->pushButton_2->setFont(font);
-    ui->pushButton_3->setFont(font);
-    ui->pushButton_4->setFont(font);
-    ui->pushButton_5->setFont(font);
-    ui->pushButton_6->setFont(font);
-    ui->pushButton_7->setFont(font);
-    ui->pushButton_8->setFont(font);
-    ui->pushButton_9->setFont(font);
-    ui->pushButton_Minus->setFont(font);
-    ui->pushButton_Equals->setFont(font);
-    ui->pushButton_Q->setFont(font);
-    ui->pushButton_W->setFont(font);
-    ui->pushButton_E->setFont(font);
-    ui->pushButton_E->setFont(font);
-    ui->pushButton_R->setFont(font);
-    ui->pushButton_T->setFont(font);
-    ui->pushButton_Y->setFont(font);
-    ui->pushButton_U->setFont(font);
-    ui->pushButton_I->setFont(font);
-    ui->pushButton_O->setFont(font);
-    ui->pushButton_P->setFont(font);
-    ui->pushButton_LeftSquareBracket->setFont(font);
-    ui->pushButton_RightSquareBracket->setFont(font);
-    ui->pushButton_Backslash->setFont(font);
-    ui->pushButton_A->setFont(font);
-    ui->pushButton_S->setFont(font);
-    ui->pushButton_D->setFont(font);
-    ui->pushButton_F->setFont(font);
-    ui->pushButton_G->setFont(font);
-    ui->pushButton_H->setFont(font);
-    ui->pushButton_J->setFont(font);
-    ui->pushButton_K->setFont(font);
-    ui->pushButton_L->setFont(font);
-    ui->pushButton_Semicolon->setFont(font);
-    ui->pushButton_Apostrophe->setFont(font);
-    ui->pushButton_Z->setFont(font);
-    ui->pushButton_X->setFont(font);
-    ui->pushButton_C->setFont(font);
-    ui->pushButton_V->setFont(font);
-    ui->pushButton_B->setFont(font);
-    ui->pushButton_N->setFont(font);
-    ui->pushButton_M->setFont(font);
-    ui->pushButton_Comma->setFont(font);
-    ui->pushButton_Period->setFont(font);
-    ui->pushButton_Slash->setFont(font);
-    ui->pushButton_Backspace->setFont(font);
-    ui->pushButton_TAB->setFont(font);
-    ui->pushButton_CAPS->setFont(font);
-    ui->pushButton_Enter->setFont(font);
-    ui->pushButton_LCtrl->setFont(font);
-    ui->pushButton_RCtrl->setFont(font);
-    ui->pushButton_LAlt->setFont(font);
-    ui->pushButton_RAlt->setFont(font);
-    ui->pushButton_Super->setFont(font);
-    ui->pushButton_Menu->setFont(font);
-    ui->pushButton_Space->setFont(font);
     QFont otherFont("Inconsolata Extra Expanded");
     otherFont.setPointSize(size * 1.3409523809523809523809523809524);
-    ui->pushButton_LShift->setFont(otherFont);
-    ui->pushButton_RShift->setFont(otherFont);
+
+    QPushButton* buttons[] = {
+        ui->pushButton_0, ui->pushButton_Tilde, ui->pushButton_1, ui->pushButton_2, ui->pushButton_3,
+        ui->pushButton_4, ui->pushButton_5, ui->pushButton_6, ui->pushButton_7, ui->pushButton_8,
+        ui->pushButton_9, ui->pushButton_Minus, ui->pushButton_Equals, ui->pushButton_Q, ui->pushButton_W,
+        ui->pushButton_E, ui->pushButton_R, ui->pushButton_T, ui->pushButton_Y, ui->pushButton_U,
+        ui->pushButton_I, ui->pushButton_O, ui->pushButton_P, ui->pushButton_LeftSquareBracket, ui->pushButton_RightSquareBracket,
+        ui->pushButton_Backslash, ui->pushButton_A, ui->pushButton_S, ui->pushButton_D, ui->pushButton_F,
+        ui->pushButton_G, ui->pushButton_H, ui->pushButton_J, ui->pushButton_K, ui->pushButton_L,
+        ui->pushButton_Semicolon, ui->pushButton_Apostrophe, ui->pushButton_Z, ui->pushButton_X, ui->pushButton_C,
+        ui->pushButton_V, ui->pushButton_B, ui->pushButton_N, ui->pushButton_M, ui->pushButton_Comma,
+        ui->pushButton_Period, ui->pushButton_Slash, ui->pushButton_Backspace, ui->pushButton_TAB, ui->pushButton_CAPS,
+        ui->pushButton_Enter, ui->pushButton_LCtrl, ui->pushButton_RCtrl, ui->pushButton_LAlt, ui->pushButton_RAlt,
+        ui->pushButton_Super, ui->pushButton_Menu, ui->pushButton_Space, ui->pushButton_LShift, ui->pushButton_RShift
+    };
+
+    for (QPushButton* button : buttons) {
+        if (button == ui->pushButton_LShift || button == ui->pushButton_RShift) {
+            button->setFont(otherFont);
+        } else {
+            button->setFont(font);
+        }
+    }
+
 }
 void MainWindow::resize()
 {
     //988 //35
     //450 //32
-    double width = this->size().width() / 28.228571;
-    double height = this->size().height() / 14.0625;
 
-    MainWindow::setMaximumSize(INT_MAX, INT_MAX);
+    double width = this->size().width() / (988 / 35);
+    double height = this->size().height() / (450 / 32);
 
-    ui->pushButton_Tilde->setMaximumSize(width, height);
-    ui->pushButton_0->setMaximumSize(width, height);
-    ui->pushButton_0->setMinimumSize(width, height);
-    ui->pushButton_1->setMaximumSize(width, height);
-    ui->pushButton_1->setMinimumSize(width, height);
-    ui->pushButton_2->setMaximumSize(width, height);
-    ui->pushButton_2->setMinimumSize(width, height);
-    ui->pushButton_3->setMaximumSize(width, height);
-    ui->pushButton_3->setMinimumSize(width, height);
-    ui->pushButton_4->setMaximumSize(width, height);
-    ui->pushButton_4->setMinimumSize(width, height);
-    ui->pushButton_5->setMaximumSize(width, height);
-    ui->pushButton_5->setMinimumSize(width, height);
-    ui->pushButton_6->setMaximumSize(width, height);
-    ui->pushButton_6->setMinimumSize(width, height);
-    ui->pushButton_7->setMaximumSize(width, height);
-    ui->pushButton_7->setMinimumSize(width, height);
-    ui->pushButton_8->setMaximumSize(width, height);
-    ui->pushButton_8->setMinimumSize(width, height);
-    ui->pushButton_9->setMaximumSize(width, height);
-    ui->pushButton_9->setMinimumSize(width, height);
-    ui->pushButton_Minus->setMaximumSize(width, height);
-    ui->pushButton_Minus->setMinimumSize(width, height);
-    ui->pushButton_Equals->setMaximumSize(width, height);
-    ui->pushButton_Equals->setMinimumSize(width, height);
-    ui->pushButton_Q->setMaximumSize(width, height);
-    ui->pushButton_Q->setMinimumSize(width, height);
-    ui->pushButton_W->setMaximumSize(width, height);
-    ui->pushButton_W->setMinimumSize(width, height);
-    ui->pushButton_E->setMaximumSize(width, height);
-    ui->pushButton_E->setMinimumSize(width, height);
-    ui->pushButton_R->setMaximumSize(width, height);
-    ui->pushButton_R->setMinimumSize(width, height);
-    ui->pushButton_T->setMaximumSize(width, height);
-    ui->pushButton_T->setMinimumSize(width, height);
-    ui->pushButton_Y->setMaximumSize(width, height);
-    ui->pushButton_Y->setMinimumSize(width, height);
-    ui->pushButton_U->setMaximumSize(width, height);
-    ui->pushButton_U->setMinimumSize(width, height);
-    ui->pushButton_I->setMaximumSize(width, height);
-    ui->pushButton_I->setMinimumSize(width, height);
-    ui->pushButton_O->setMaximumSize(width, height);
-    ui->pushButton_O->setMinimumSize(width, height);
-    ui->pushButton_P->setMaximumSize(width, height);
-    ui->pushButton_P->setMinimumSize(width, height);
-    ui->pushButton_LeftSquareBracket->setMaximumSize(width, height);
-    ui->pushButton_LeftSquareBracket->setMinimumSize(width, height);
-    ui->pushButton_RightSquareBracket->setMaximumSize(width, height);
-    ui->pushButton_RightSquareBracket->setMinimumSize(width, height);
-    ui->pushButton_Backslash->setMaximumSize(width, height);
-    ui->pushButton_Backslash->setMinimumSize(width, height);
-    ui->pushButton_A->setMaximumSize(width, height);
-    ui->pushButton_A->setMinimumSize(width, height);
-    ui->pushButton_S->setMaximumSize(width, height);
-    ui->pushButton_S->setMinimumSize(width, height);
-    ui->pushButton_D->setMaximumSize(width, height);
-    ui->pushButton_D->setMinimumSize(width, height);
-    ui->pushButton_F->setMaximumSize(width, height);
-    ui->pushButton_F->setMinimumSize(width, height);
-    ui->pushButton_G->setMaximumSize(width, height);
-    ui->pushButton_G->setMinimumSize(width, height);
-    ui->pushButton_H->setMaximumSize(width, height);
-    ui->pushButton_H->setMinimumSize(width, height);
-    ui->pushButton_J->setMaximumSize(width, height);
-    ui->pushButton_J->setMinimumSize(width, height);
-    ui->pushButton_K->setMaximumSize(width, height);
-    ui->pushButton_K->setMinimumSize(width, height);
-    ui->pushButton_L->setMaximumSize(width, height);
-    ui->pushButton_L->setMinimumSize(width, height);
-    ui->pushButton_Semicolon->setMaximumSize(width, height);
-    ui->pushButton_Semicolon->setMinimumSize(width, height);
-    ui->pushButton_Apostrophe->setMaximumSize(width, height);
-    ui->pushButton_Apostrophe->setMinimumSize(width, height);
-    ui->pushButton_Z->setMaximumSize(width, height);
-    ui->pushButton_Z->setMinimumSize(width, height);
-    ui->pushButton_X->setMaximumSize(width, height);
-    ui->pushButton_X->setMinimumSize(width, height);
-    ui->pushButton_C->setMaximumSize(width, height);
-    ui->pushButton_C->setMinimumSize(width, height);
-    ui->pushButton_V->setMaximumSize(width, height);
-    ui->pushButton_V->setMinimumSize(width, height);
-    ui->pushButton_B->setMaximumSize(width, height);
-    ui->pushButton_B->setMinimumSize(width, height);
-    ui->pushButton_N->setMaximumSize(width, height);
-    ui->pushButton_N->setMinimumSize(width, height);
-    ui->pushButton_M->setMaximumSize(width, height);
-    ui->pushButton_M->setMinimumSize(width, height);
-    ui->pushButton_Comma->setMaximumSize(width, height);
-    ui->pushButton_Comma->setMinimumSize(width, height);
-    ui->pushButton_Period->setMaximumSize(width, height);
-    ui->pushButton_Period->setMinimumSize(width, height);
-    ui->pushButton_Slash->setMaximumSize(width, height);
-    ui->pushButton_Slash->setMinimumSize(width, height);
+    foreach (QObject *widget, ui->centralwidget->children()) {
+        int skip = 0;
+        QPushButton *button = qobject_cast<QPushButton *>(widget);
+        if (button != nullptr) {
+            if (button->text() == "Start course") {skip = 1;}
+            if (skip == 0) {
+                button->setMinimumSize(width, height);
+                button->setMaximumSize(width, height);
+            }
+        }
+    }
 
     changeFontSize((width + height) / 3.1904761904761904761904761904762);
 
-    width = this->size().width() / 12.35;
+    width = this->size().width() / (double(988) / 80);
     ui->pushButton_Backspace->setMaximumSize(width, height);
     ui->pushButton_Backspace->setMinimumSize(width, height);
     ui->pushButton_TAB->setMaximumSize(width, height);
     ui->pushButton_TAB->setMinimumSize(width, height);
 
-    width = this->size().width() / 12.0487804;
+    width = this->size().width() / (double(988) / 83);
     ui->pushButton_CAPS->setMaximumSize(width, height);
     ui->pushButton_CAPS->setMinimumSize(width, height);
-
-    width = this->size().width() / 14.529411764705882352941176470588;
+    width = this->size().width() / (double(988) / 68);
     ui->pushButton_Enter->setMaximumSize(width, height);
     ui->pushButton_Enter->setMinimumSize(width, height);
 
-    width = this->size().width() / 10.291666666666666666666666666667;
+    width = this->size().width() / (double(988) / 96);
     ui->pushButton_LShift->setMaximumSize(width, height);
     ui->pushButton_LShift->setMinimumSize(width, height);
     ui->pushButton_RShift->setMaximumSize(width, height);
     ui->pushButton_RShift->setMinimumSize(width, height);
 
-    width = this->size().width() / 16.7457621;
+    width = this->size().width() / (double(988) / 59);
     ui->pushButton_LCtrl->setMaximumSize(width, height);
     ui->pushButton_LCtrl->setMinimumSize(width, height);
     ui->pushButton_RCtrl->setMaximumSize(width, height);
     ui->pushButton_RCtrl->setMinimumSize(width, height);
 
-    width = this->size().width() / 23.5238;
+    width = this->size().width() / (double(988) / 42);
     ui->pushButton_LAlt->setMaximumSize(width, height);
     ui->pushButton_LAlt->setMinimumSize(width, height);
     ui->pushButton_RAlt->setMaximumSize(width, height);
     ui->pushButton_RAlt->setMinimumSize(width, height);
 
-    width = this->size().width() / 24.7;
+    width = this->size().width() / (double(988) / 40);
     ui->pushButton_Super->setMaximumSize(width, height);
     ui->pushButton_Super->setMinimumSize(width, height);
     ui->pushButton_Menu->setMaximumSize(width, height);
     ui->pushButton_Menu->setMinimumSize(width, height);
 
-    width = this->size().width() / 3.6323529411764705882352941176471;
+    width = this->size().width() / (double(988) / 272);
     ui->pushButton_Space->setMaximumSize(width, height);
     ui->pushButton_Space->setMinimumSize(width, height);
 
@@ -923,6 +741,80 @@ void MainWindow::resize()
         ui->pushButton_StartCourse->setMinimumHeight(30);
         ui->pushButton_StartCourse->setFont(QFont("Noto Sans", 12, QFont::Normal));
     }
+
+//    qDebug() << "";
+//    qDebug() << "first" << ui->firstLayer->sizeHint();
+//    qDebug() << "second" << ui->secondLayer->sizeHint();
+//    qDebug() << "third" << ui->thirdLayer->sizeHint();
+//    qDebug() << "fourth" << ui->fourthLayer->sizeHint();
+//    qDebug() << "fifth" << ui->fifthLayer->sizeHint();
+
+//    qDebug() << "";
+//    qDebug() << "normal" << ui->pushButton_3->size();
+//    qDebug() << "tab" << ui->pushButton_CAPS->size();
+
+//    {
+//    qDebug() << "";
+//    QList<QPushButton *> pushButtons;
+//    for (int i = 0; i < ui->firstLayer->count(); ++i) {
+//        QWidget *widget = ui->firstLayer->itemAt(i)->widget();
+//        QPushButton *pushButton = qobject_cast<QPushButton *>(widget);
+//        pushButtons.append(pushButton);
+//    }
+//    double size = 0;
+//    for (QPushButton *pushButton : pushButtons) {
+//        size += pushButton->width();
+//    }
+//    qDebug() << "first" << size - (14 * 4);
+
+//    pushButtons.clear();
+//    for (int i = 0; i < ui->secondLayer->count(); ++i) {
+//        QWidget *widget = ui->secondLayer->itemAt(i)->widget();
+//        QPushButton *pushButton = qobject_cast<QPushButton *>(widget);
+//        pushButtons.append(pushButton);
+//    }
+//    size = 0;
+//    for (QPushButton *pushButton : pushButtons) {
+//        size += pushButton->width();
+//    }
+//    qDebug() << "second" << size - (14 * 4);
+
+//    pushButtons.clear();
+//    for (int i = 0; i < ui->thirdLayer->count(); ++i) {
+//        QWidget *widget = ui->thirdLayer->itemAt(i)->widget();
+//        QPushButton *pushButton = qobject_cast<QPushButton *>(widget);
+//        pushButtons.append(pushButton);
+//    }
+//    size = 0;
+//    for (QPushButton *pushButton : pushButtons) {
+//        size += pushButton->width();
+//    }
+//    qDebug() << "third" << size - (13 * 4);
+
+//    pushButtons.clear();
+//    for (int i = 0; i < ui->fourthLayer->count(); ++i) {
+//        QWidget *widget = ui->fourthLayer->itemAt(i)->widget();
+//        QPushButton *pushButton = qobject_cast<QPushButton *>(widget);
+//        pushButtons.append(pushButton);
+//    }
+//    size = 0;
+//    for (QPushButton *pushButton : pushButtons) {
+//        size += pushButton->width();
+//    }
+//    qDebug() << "fourth" << size - (12 * 4);
+
+//    pushButtons.clear();
+//    for (int i = 0; i < ui->fifthLayer->count(); ++i) {
+//        QWidget *widget = ui->fifthLayer->itemAt(i)->widget();
+//        QPushButton *pushButton = qobject_cast<QPushButton *>(widget);
+//        pushButtons.append(pushButton);
+//    }
+//    size = 0;
+//    for (QPushButton *pushButton : pushButtons) {
+//        size += pushButton->width();
+//    }
+//    qDebug() << "fifth" << size - (7 * 4);
+//    }
 }
 
 MainWindow::~MainWindow()
@@ -933,50 +825,44 @@ MainWindow::~MainWindow()
 void MainWindow::on_lineEdit_TextInput_textChanged(const QString &arg1)
 {
     QString word = arg1;
-    QString lastCharacter;
-    lastCharacter = arg1.back();
+    QString lastCharacter = arg1.back();
     QString articleIn = article;
-    articleIn = article.front();
-    QString front;
+    articleIn = articleIn.front();
     QString actualFront;
     stopTwice = 0;
 
     if (missStop == 0) {
         uncheck();
-        if (lastCharacter == " ")
-        {
+        if (lastCharacter == " ") {
             ui->lineEdit_TextInput->setText("");
             word = "";
         }
 
-        if (lastCharacter == articleIn)
-        {
+        if (lastCharacter == articleIn) {
             missStop = 0;
             once = 0;
             characters = 0;
-            if (lastCharacter == " ")
-            {
-                article = article.simplified();
-                backspaceSpaceStop = 1;
+            align = 0;
+
+            if (lastCharacter == " ") {
+                article = article.remove(0, 1);
             } else {
                 article.remove(0, 1);
-                backspaceSpaceStop = 1;
             }
+
+            while (article.front() == "\n") {
+                article = article.remove(0, 1);
+                ui->lineEdit_TextInput->setText("");
+            }
+
             ui->textEdit_Article->setText(article);
 
-            if (actualFront == articleIn) {checker = 1;} else {checker = 0;}
-            if (checker == 0) {
-                front = articleDeleted.front();
-                if (front == " ")
-                {
-                    articleDeleted = articleDeleted.simplified();
-                    spaceMiss = spaceMiss + 1;
-                } else {
-                    articleDeleted.remove(0, 1);
-                }
-                actualFront = articleDeleted.front();
-                ActualFront = actualFront;
+            if (actualFront == articleIn) {
+                checker = 1;
+            } else {
+                checker = 0;
             }
+
             if (theme == "light") {
                 ui->lineEdit_TextInput->setStyleSheet("color: black; background-color: white;");
             } else {
@@ -985,20 +871,23 @@ void MainWindow::on_lineEdit_TextInput_textChanged(const QString &arg1)
 
             findChar();
         } else {
-            misses = misses + 1;
-            if (lastCharacter == " ") {spaceMiss = spaceMiss + 2;}
+            if (arg1.isEmpty()) {
+                return;
+            }
+
+            misses += 1;
             missStop = 1;
             ui->lineEdit_TextInput->setStyleSheet("background-color: red;");
-            if (backspaceSpaceStop == 0) {
-                ui->pushButton_Backspace->setChecked(true);
-                ui->graphicsView_RightHand->scene()->addItem(rHFive);
-            }
+
+            ui->pushButton_Backspace->setChecked(true);
+            ui->graphicsView_RightHand->scene()->addItem(rHFive);
+
             text = arg1;
             textM = arg1;
             textM.chop(1);
         }
-        if (article == "")
-        {
+
+        if (article.isEmpty()) {
             getInfo.stopRunning();
             ui->lineEdit_TextInput->setReadOnly(true);
             ui->menuCourses->setEnabled(true);
@@ -1010,15 +899,17 @@ void MainWindow::on_lineEdit_TextInput_textChanged(const QString &arg1)
             articleIn = "";
 
             QMessageBox finished;
-
             finished.setStyleSheet(finishedStyleSheet);
             finished.setWindowTitle("Course finished!");
 
-            QString text = "You've finished the course!\n" + getInfo.getTime() + "\nMisses: " + QString::number(misses - spaceMiss);
+            QString text = "You've finished the course!\n" + getInfo.getTime() + "\nMisses: " + QString::number(misses);
 
             finished.setText(text);
 
-            if (stopTwice == 0) {finished.exec(); stopTwice = 1;}
+            if (stopTwice == 0) {
+                finished.exec();
+                stopTwice = 1;
+            }
 
             ui->statusbar->showMessage("");
             article = "Please select a course!";
@@ -1026,64 +917,91 @@ void MainWindow::on_lineEdit_TextInput_textChanged(const QString &arg1)
             ui->textEdit_Article->setAlignment(Qt::AlignCenter);
             align = 1;
             misses = 0;
-            spaceMiss = 0;
+
+            selectCheck = 1;
         }
-        if (stopTwice == 1)
-        {
-            ui->graphicsView_RightHand->scene()->addItem(rHOne);
-            ui->graphicsView_RightHand->scene()->addItem(rHTwo);
-            ui->graphicsView_RightHand->scene()->addItem(rHThree);
-            ui->graphicsView_RightHand->scene()->addItem(rHFour);
-            ui->graphicsView_RightHand->scene()->addItem(rHFive);
-            ui->graphicsView_LeftHand->scene()->addItem(lHOne);
-            ui->graphicsView_LeftHand->scene()->addItem(lHTwo);
-            ui->graphicsView_LeftHand->scene()->addItem(lHThree);
-            ui->graphicsView_LeftHand->scene()->addItem(lHFour);
-            ui->graphicsView_LeftHand->scene()->addItem(lHFive);
+
+        if (stopTwice == 1) {
+            if (isItemRemoved(ui->graphicsView_RightHand->scene(), rHOne)) {ui->graphicsView_RightHand->scene()->addItem(rHOne);}
+            if (isItemRemoved(ui->graphicsView_RightHand->scene(), rHTwo)) {ui->graphicsView_RightHand->scene()->addItem(rHTwo);}
+            if (isItemRemoved(ui->graphicsView_RightHand->scene(), rHThree)) {ui->graphicsView_RightHand->scene()->addItem(rHThree);}
+            if (isItemRemoved(ui->graphicsView_RightHand->scene(), rHFour)) {ui->graphicsView_RightHand->scene()->addItem(rHFour);}
+            if (isItemRemoved(ui->graphicsView_RightHand->scene(), rHFive)) {ui->graphicsView_RightHand->scene()->addItem(rHFive);}
+            if (isItemRemoved(ui->graphicsView_LeftHand->scene(), lHOne)) {ui->graphicsView_LeftHand->scene()->addItem(lHOne);}
+            if (isItemRemoved(ui->graphicsView_LeftHand->scene(), lHTwo)) {ui->graphicsView_LeftHand->scene()->addItem(lHTwo);}
+            if (isItemRemoved(ui->graphicsView_LeftHand->scene(), lHThree)) {ui->graphicsView_LeftHand->scene()->addItem(lHThree);}
+            if (isItemRemoved(ui->graphicsView_LeftHand->scene(), lHFour)) {ui->graphicsView_LeftHand->scene()->addItem(lHFour);}
+            if (isItemRemoved(ui->graphicsView_LeftHand->scene(), lHFive)) {ui->graphicsView_LeftHand->scene()->addItem(lHFive);}
+
+//            ui->graphicsView_RightHand->scene()->addItem(rHOne);
+//            ui->graphicsView_RightHand->scene()->addItem(rHTwo);
+//            ui->graphicsView_RightHand->scene()->addItem(rHThree);
+//            ui->graphicsView_RightHand->scene()->addItem(rHFour);
+//            ui->graphicsView_RightHand->scene()->addItem(rHFive);
+//            ui->graphicsView_LeftHand->scene()->addItem(lHOne);
+//            ui->graphicsView_LeftHand->scene()->addItem(lHTwo);
+//            ui->graphicsView_LeftHand->scene()->addItem(lHThree);
+//            ui->graphicsView_LeftHand->scene()->addItem(lHFour);
+//            ui->graphicsView_LeftHand->scene()->addItem(lHFive);
+
         }
     } else if (missStop == 1) {
         int currC = arg1.count();
         if (once == 0) {
-            characters = text.count(); once = 1;
+            characters = text.count();
+            once = 1;
         }
-        if (currC > characters)
-        {
+
+        if (currC > characters) {
             ui->lineEdit_TextInput->setText(text);
         }
-        if (currC < characters)
-        {
+
+        if (currC < characters) {
             ui->pushButton_Backspace->setChecked(false);
-            ui->graphicsView_RightHand->scene()->removeItem(rHFive);
+            if (!isItemRemoved(ui->graphicsView_RightHand->scene(), rHFive)) {ui->graphicsView_RightHand->scene()->removeItem(rHFive);}
             ui->lineEdit_TextInput->setText(textM);
             missStop = 2;
 
             findChar();
+
             if (lastCharacter == articleIn) {
                 missStop = 0;
                 article.remove(0, 1);
-                articleDeleted.remove(0, 1);
                 ui->textEdit_Article->setText(article);
+
                 if (theme == "light") {
                     ui->lineEdit_TextInput->setStyleSheet("color: black; background-color: white;");
                 } else {
                     ui->lineEdit_TextInput->setStyleSheet("color: rgb(211, 213, 201); background-color: rgb(36, 36, 44);");
                 }
-            } else {ui->lineEdit_TextInput->setText(textM);}
+            } else {
+                ui->lineEdit_TextInput->setText(textM);
+            }
         }
     } else {
+        if (word.contains(" ")) {
+            ui->lineEdit_TextInput->setText("");
+            text = "";
+            textM = "";
+        }
+
         findChar();
+
         if (lastCharacter == articleIn) {
             missStop = 0;
             article.remove(0, 1);
-            articleDeleted.remove(0, 1);
             ui->textEdit_Article->setText(article);
+
             if (theme == "light") {
                 ui->lineEdit_TextInput->setStyleSheet("color: black; background-color: white;");
             } else {
                 ui->lineEdit_TextInput->setStyleSheet("color: rgb(211, 213, 201); background-color: rgb(36, 36, 44);");
             }
-        } else {ui->lineEdit_TextInput->setText(textM);}
+        } else {
+            ui->lineEdit_TextInput->setText(textM);
+        }
     }
+
 }
 
 void MainWindow::on_action_MakeCustomCourse_triggered()
@@ -1109,8 +1027,6 @@ void MainWindow::on_action_MakeCustomCourse_triggered()
             uncheck();
 
             article = text;
-            articleDeleted = text;
-            ui->textEdit_Article->setText(articleDeleted);
             ui->pushButton_StartCourse->setEnabled(true);
 
             findChar();
@@ -1181,7 +1097,6 @@ void MainWindow::on_action_CourseSelector_triggered()
         ui->pushButton_StartCourse->setEnabled(true);
 
         QString cArticle = courses.getArticle();
-        articleDeleted = cArticle;
         article = cArticle;
         ui->textEdit_Article->setText(article);
 
@@ -1363,29 +1278,5 @@ void MainWindow::on_action_Dark_triggered()
 
 void MainWindow::resizeEvent(QResizeEvent*)
 {
-    double check = 0;
-    double nH = this->size().width();
-    double nW = this->size().height();
-    if (nH + nW > oH + oW) {
-        qDebug() << "hi";
-        qDebug() << "(nW: " + QString::number(nW) + " + nH: " + QString::number(nH) + ") / (nH: " + QString::number(nH) + " - nW: " + QString::number(nW) + ") = " + QString::number((nW + nH) / (nW - nH));
-        check = (nW + nH) / (nW - nH);
-        if (check > -2.15) {
-            check = -5.1;
-        }
-    } else {
-        qDebug() << "lo";
-        qDebug() << "(nW: " + QString::number(nW) + " + nH: " + QString::number(nH) + ") / (nH: " + QString::number(nH) + " - nW: " + QString::number(nW) + ") = " + QString::number((nW + nH) / (nW - nH));
-        check = (nW + nH) / (nW - nH);
-        resize();
-    }
-    if (check > -5) {
-        resize();
-        sOW = this->size().width();
-        sOH = this->size().height();
-    } else {
-        MainWindow::setMaximumSize(sOW + 1, sOH + 1);
-    }
-    oH = this->size().height();
-    oW = this->size().width();
+    resize();
 }

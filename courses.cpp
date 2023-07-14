@@ -29,6 +29,7 @@ void Courses::updateVars()
     for (int i = 1; i < filecount; i++) {
         QFile *file = new QFile(mainpath + QString::number(i) + ".ini");
         QTextStream reading(file);
+        reading.setCodec("UTF-8");
         file->open(QIODevice::ReadOnly);
         ui->listWidget_Courses->addItem(reading.readLine());
         file->close();
@@ -81,7 +82,7 @@ void Courses::lightCourses()
     ui->pushButton_Add->setStyleSheet(button);
     ui->pushButton_Edit->setStyleSheet(button);
     ui->pushButton_Remove->setStyleSheet(button);
-    ui->buttonBox->setStyleSheet("QPushButton {color: black; background-color: rgb(244, 244, 244); font-size: 12px;}");
+    ui->buttonBox->setStyleSheet("QPushButton {color: black; background-color: rgb(244, 244, 244); font-size: 14px;}");
     ui->label->setStyleSheet("color: black;");
     ui->listWidget_Courses->setStyleSheet("QListWidget {background-color: white; border: 0.5px solid grey;}"
                                           "QListWidget::item {color: black; background-color: white;}"
@@ -98,7 +99,7 @@ void Courses::darkCourses()
     ui->pushButton_Add->setStyleSheet(button);
     ui->pushButton_Edit->setStyleSheet(button);
     ui->pushButton_Remove->setStyleSheet(button);
-    ui->buttonBox->setStyleSheet("QPushButton {color: rgb(211, 213, 201); background-color: rgb(36, 36, 44); font-size: 12px;}");
+    ui->buttonBox->setStyleSheet("QPushButton {color: rgb(211, 213, 201); background-color: rgb(36, 36, 44); font-size: 14px;}");
     ui->label->setStyleSheet("color: rgb(211, 213, 201);");
     ui->listWidget_Courses->setStyleSheet("QListWidget {background-color: rgb(36, 36, 44); border: 1px solid rgb(66, 66, 74);}"
                                           "QListWidget::item {color: rgb(211, 213, 201); background-color: rgb(36, 36, 44);}"
@@ -119,7 +120,6 @@ void Courses::on_listWidget_Courses_currentRowChanged(int currentRow)
     currSlot = currentRow;
 
     if (currSlot >= 0) {
-    qDebug() << "A";
     QFile *file = new QFile(mainpath + QString::number(currSlot + 1) + ".ini");
     file->open(QIODevice::ReadOnly);
     QTextStream read(file);
@@ -130,7 +130,7 @@ void Courses::on_listWidget_Courses_currentRowChanged(int currentRow)
         text = text + read.readLine() + "\n";
     }
     file->close();
-    selectedArticle = text.simplified();
+    selectedArticle = text/*.simplified()*/;
     }
 }
 

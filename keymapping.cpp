@@ -19,7 +19,7 @@ void keyMapping::lightMap()
     ui->pushButton_Slots->setStyleSheet("color: black; background-color: rgb(244, 244, 244);");
     ui->pushButton_Reset->setStyleSheet("color: black; background-color: rgb(244, 244, 244);");
     keyMapping::setStyleSheet("background-color: rgb(244, 244, 244);");
-    ui->buttonBox->setStyleSheet("QPushButton {color: black; background-color: rgb(244, 244, 244);}");
+    ui->buttonBox->setStyleSheet("QPushButton {color: black; background-color: rgb(244, 244, 244); font-size: 14px;}");
     mapSlots.lightMapSlots();
 }
 void keyMapping::darkMap()
@@ -28,7 +28,7 @@ void keyMapping::darkMap()
     ui->pushButton_Slots->setStyleSheet("color: rgb(211, 213, 201); background-color: rgb(36, 36, 44);");
     ui->pushButton_Reset->setStyleSheet("color: rgb(211, 213, 201); background-color: rgb(36, 36, 44);");
     keyMapping::setStyleSheet("background-color: rgb(6, 6, 14);");
-    ui->buttonBox->setStyleSheet("QPushButton {color: rgb(211, 213, 201); background-color: rgb(36, 36, 44);}");
+    ui->buttonBox->setStyleSheet("QPushButton {color: rgb(211, 213, 201); background-color: rgb(36, 36, 44); font-size: 14px;}");
     mapSlots.darkMapSlots();
 }
 

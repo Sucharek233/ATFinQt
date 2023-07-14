@@ -19,7 +19,7 @@ void keyColorSlots::lightColSlots()
     ui->pushButton_Add->setStyleSheet(button);
     ui->pushButton_Remove->setStyleSheet(button);
     ui->pushButton_Rename->setStyleSheet(button);
-    ui->buttonBox->setStyleSheet("QPushButton {color: black; background-color: rgb(244, 244, 244); font-size: 12px;}");
+    ui->buttonBox->setStyleSheet("QPushButton {color: black; background-color: rgb(244, 244, 244); font-size: 14px;}");
     ui->label_Main->setStyleSheet("color: black;");
     ui->listWidget_Slots->setStyleSheet("QListWidget {background-color: white; border: 0.5px solid grey;}"
                                         "QListWidget::item {color: black; background-color: white;}"
@@ -39,7 +39,7 @@ void keyColorSlots::darkColSlots()
     ui->pushButton_Add->setStyleSheet(button);
     ui->pushButton_Remove->setStyleSheet(button);
     ui->pushButton_Rename->setStyleSheet(button);
-    ui->buttonBox->setStyleSheet("QPushButton {color: rgb(211, 213, 201); background-color: rgb(36, 36, 44); font-size: 12px;}");
+    ui->buttonBox->setStyleSheet("QPushButton {color: rgb(211, 213, 201); background-color: rgb(36, 36, 44); font-size: 14px;}");
     ui->label_Main->setStyleSheet("color: rgb(211, 213, 201);");
     ui->listWidget_Slots->setStyleSheet("QListWidget {background-color: rgb(36, 36, 44); border: 1px solid rgb(66, 66, 74);}"
                                           "QListWidget::item {color: rgb(211, 213, 201); background-color: rgb(36, 36, 44);}"
