@@ -6,11 +6,10 @@ QString article;
 int checker;
 QString ActualFront;
 
+QString saveLast;
 int misses;
 int stopTwice;
 int missStop;
-int once;
-int characters;
 
 QString text;
 QString textM;
@@ -337,7 +336,7 @@ void MainWindow::findChar()
             if (isItemRemoved(buttonData.scene, buttonData.item)) {buttonData.scene->addItem(buttonData.item);}
 
             if (isArticleCapitalised) {
-                buttonData.scene->addItem(lHTwo);
+//                buttonData.scene->addItem(lHTwo);
             }
         }
     }
@@ -822,13 +821,24 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::handleNewlines()
+{
+    while (article.front() == "\n") {
+        article = article.remove(0, 1);
+        ui->lineEdit_TextInput->setText("");
+        if (article == "\n" || article.isEmpty()) {break;}
+        if (article.front() != "\n") {
+            article = " " + article;
+        }
+    }
+}
 void MainWindow::on_lineEdit_TextInput_textChanged(const QString &arg1)
 {
+
     QString word = arg1;
     QString lastCharacter = arg1.back();
     QString articleIn = article;
     articleIn = articleIn.front();
-    QString actualFront;
     stopTwice = 0;
 
     if (missStop == 0) {
@@ -840,9 +850,8 @@ void MainWindow::on_lineEdit_TextInput_textChanged(const QString &arg1)
 
         if (lastCharacter == articleIn) {
             missStop = 0;
-            once = 0;
-            characters = 0;
             align = 0;
+            saveLast = "";
 
             if (lastCharacter == " ") {
                 article = article.remove(0, 1);
@@ -850,18 +859,9 @@ void MainWindow::on_lineEdit_TextInput_textChanged(const QString &arg1)
                 article.remove(0, 1);
             }
 
-            while (article.front() == "\n") {
-                article = article.remove(0, 1);
-                ui->lineEdit_TextInput->setText("");
-            }
+            handleNewlines();
 
             ui->textEdit_Article->setText(article);
-
-            if (actualFront == articleIn) {
-                checker = 1;
-            } else {
-                checker = 0;
-            }
 
             if (theme == "light") {
                 ui->lineEdit_TextInput->setStyleSheet("color: black; background-color: white;");
@@ -871,9 +871,26 @@ void MainWindow::on_lineEdit_TextInput_textChanged(const QString &arg1)
 
             findChar();
         } else {
-            if (arg1.isEmpty()) {
+            if (arg1.isEmpty()) {return;}
+            if (arg1.count() < saveLast.count()) {
+                QString removed = QString(saveLast.back());
+                article = removed + article;
+                ui->textEdit_Article->setText(article);
+                saveLast.chop(1); ui->lineEdit_TextInput->setText(saveLast);
+
+                misses += 1;
+                missStop = 2;
+                ui->lineEdit_TextInput->setStyleSheet("background-color: red;");
+
+                text = arg1;
+                textM = arg1;
+                textM.chop(1);
+
+                uncheck();
+                findChar();
                 return;
             }
+            if (arg1.count() == saveLast.count()) {findChar(); return;}
 
             misses += 1;
             missStop = 1;
@@ -898,110 +915,91 @@ void MainWindow::on_lineEdit_TextInput_textChanged(const QString &arg1)
             lastCharacter = "";
             articleIn = "";
 
-            QMessageBox finished;
-            finished.setStyleSheet(finishedStyleSheet);
-            finished.setWindowTitle("Course finished!");
-
-            QString text = "You've finished the course!\n" + getInfo.getTime() + "\nMisses: " + QString::number(misses);
-
-            finished.setText(text);
-
-            if (stopTwice == 0) {
-                finished.exec();
-                stopTwice = 1;
-            }
-
             ui->statusbar->showMessage("");
             article = "Please select a course!";
             ui->textEdit_Article->setText(article);
             ui->textEdit_Article->setAlignment(Qt::AlignCenter);
             align = 1;
-            misses = 0;
 
             selectCheck = 1;
-        }
 
-        if (stopTwice == 1) {
-            if (isItemRemoved(ui->graphicsView_RightHand->scene(), rHOne)) {ui->graphicsView_RightHand->scene()->addItem(rHOne);}
-            if (isItemRemoved(ui->graphicsView_RightHand->scene(), rHTwo)) {ui->graphicsView_RightHand->scene()->addItem(rHTwo);}
-            if (isItemRemoved(ui->graphicsView_RightHand->scene(), rHThree)) {ui->graphicsView_RightHand->scene()->addItem(rHThree);}
-            if (isItemRemoved(ui->graphicsView_RightHand->scene(), rHFour)) {ui->graphicsView_RightHand->scene()->addItem(rHFour);}
-            if (isItemRemoved(ui->graphicsView_RightHand->scene(), rHFive)) {ui->graphicsView_RightHand->scene()->addItem(rHFive);}
-            if (isItemRemoved(ui->graphicsView_LeftHand->scene(), lHOne)) {ui->graphicsView_LeftHand->scene()->addItem(lHOne);}
-            if (isItemRemoved(ui->graphicsView_LeftHand->scene(), lHTwo)) {ui->graphicsView_LeftHand->scene()->addItem(lHTwo);}
-            if (isItemRemoved(ui->graphicsView_LeftHand->scene(), lHThree)) {ui->graphicsView_LeftHand->scene()->addItem(lHThree);}
-            if (isItemRemoved(ui->graphicsView_LeftHand->scene(), lHFour)) {ui->graphicsView_LeftHand->scene()->addItem(lHFour);}
-            if (isItemRemoved(ui->graphicsView_LeftHand->scene(), lHFive)) {ui->graphicsView_LeftHand->scene()->addItem(lHFive);}
+            QMessageBox finished;
+            finished.setStyleSheet(finishedStyleSheet);
+            finished.setWindowTitle("Course finished!");
 
-//            ui->graphicsView_RightHand->scene()->addItem(rHOne);
-//            ui->graphicsView_RightHand->scene()->addItem(rHTwo);
-//            ui->graphicsView_RightHand->scene()->addItem(rHThree);
-//            ui->graphicsView_RightHand->scene()->addItem(rHFour);
-//            ui->graphicsView_RightHand->scene()->addItem(rHFive);
-//            ui->graphicsView_LeftHand->scene()->addItem(lHOne);
-//            ui->graphicsView_LeftHand->scene()->addItem(lHTwo);
-//            ui->graphicsView_LeftHand->scene()->addItem(lHThree);
-//            ui->graphicsView_LeftHand->scene()->addItem(lHFour);
-//            ui->graphicsView_LeftHand->scene()->addItem(lHFive);
+            QString text = "You've finished the course!\n" + getInfo.getTime() + "\nMisses: " + QString::number(misses);
+            finished.setText(text);
+            if (stopTwice == 0) {
+                if (isItemRemoved(ui->graphicsView_RightHand->scene(), rHOne)) {ui->graphicsView_RightHand->scene()->addItem(rHOne);}
+                if (isItemRemoved(ui->graphicsView_RightHand->scene(), rHTwo)) {ui->graphicsView_RightHand->scene()->addItem(rHTwo);}
+                if (isItemRemoved(ui->graphicsView_RightHand->scene(), rHThree)) {ui->graphicsView_RightHand->scene()->addItem(rHThree);}
+                if (isItemRemoved(ui->graphicsView_RightHand->scene(), rHFour)) {ui->graphicsView_RightHand->scene()->addItem(rHFour);}
+                if (isItemRemoved(ui->graphicsView_RightHand->scene(), rHFive)) {ui->graphicsView_RightHand->scene()->addItem(rHFive);}
+                if (isItemRemoved(ui->graphicsView_LeftHand->scene(), lHOne)) {ui->graphicsView_LeftHand->scene()->addItem(lHOne);}
+                if (isItemRemoved(ui->graphicsView_LeftHand->scene(), lHTwo)) {ui->graphicsView_LeftHand->scene()->addItem(lHTwo);}
+                if (isItemRemoved(ui->graphicsView_LeftHand->scene(), lHThree)) {ui->graphicsView_LeftHand->scene()->addItem(lHThree);}
+                if (isItemRemoved(ui->graphicsView_LeftHand->scene(), lHFour)) {ui->graphicsView_LeftHand->scene()->addItem(lHFour);}
+                if (isItemRemoved(ui->graphicsView_LeftHand->scene(), lHFive)) {ui->graphicsView_LeftHand->scene()->addItem(lHFive);}
 
+                finished.exec();
+
+                misses = 0;
+                stopTwice = 1;
+            }
         }
     } else if (missStop == 1) {
         int currC = arg1.count();
-        if (once == 0) {
-            characters = text.count();
-            once = 1;
-        }
 
-        if (currC > characters) {
-            ui->lineEdit_TextInput->setText(text);
-        }
-
-        if (currC < characters) {
-            ui->pushButton_Backspace->setChecked(false);
-            if (!isItemRemoved(ui->graphicsView_RightHand->scene(), rHFive)) {ui->graphicsView_RightHand->scene()->removeItem(rHFive);}
+        if (currC > text.count()) {ui->lineEdit_TextInput->setText(arg1.chopped(1)); return;}
+        if (currC < text.count()) {
             ui->lineEdit_TextInput->setText(textM);
-            missStop = 2;
 
+            uncheck();
             findChar();
 
-            if (lastCharacter == articleIn) {
-                missStop = 0;
-                article.remove(0, 1);
-                ui->textEdit_Article->setText(article);
-
-                if (theme == "light") {
-                    ui->lineEdit_TextInput->setStyleSheet("color: black; background-color: white;");
-                } else {
-                    ui->lineEdit_TextInput->setStyleSheet("color: rgb(211, 213, 201); background-color: rgb(36, 36, 44);");
-                }
-            } else {
-                ui->lineEdit_TextInput->setText(textM);
-            }
+            return;
         }
-    } else {
-        if (word.contains(" ")) {
-            ui->lineEdit_TextInput->setText("");
-            text = "";
-            textM = "";
-        }
-
-        findChar();
-
-        if (lastCharacter == articleIn) {
+        if (currC == text.count()) {
+            if (lastCharacter != articleIn) {return;}
             missStop = 0;
             article.remove(0, 1);
+            handleNewlines();
             ui->textEdit_Article->setText(article);
+
+            uncheck();
+            findChar();
 
             if (theme == "light") {
                 ui->lineEdit_TextInput->setStyleSheet("color: black; background-color: white;");
             } else {
                 ui->lineEdit_TextInput->setStyleSheet("color: rgb(211, 213, 201); background-color: rgb(36, 36, 44);");
             }
-        } else {
-            ui->lineEdit_TextInput->setText(textM);
+        }
+    } else if (missStop == 2) {
+        int currC = arg1.count();
+        if (currC < text.count()) {ui->lineEdit_TextInput->setText(text); return;}
+        if (currC > text.count()) {
+            if (lastCharacter != articleIn) {ui->lineEdit_TextInput->setText(text); return;}
+            missStop = 0;
+            article.remove(0, 1);
+            handleNewlines();
+            ui->textEdit_Article->setText(article);
+
+            uncheck();
+            findChar();
+
+            if (theme == "light") {
+                ui->lineEdit_TextInput->setStyleSheet("color: black; background-color: white;");
+            } else {
+                ui->lineEdit_TextInput->setStyleSheet("color: rgb(211, 213, 201); background-color: rgb(36, 36, 44);");
+            }
+            return;
         }
     }
 
+    if (stopTwice == 1) {ui->textEdit_Article->setAlignment(Qt::AlignCenter);}
+
+    saveLast = arg1;
 }
 
 void MainWindow::on_action_MakeCustomCourse_triggered()
@@ -1013,8 +1011,7 @@ void MainWindow::on_action_MakeCustomCourse_triggered()
     getCustomText.setLabelText("Type in or paste an article.");
     getCustomText.setStyleSheet(setCStyleSheet);
     if (getCustomText.exec() == QInputDialog::Accepted) {
-        text = getCustomText.textValue();
-        text = text.simplified();
+        text = getCustomText.textValue().simplified();
 
         if (text == "") {
             QMessageBox empty;
@@ -1023,11 +1020,13 @@ void MainWindow::on_action_MakeCustomCourse_triggered()
             empty.setText("Warning! You didn't enter anything!");
             empty.exec();
         } else {
-
             uncheck();
 
             article = text;
+            ui->textEdit_Article->setText(article);
             ui->pushButton_StartCourse->setEnabled(true);
+
+            align = 0;
 
             findChar();
         }
@@ -1041,6 +1040,9 @@ void MainWindow::on_pushButton_StartCourse_clicked()
     ui->menuCourses->setEnabled(false);
     ui->action_MakeCustomCourse->setEnabled(false);
     ui->lineEdit_TextInput->setFocus();
+
+    uncheck();
+    findChar();
 
     align = 0;
 }
@@ -1099,6 +1101,8 @@ void MainWindow::on_action_CourseSelector_triggered()
         QString cArticle = courses.getArticle();
         article = cArticle;
         ui->textEdit_Article->setText(article);
+
+        align = 0;
 
         findChar();
     }
